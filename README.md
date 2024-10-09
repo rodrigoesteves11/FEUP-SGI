@@ -1,10 +1,10 @@
 # SGI 2024/2025
 
-## Group T0xG0y
+## Group T03G03
 | Name             | Number    | E-Mail             |
 | ---------------- | --------- | ------------------ |
-| John Doe         | 201901010 | ...                |
-| Jane Doe         | 201901011 | ...                |
+| Rodrigo Esteves  | 202403070 | up202403070@up.pt  |
+| Pedro Cancela    | 202400230 | up202400230@up.pt  |
 
 ----
 
@@ -12,10 +12,16 @@
 
 ### [TP1 - ThreeJS Basics](tp1)
 
-- (items briefly describing main strong points)
+  - Multiple camera views with switchable perspectives.
+  - 3D scene with objects like cubes, cones, and planes.
+  - Use of different materials and textures.
+  - Lighting setup with shadows for added realism.
+  - GUI to control scene properties.
 - Scene
-  - (Brief description of the created scene)
-  - (relative link to the scene)
+  - Floor and walls: Textured with paintings and a window.
+  - Table: With a cake, candle, and flower.
+  - Lighting: Spotlight on the cake with shadows.
+  - [View the scene](tp1/index.html)
 
 -----
 

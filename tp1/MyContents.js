@@ -1,156 +1,173 @@
-import * as THREE from 'three';
-import { MyAxis } from './MyAxis.js';
+import * as THREE from "three";
+import { MyAxis } from "./MyAxis.js";
 
 /**
  *  This class contains the contents of out application
  */
-class MyContents  {
-
-    /**
+class MyContents {
+  /**
        constructs the object
        @param {MyApp} app The application object
-    */ 
-    constructor(app) {
-        this.app = app
-        this.axis = null
+    */
+  constructor(app) {
+    this.app = app;
+    this.axis = null;
 
-        // box related attributes
-        this.boxMesh = null
-        this.boxMeshSize = 1.0
-        this.boxEnabled = true
-        this.lastBoxEnabled = null
-        this.boxDisplacement = new THREE.Vector3(0,2,0)
+    this.walltextures = {
+      ambientOcclusion: "./textures/wood-wall/Wood_Wall_003_ambientOcclusion.jpg",
+      baseColor: "./textures/wood-wall/Wood_Wall_003_basecolor.jpg",
+      normalMap: "./textures/wood-wall/Wood_Wall_003_normal.jpg",
+      roughnessMap: "./textures/wood-wall/Wood_Wall_003_roughness.jpg",
+      heightMap: "./textures/wood-wall/Wood_Wall_003_height.png",
+    };
+    this.planetextures = {
+      ambientOcclusion: "./textures/tiles-floor/Marble_Tiles_001_ambientOcclusion.jpg",
+      baseColor: "./textures/tiles-floor/Marble_Tiles_001_basecolor.jpg",
+      normalMap: "./textures/tiles-floor/Marble_Tiles_001_normal.jpg",
+      roughnessMap: "./textures/tiles-floor/Marble_Tiles_001_roughness.jpg",
+      heightMap: "./textures/tiles-floor/Marble_Tiles_001_height.png",
+    };
 
-        // plane related attributes
-        this.diffusePlaneColor = "#00ffff"
-        this.specularPlaneColor = "#777777"
-        this.planeShininess = 30
-        this.planeMaterial = new THREE.MeshPhongMaterial({ color: this.diffusePlaneColor, 
-            specular: this.specularPlaneColor, emissive: "#000000", shininess: this.planeShininess })
-    }
 
-    /**
-     * builds the box mesh with material assigned
-     */
-    buildBox() {    
-        let boxMaterial = new THREE.MeshPhongMaterial({ color: "#ffff77", 
-        specular: "#000000", emissive: "#000000", shininess: 90 })
+    // wall related attributes
+    this.wallThickness = 0.2;
+    this.wallHeight = 8;
 
-        // Create a Cube Mesh with basic material
-        let box = new THREE.BoxGeometry(  this.boxMeshSize,  this.boxMeshSize,  this.boxMeshSize );
-        this.boxMesh = new THREE.Mesh( box, boxMaterial );
-        this.boxMesh.rotation.x = -Math.PI / 2;
-        this.boxMesh.position.y = this.boxDisplacement.y;
-    }
 
-    /**
-     * initializes the contents
-     */
-    init() {
-       
-        // create once 
-        if (this.axis === null) {
-            // create and attach the axis to the scene
-            this.axis = new MyAxis(this)
-            this.app.scene.add(this.axis)
-        }
+    //floor related attributes
+    this.floorWidth = 15;
+    this.floorHeight = 15;
+  }
 
-        // add a point light on top of the model
-        const pointLight = new THREE.PointLight( 0xffffff, 500, 0 );
-        pointLight.position.set( 0, 20, 0 );
-        this.app.scene.add( pointLight );
+  /*
+  * Create a Plane Mesh
+  */
+  buildWalls() {
+    const textureLoader = new THREE.TextureLoader();
 
-        // add a point light helper for the previous point light
-        const sphereSize = 0.5;
-        const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-        this.app.scene.add( pointLightHelper );
+    const ambientOcclusionTexture = textureLoader.load(this.walltextures.ambientOcclusion);
+    const baseColorTexture = textureLoader.load(this.walltextures.baseColor);
+    const normalMapTexture = textureLoader.load(this.walltextures.normalMap);
+    const roughnessMapTexture = textureLoader.load(this.walltextures.roughnessMap);
+    const heightMapTexture = textureLoader.load(this.walltextures.heightMap);
 
-        // add an ambient light
-        const ambientLight = new THREE.AmbientLight( 0x555555 );
-        this.app.scene.add( ambientLight );
+    baseColorTexture.wrapS = THREE.RepeatWrapping;
+    baseColorTexture.wrapT = THREE.RepeatWrapping;
+    baseColorTexture.repeat.set(2, 2);
 
-        this.buildBox()
-        
-        // Create a Plane Mesh with basic material
-        
-        let plane = new THREE.PlaneGeometry( 10, 10 );
-        this.planeMesh = new THREE.Mesh( plane, this.planeMaterial );
-        this.planeMesh.rotation.x = -Math.PI / 2;
-        this.planeMesh.position.y = -0;
-        this.app.scene.add( this.planeMesh );
-    }
+    normalMapTexture.wrapS = THREE.RepeatWrapping;
+    normalMapTexture.wrapT = THREE.RepeatWrapping;
+    normalMapTexture.repeat.set(2, 2);
+
+    const wallMaterial = new THREE.MeshStandardMaterial({
+      map: baseColorTexture,
+      aoMap: ambientOcclusionTexture,
+      normalMap: normalMapTexture,
+      roughnessMap: roughnessMapTexture,
+      displacementMap: heightMapTexture,
+      displacementScale: 0,
+    });
+
+    const wallGeometry = new THREE.PlaneGeometry(
+      this.floorWidth,
+      this.wallHeight,
+    );
+
+    const addWall = (position, rotationY = 0) => {
+      const wall = new THREE.Mesh(wallGeometry, wallMaterial);
+      wall.position.set(position.x, position.y, position.z);
+      wall.rotation.y = rotationY;
+      this.app.scene.add(wall);
+    };
     
-    /**
-     * updates the diffuse plane color and the material
-     * @param {THREE.Color} value 
-     */
-    updateDiffusePlaneColor(value) {
-        this.diffusePlaneColor = value
-        this.planeMaterial.color.set(this.diffusePlaneColor)
-    }
-    /**
-     * updates the specular plane color and the material
-     * @param {THREE.Color} value 
-     */
-    updateSpecularPlaneColor(value) {
-        this.specularPlaneColor = value
-        this.planeMaterial.specular.set(this.specularPlaneColor)
-    }
-    /**
-     * updates the plane shininess and the material
-     * @param {number} value 
-     */
-    updatePlaneShininess(value) {
-        this.planeShininess = value
-        this.planeMaterial.shininess = this.planeShininess
-    }
+    // Front wall
+    addWall({ x: 0,  y: this.wallHeight / 2, z: -this.floorWidth / 2 });
     
-    /**
-     * rebuilds the box mesh if required
-     * this method is called from the gui interface
-     */
-    rebuildBox() {
-        // remove boxMesh if exists
-        if (this.boxMesh !== undefined && this.boxMesh !== null) {  
-            this.app.scene.remove(this.boxMesh)
-        }
-        this.buildBox();
-        this.lastBoxEnabled = null
-    }
+    // Back wall
+    addWall({ x: 0, y: this.wallHeight / 2, z: this.floorWidth / 2 }, Math.PI);
     
-    /**
-     * updates the box mesh if required
-     * this method is called from the render method of the app
-     * updates are trigered by boxEnabled property changes
-     */
-    updateBoxIfRequired() {
-        if (this.boxEnabled !== this.lastBoxEnabled) {
-            this.lastBoxEnabled = this.boxEnabled
-            if (this.boxEnabled) {
-                this.app.scene.add(this.boxMesh)
-            }
-            else {
-                this.app.scene.remove(this.boxMesh)
-            }
-        }
+    // Left wall
+    addWall({ x: this.floorWidth / 2 , y: this.wallHeight / 2, z:0 }, -Math.PI / 2);
+    
+    // Right wall
+    addWall({ x: - this.floorWidth / 2 , y: this.wallHeight / 2, z: 0 }, Math.PI / 2);
+  }
+
+  /*
+   * Create a Plane Mesh
+   */
+  buildFloor() {
+    const textureLoader = new THREE.TextureLoader();
+
+    const ambientOcclusionTexture = textureLoader.load(this.planetextures.ambientOcclusion);
+    const baseColorTexture = textureLoader.load(this.planetextures.baseColor);
+    const normalMapTexture = textureLoader.load(this.planetextures.normalMap);
+    const roughnessMapTexture = textureLoader.load(this.planetextures.roughnessMap);
+    const heightMapTexture = textureLoader.load(this.planetextures.heightMap);
+
+    baseColorTexture.wrapS = THREE.RepeatWrapping;
+    baseColorTexture.wrapT = THREE.RepeatWrapping;
+    baseColorTexture.repeat.set(4, 4);
+
+    normalMapTexture.wrapS = THREE.RepeatWrapping;
+    normalMapTexture.wrapT = THREE.RepeatWrapping;
+    normalMapTexture.repeat.set(4, 4);
+
+    const planeMaterial = new THREE.MeshStandardMaterial({
+      map: baseColorTexture,
+      aoMap: ambientOcclusionTexture,
+      normalMap: normalMapTexture,
+      roughnessMap: roughnessMapTexture,
+      displacementMap: heightMapTexture,
+      displacementScale: 0.000001,
+    });
+
+    let plane = new THREE.PlaneGeometry(this.floorHeight, this.floorWidth);
+    this.planeMesh = new THREE.Mesh(plane, planeMaterial);
+    this.planeMesh.rotation.x = -Math.PI / 2;
+    this.app.scene.add(this.planeMesh);
+  }
+
+
+
+
+  /**
+   * initializes the contents
+   */
+
+  init() {
+    // create once
+    if (this.axis === null) {
+      // create and attach the axis to the scene
+      this.axis = new MyAxis(this);
+      this.app.scene.add(this.axis);
     }
 
-    /**
-     * updates the contents
-     * this method is called from the render method of the app
-     * 
-     */
-    update() {
-        // check if box mesh needs to be updated
-        this.updateBoxIfRequired()
+    // add a point light on top of the model
+    const pointLight = new THREE.PointLight(0xffffff, 500, 0);
+    pointLight.position.set(0, 20, 0);
+    this.app.scene.add(pointLight);
 
-        // sets the box mesh position based on the displacement vector
-        this.boxMesh.position.x = this.boxDisplacement.x
-        this.boxMesh.position.y = this.boxDisplacement.y
-        this.boxMesh.position.z = this.boxDisplacement.z
-        
-    }
+    // add a point light helper for the previous point light
+    const sphereSize = 0.5;
+    const pointLightHelper = new THREE.PointLightHelper(pointLight, sphereSize);
+    this.app.scene.add(pointLightHelper);
 
+    // add an ambient light
+    const ambientLight = new THREE.AmbientLight(0x555555);
+    this.app.scene.add(ambientLight);
+
+    this.buildFloor();
+
+    this.buildWalls();
+  }
+
+  /**
+   * updates the contents
+   * this method is called from the render method of the app
+   *
+   */
+  update() { }
 }
 
 export { MyContents };
