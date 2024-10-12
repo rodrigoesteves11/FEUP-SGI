@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { MyAxis } from "./MyAxis.js";
+import { Cabinet } from "./Cabinet.js"; // Ensure this path is correct and the Cabinet class is properly defined in Cabinet.js
 
 /**
  *  This class contains the contents of out application
@@ -142,6 +143,11 @@ class MyContents {
       this.axis = new MyAxis(this);
       this.app.scene.add(this.axis);
     }
+
+    // create a cabinet
+    const cabinet = new Cabinet(this);
+    this.app.scene.add(cabinet);
+    cabinet.position.set(0 , 1.64, - this.floorWidth / 2 + 1.1);
 
     // add a point light on top of the model
     const pointLight = new THREE.PointLight(0xffffff, 500, 0);
