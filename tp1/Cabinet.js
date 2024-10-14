@@ -1,8 +1,8 @@
 import * as THREE from "three";
-// import { MyApp } from './MyApp.js';
+import { MyApp } from './MyApp.js';
 
 /**
- * This class contains a 3D axis representation
+ * A Cabinet is a 3D object that represents a cabinet.
  */
 class Cabinet extends THREE.Object3D {
   /**
