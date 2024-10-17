@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { MyApp } from './MyApp.js';
+import { MyApp } from "./MyApp.js";
 
 /**
  * A Cabinet is a 3D object that represents a cabinet.
@@ -40,7 +40,6 @@ class Beetle extends THREE.Object3D {
       displacementScale: 0,
     });
 
-
     const corkambientOcclusionTexture = textureLoader.load(
       "./textures/cork/Cork_002_OCC.jpg"
     );
@@ -56,16 +55,22 @@ class Beetle extends THREE.Object3D {
     const corkheightMapTexture = textureLoader.load(
       "./textures/cork/Cork_002_DISP.png"
     );
-
-    const corkMaterial = new THREE.MeshStandardMaterial({
-      map: corkbasediffuseMap, 
-      normalMap: corknormalMapTexture, 
-      roughnessMap: corkroughnessMapTexture,
-      aoMap: corkambientOcclusionTexture, 
-      displacementMap: corkheightMapTexture, 
-      displacementScale: 0,
+    const corkMaterial = new THREE.MeshBasicMaterial({
+      map: corkbasediffuseMap,
     });
     
+    
+    // MeshStandardMaterial({
+    //   map: corkbasediffuseMap,
+    //   normalMap: corknormalMapTexture,
+    //   roughnessMap: corkroughnessMapTexture,
+    //   aoMap: corkambientOcclusionTexture,
+    //   displacementMap: corkheightMapTexture,
+    //   displacementScale: 0,
+    //   roughness: 1, // Máxima rugosidade para eliminar reflexos
+    //   metalness: 0, // Sem metalicidade (sem brilho metálico)
+    //   reflectivity: 0, // Sem reflexão
+    // });
 
     corkbasediffuseMap.wrapS = THREE.RepeatWrapping;
     corkbasediffuseMap.wrapT = THREE.RepeatWrapping;
@@ -107,72 +112,76 @@ class Beetle extends THREE.Object3D {
     this.add(backframe);
 
     //beetle body
-    
+
     const material = new THREE.LineBasicMaterial({
       color: 0xff0000,
-      linewidth: 5 // Aumenta a grossura da linha
+      linewidth: 5, // Aumenta a grossura da linha
     });
 
-    const curve = new THREE.CubicBezierCurve(
-      new THREE.Vector3( -0.3, 0, 0),
-      new THREE.Vector3( -0.25, 0.5, 0 ),
-      new THREE.Vector3( 0.25, 0.5, 0 ),
-      new THREE.Vector3( 0.3, 0, 0)
-    );
-    
-    const points = curve.getPoints( 50 );
-    const geometry = new THREE.BufferGeometry().setFromPoints( points );
-    
+    //semi-circle r and h
+    const r = 0.4;
+    const h = (4 / 3) * r;
+
+    //Wheel points
+    const p0 = new THREE.Vector2(-r, 0);
+    const p1 = new THREE.Vector2(-r, h);
+    const p2 = new THREE.Vector3(r, h);
+    const p3 = new THREE.Vector3(r, 0);
+    const curve = new THREE.CubicBezierCurve3(p0, p1, p2, p3);
+
+    const points = curve.getPoints(50); // 50 pontos para criar uma curva suave
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
     // Create the final object to add to the scene
-    const curveObject = new THREE.Line( geometry, material );
-    curveObject.position.set(0, 0.5, 0.5);
+    const curveObject = new THREE.Line(geometry, material);
+    curveObject.position.set(0, 0.5, 0.7);
     curveObject.rotation.y = Math.PI / 2;
     this.add(curveObject);
-    const curveObject2 = new THREE.Line( geometry, material );
-    curveObject2.position.set(0, 0.5, -0.5);
+    const curveObject2 = new THREE.Line(geometry, material);
+    curveObject2.position.set(0, 0.5, -0.7);
     curveObject2.rotation.y = Math.PI / 2;
     this.add(curveObject2);
 
-    const curve2 = new THREE.CubicBezierCurve(
-      new THREE.Vector3( -0.3, 0, 0),
-      new THREE.Vector3( -0.2, 0.5, 0 ),
-      new THREE.Vector3( -0.05, 0.9, 0 ),
-      new THREE.Vector3( 0.5, 0.9, 0)
-    );    
-    const points2 = curve2.getPoints( 50 );
-    const geometry2 = new THREE.BufferGeometry().setFromPoints( points2 );
-    const curveObject3 = new THREE.Line( geometry2, material );
-    curveObject3.position.set(0, 0.5, 0.5);
+    // 1/4 circle
+    const r2 = 1.1;
+    const h2 = (4 / 3) * (Math.sqrt(2) - 1) * r2;
+
+    const curve2 = new THREE.CubicBezierCurve3(
+      new THREE.Vector2(0, r2),
+      new THREE.Vector2(h2, r2),
+      new THREE.Vector2(r2, h2),
+      new THREE.Vector2(r2, 0)
+    );
+    const points2 = curve2.getPoints(50);
+    const geometry2 = new THREE.BufferGeometry().setFromPoints(points2);
+    const curveObject3 = new THREE.Line(geometry2, material);
+    curveObject3.position.set(0, 0.5, 0);
     curveObject3.rotation.y = Math.PI / 2;
+    curveObject3.rotation.x = Math.PI / 2;
     this.add(curveObject3);
 
-    const curve3 = new THREE.QuadraticBezierCurve(
-      new THREE.Vector3( 0.3, 0, 0),
-      new THREE.Vector3( 0.3, 0.6, 0 ),
-      new THREE.Vector3( -0.1, 0.5, 0)
+    // 1/4 circle small
+    const r3 = 0.55;
+    const h3 = (4 / 3) * (Math.sqrt(2) - 1) * r3;
+
+    const curve3 = new THREE.CubicBezierCurve3(
+      new THREE.Vector2(0, r3),
+      new THREE.Vector2(h3, r3),
+      new THREE.Vector2(r3, h3),
+      new THREE.Vector2(r3, 0)
     );
-    const points3 = curve3.getPoints( 50 );
-    const geometry3 = new THREE.BufferGeometry().setFromPoints( points3 );
-    const curveObject4 = new THREE.Line( geometry3, material );
-    curveObject4.position.set(0, 0.5, -0.5);
-    curveObject4.rotation.y = Math.PI / 2;
-    this.add(curveObject4);
-    
-    const curve4 = new THREE.QuadraticBezierCurve(
-      new THREE.Vector3( -0.1, 0.5, 0),
-      new THREE.Vector3( -0.2, 0.8, 0),
-      new THREE.Vector3( -0.5, 0.9, 0),
-    );
-    const points4 = curve4.getPoints( 50 );
-    const geometry4 = new THREE.BufferGeometry().setFromPoints( points4 );
-    const curveObject5 = new THREE.Line( geometry4, material );
-    curveObject5.position.set(0, 0.5, -0.5);
+    const points3 = curve3.getPoints(50);
+    const geometry3 = new THREE.BufferGeometry().setFromPoints(points3);
+
+    const curveobject4 = new THREE.Line(geometry3, material);
+    curveobject4.position.set(0, 1.05, 0);
+    curveobject4.rotation.y = Math.PI / 2;
+    this.add(curveobject4);
+
+    const curveObject5 = new THREE.Line(geometry3, material);
+    curveObject5.position.set(0, 0.5, -0.55);
     curveObject5.rotation.y = Math.PI / 2;
     this.add(curveObject5);
-
-    
-    
-
   }
 }
 

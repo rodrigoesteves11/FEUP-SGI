@@ -69,6 +69,9 @@ class MyContents {
       roughnessMap: roughnessMapTexture,
       displacementMap: heightMapTexture,
       displacementScale: 0,
+      roughness: 1,       // Completamente rugoso
+      metalness: 0,       // Sem metal
+      reflectivity: 0,     // Sem reflexo
     });
 
     const wallGeometry = new THREE.PlaneGeometry(

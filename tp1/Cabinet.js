@@ -175,8 +175,6 @@ class Cabinet extends THREE.Object3D {
     leg4.rotation.z = - Math.PI / 6;
     this.add(leg4);
 
-
-
   }
 }
 
