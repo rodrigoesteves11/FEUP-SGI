@@ -3,6 +3,7 @@ import { MyAxis } from "./MyAxis.js";
 import { Cabinet } from "./Cabinet.js";
 import { Lamp } from "./Lamp.js";
 import { Beetle } from "./Beetle.js";
+import { Table } from "./Table.js";
 
 /**
  *  This class contains the contents of out application
@@ -148,6 +149,11 @@ class MyContents {
       this.axis = new MyAxis(this);
       this.app.scene.add(this.axis);
     }
+
+    // create a table
+    const table = new Table(this);
+    this.app.scene.add(table);
+    table.scale.set(3,2,3);
 
     // create a cabinet
     const cabinet = new Cabinet(this);
