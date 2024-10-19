@@ -4,6 +4,7 @@ import { Cabinet } from "./Cabinet.js";
 import { Lamp } from "./Lamp.js";
 import { Beetle } from "./Beetle.js";
 import { Table } from "./Table.js";
+import { Spring } from "./Spring.js";
 
 /**
  *  This class contains the contents of out application
@@ -155,6 +156,11 @@ class MyContents {
     this.app.scene.add(table);
     table.scale.set(3,2,3);
 
+    //create a spring
+    const spring = new Spring(this);
+    this.app.scene.add(spring);
+    spring.position.set(0, 2, 0);
+
     // create a cabinet
     const cabinet = new Cabinet(this);
     this.app.scene.add(cabinet);
@@ -168,7 +174,7 @@ class MyContents {
     //create beetle frame
     const beetle = new Beetle(this);
     this.app.scene.add(beetle);
-    beetle.position.set(- this.floorWidth / 2 + 0.05 ,3,1);
+    beetle.position.set(- this.floorWidth / 2 + 0.05 ,3,0);
 
     // add a point light on top of the model
     const pointLight = new THREE.PointLight(0xffffff, 500, 0);
