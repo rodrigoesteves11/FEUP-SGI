@@ -181,6 +181,14 @@ class Sofa extends THREE.Object3D {
     rightHalfCylinder.position.set(1.25, 0.6, 0); // Place it on top of the right armrest
     this.add(leftHalfCylinder);
     this.add(rightHalfCylinder);
+
+    // 5. Add Three Spheres to the Backrest
+    const sphereGeometry = new THREE.SphereGeometry(0.03, 32, 32); // Radius = 0.1, segments for smoothness
+    for (let i = 0; i < 3; i++) {
+      const sphereMesh = new THREE.Mesh(sphereGeometry, sofaMaterial);
+      sphereMesh.position.set(-0.8 + i * 0.8, 0.8, - 0.3); // Adjust positions along X-axis
+      this.add(sphereMesh);
+    }
   }
 }
 
