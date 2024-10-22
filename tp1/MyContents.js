@@ -169,7 +169,7 @@ class MyContents {
     // create a lamp
     const lamp = new Lamp(this);
     this.app.scene.add(lamp);
-    lamp.position.set(1, 3.1, - this.floorWidth / 2 + 1.1);
+    lamp.position.set(1, 3 - 0.01, - this.floorWidth / 2 + 1.1);
 
     //create beetle frame
     const beetle = new Beetle(this);

@@ -152,11 +152,19 @@ class Lamp extends THREE.Object3D {
 
 
     //create light above pole
-    const light = new THREE.PointLight( 0xffffff, 10, 50);
-    light.position.set(0,1.3, 0)
-    this.add( light );
+    const light = new THREE.PointLight(0xffffff, 10, 50);
+    light.position.set(0, 1.3, 0);
+    light.castShadow = true;
+    light.shadow.mapSize.width = this.mapSize;
+    light.shadow.mapSize.height = this.mapSize;
+    light.shadow.camera.near = 0.5;
+    light.shadow.camera.far = 1;
+    light.shadow.bias = -0.001; // Adicionado para reduzir artefatos
+    this.add(light);
 
-
+    // Adicionar um helper para visualizar a área de sombra
+    const shadowHelper = new THREE.CameraHelper(light.shadow.camera);
+    this.add(shadowHelper);
   }
 }
 
