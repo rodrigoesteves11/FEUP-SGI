@@ -5,6 +5,8 @@ import { Lamp } from "./Lamp.js";
 import { Beetle } from "./Beetle.js";
 import { Table } from "./Table.js";
 import { Spring } from "./Spring.js";
+import { Sofa } from "./Sofa.js";
+import { Rug } from "./Rug.js";
 
 /**
  *  This class contains the contents of out application
@@ -40,7 +42,8 @@ class MyContents {
 
 
     //floor related attributes
-    this.floorWidth = 15;
+    this.floorWidth = 18;
+    this.floorWidth2 = 22;
     this.floorHeight = 15;
   }
 
@@ -81,24 +84,31 @@ class MyContents {
       this.wallHeight,
     );
 
-    const addWall = (position, rotationY = 0) => {
+    const wallGeometry2 = new THREE.PlaneGeometry(
+      this.floorWidth2,
+      this.wallHeight,
+    );
+
+    const addWall = (position, rotationY = 0, wallGeometry) => {
       const wall = new THREE.Mesh(wallGeometry, wallMaterial);
       wall.position.set(position.x, position.y, position.z);
       wall.rotation.y = rotationY;
       this.app.scene.add(wall);
     };
+
+    
     
     // Front wall
-    addWall({ x: 0,  y: this.wallHeight / 2, z: -this.floorWidth / 2 });
+    addWall({ x: 0,  y: this.wallHeight / 2, z: -this.floorWidth / 2 }, 0, wallGeometry2);
     
     // Back wall
-    addWall({ x: 0, y: this.wallHeight / 2, z: this.floorWidth / 2 }, Math.PI);
+    addWall({ x: 0, y: this.wallHeight / 2, z: this.floorWidth / 2 }, Math.PI, wallGeometry2);
     
     // Left wall
-    addWall({ x: this.floorWidth / 2 , y: this.wallHeight / 2, z:0 }, -Math.PI / 2);
+    addWall({ x: this.floorWidth2 / 2 , y: this.wallHeight / 2, z:0 }, -Math.PI / 2, wallGeometry);
     
     // Right wall
-    addWall({ x: - this.floorWidth / 2 , y: this.wallHeight / 2, z: 0 }, Math.PI / 2);
+    addWall({ x: - this.floorWidth2 / 2 , y: this.wallHeight / 2, z: 0 }, Math.PI / 2, wallGeometry);
   }
 
   /*
@@ -130,7 +140,7 @@ class MyContents {
       displacementScale: 0.000001,
     });
 
-    let plane = new THREE.PlaneGeometry(this.floorHeight, this.floorWidth);
+    let plane = new THREE.PlaneGeometry(this.floorWidth2, this.floorWidth);
     this.planeMesh = new THREE.Mesh(plane, planeMaterial);
     this.planeMesh.rotation.x = -Math.PI / 2;
     this.app.scene.add(this.planeMesh);
@@ -164,12 +174,25 @@ class MyContents {
     // create a cabinet
     const cabinet = new Cabinet(this);
     this.app.scene.add(cabinet);
-    cabinet.position.set(0 , 1.64, - this.floorWidth / 2 + 1.1);
+    cabinet.scale.set(0.8,0.8,1.3);
+    cabinet.position.set(-3.4 , 0.23, - this.floorWidth / 2 + 1.3);
 
-    // create a lamp
-    const lamp = new Lamp(this);
-    this.app.scene.add(lamp);
-    lamp.position.set(1, 3 - 0.01, - this.floorWidth / 2 + 1.1);
+    // create sofa
+    const sofa = new Sofa(this);
+    sofa.position.set(1, 0, -this.floorWidth/2 + 1.3);
+    sofa.scale.set(2.5,2.5,2.5);
+    this.app.scene.add(sofa);
+
+    // create rug
+    const rug = new Rug(this);
+    rug.scale.set(2,1.75,2);
+    rug.position.set(1, 0.1, -this.floorWidth/2 + 6);
+    this.app.scene.add(rug);
+
+    // // create a lamp
+    // const lamp = new Lamp(this);
+    // this.app.scene.add(lamp);
+    // lamp.position.set(1, 3 - 0.01, - this.floorWidth / 2 + 1.1);
 
     //create beetle frame
     const beetle = new Beetle(this);

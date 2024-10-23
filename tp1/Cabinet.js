@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { MyApp } from './MyApp.js';
+import { MyApp } from "./MyApp.js";
 
 /**
  * A Cabinet is a 3D object that represents a cabinet.
@@ -15,165 +15,212 @@ class Cabinet extends THREE.Object3D {
     this.gap = 0.03;
     const textureLoader = new THREE.TextureLoader();
 
-    const darkwoodambientOcclusionTexture = textureLoader.load(
-        "./textures/dark-wood/Wood_011_ambientOcclusion.jpg"
-      );
-      const darkwoodbaseColorTexture = textureLoader.load(
-        "./textures/dark-wood/Wood_011_basecolor.jpg"
-      );
-      const darkwoodnormalMapTexture = textureLoader.load(
-        "./textures/dark-wood/Wood_011_normal.jpg"
-      );
-      const darkwoodroughnessMapTexture = textureLoader.load(
-        "./textures/dark-wood/Wood_011_roughness.jpg"
-      );
-      const darkwoodheightMapTexture = textureLoader.load(
-        "./textures/dark-wood/Wood_011_height.png"
-      );
-  
-      const darkwoodMaterial = new THREE.MeshStandardMaterial({
-        map: darkwoodbaseColorTexture,
-        aoMap: darkwoodambientOcclusionTexture,
-        normalMap: darkwoodnormalMapTexture,
-        roughnessMap: darkwoodroughnessMapTexture,
-        displacementMap: darkwoodheightMapTexture,
-        displacementScale: 0,
-      });
+    
+    const blueMaterial = new THREE.MeshStandardMaterial({ color: 0x528ebf });
+    const purpleMaterial = new THREE.MeshStandardMaterial({ color: 0x9b699e });
 
-    const plywoodambientOcclusionTexture = textureLoader.load(
-      "./textures/plywood/Wood_Plywood_Front_001_ambientOcclusion.jpg"
+
+
+    //Bottom, Left, Right, Back basic geometry atributtes
+    this.baseWidth = 0.2;
+    this.baseHeight = 1.6;
+    this.baseDepth = 1.6;
+
+    // Bottom
+    this.bottomHeight = 1.8;
+    const BottomGeometry = new THREE.BoxGeometry(
+      this.baseWidth,
+      this.bottomHeight,
+      this.baseDepth
     );
-    const plywoodbaseColorTexture = textureLoader.load(
-      "./textures/plywood/Wood_Plywood_Front_001_basecolor.jpg"
+    const Bottom = new THREE.Mesh(BottomGeometry, purpleMaterial);
+    Bottom.rotateZ(Math.PI / 2);
+    Bottom.position.set(0, 0, 0); // Ajustar posição do Bottom
+    this.add(Bottom);
+
+    // Left side
+    const Left = new THREE.Mesh(
+      new THREE.BoxGeometry(this.baseWidth, this.baseHeight, this.baseDepth),
+      purpleMaterial
     );
-    const plywoodnormalMapTexture = textureLoader.load(
-      "./textures/plywood/Wood_Plywood_Front_001_normal.jpg"
+    Left.position.set(
+      -this.bottomHeight / 2,
+      this.baseHeight / 2 - this.baseWidth / 2,
+      0
     );
-    const plywoodroughnessMapTexture = textureLoader.load(
-      "./textures/plywood/Wood_Plywood_Front_001_roughness.jpg"
+    Left.rotation.y = Math.PI;
+    this.add(Left);
+
+    // Right side
+    const Right = new THREE.Mesh(
+      new THREE.BoxGeometry(this.baseWidth, this.baseHeight, this.baseDepth),
+      purpleMaterial
     );
-    const plywoodheightMapTexture = textureLoader.load(
-      "./textures/plywood/Wood_Plywood_Front_001_height.png"
+    Right.position.set(
+      this.bottomHeight / 2,
+      this.baseHeight / 2 - this.baseWidth / 2,
+      0
     );
+    Right.rotation.y = Math.PI;
+    this.add(Right);
 
-    const plywoodMaterial = new THREE.MeshStandardMaterial({
-      map: plywoodbaseColorTexture,
-      aoMap: plywoodambientOcclusionTexture,
-      normalMap: plywoodnormalMapTexture,
-      roughnessMap: plywoodroughnessMapTexture,
-      displacementMap: plywoodheightMapTexture,
-      displacementScale: 0,
-    });
+    // Back side
+    const Back = new THREE.Mesh(
+      new THREE.BoxGeometry(this.baseWidth, this.baseHeight, this.baseDepth),
+      purpleMaterial
+    );
+    Back.position.set(
+      0,
+      this.baseHeight / 2 - this.baseWidth / 2,
+      -this.baseDepth / 2 + this.baseWidth / 2
+    );
+    Back.rotateY(Math.PI / 2);
+    this.add(Back);
 
-    // Cabinet Box Geometry
-    this.baseHeight = 2;
-    this.baseWidth = 4;
-    this.baseDepth = 2;
+    // Top side of the cabinet
+    this.topWidth = 0.2;
+    this.topHeight = 2.2;
+    this.topDepth = 1.9;
     
-    // Cylinder Geometry
-    this.topCylinderBase = 0.1;
-    this.botCylinderBase = 0.03;
-    this.cylinderHeight = 0.8;
-    this.cylinderGap = 0.6;
+    const TopGeometry = new THREE.BoxGeometry(
+      this.topWidth,
+      this.topHeight,
+      this.topDepth
+    );
+    const Top = new THREE.Mesh(TopGeometry, purpleMaterial);
+    Top.position.set(0, this.baseHeight, 0);
+    Top.rotation.z = Math.PI / 2;
+    this.add(Top);
 
+    // Inside of the cabinet
+    this.baseW = 0.2;
+    this.baseH = this.bottomHeight - this.baseW ;
+    this.baseD = 1.6;
 
+    const dGeometry = new THREE.BoxGeometry(this.baseW, this.baseH, this.baseD);
 
-    const baseGeometry = new THREE.BoxGeometry(this.baseWidth, this.baseHeight, this.baseDepth);
-    const transparentMaterial = new THREE.MeshBasicMaterial({
-        color: 0x000000,
-        transparent: true,
-        opacity: 0,
-        });
-    const base = new THREE.Mesh(baseGeometry, transparentMaterial);
-    this.add(base);
+    const d1 = new THREE.Mesh(dGeometry, purpleMaterial);
+    d1.rotateZ(Math.PI / 2);
+    d1.position.set(0, this.baseHeight / 2 + 0.2, 0);
+    this.add(d1);
     
+    const d2 = new THREE.Mesh(dGeometry, purpleMaterial);
+    d2.rotateZ(Math.PI / 2);
+    d2.position.set(0, this.baseHeight - 0.1, 0);
+    this.add(d2);
 
-    const SideBaseGeometry = new THREE.BoxGeometry(this.baseWidth / 2 - this.gap , this.baseHeight, this.baseDepth);
-    const leftSideBase = new THREE.Mesh(SideBaseGeometry, plywoodMaterial);
-    leftSideBase.position.set(-this.baseHeight / 2, 0, 0);
-    this.add(leftSideBase);
+    //Drawer
+    this.drawerWidth = 0.29;
+    this.drawerHeight = this.bottomHeight - this.baseW - 0.01;
+    this.drawerDepth = 1.6;
+    const DrawerGeometry = new THREE.BoxGeometry(
+      this.drawerWidth,
+      this.drawerHeight,
+      this.drawerDepth
+    );
+    const Drawer = new THREE.Mesh(DrawerGeometry, purpleMaterial);
+    Drawer.position.set(0, this.baseHeight - 0.35, 0);
+    Drawer.rotation.z = Math.PI / 2;
+    this.add(Drawer);
 
-    const rightSideBase = new THREE.Mesh(SideBaseGeometry, plywoodMaterial);
-    rightSideBase.position.set(this.baseHeight / 2, 0, 0);
-    this.add(rightSideBase);
-    
-    const middleBaseGeometry = new THREE.BoxGeometry(this.gap, this.baseHeight, 2 - 0.05);
-    const middleBase = new THREE.Mesh(middleBaseGeometry, plywoodMaterial);
-    middleBase.position.set(0, 0, -0.05 / 2);
-    this.add(middleBase);
+    //Handle
+    const knobGeometry = new THREE.SphereGeometry(0.06, 32, 32);
+    const knobMesh = new THREE.Mesh(knobGeometry, blueMaterial);
+    knobMesh.position.set(0,this.baseHeight - 0.35 , 1.6 / 2); // Ajustar posição para a frente
+    this.add(knobMesh);
 
-    const middleFrontPanelGeometry = new THREE.PlaneGeometry(this.gap, this.baseHeight);
-    const middleFrontPanel = new THREE.Mesh(middleFrontPanelGeometry, darkwoodMaterial);
-    middleFrontPanel.position.set(0, 0, (2 - 0.05) / 2 - 0.05 / 2 + 0.001 );
-    this.add(middleFrontPanel);
+    //Bottom Drawer Cover
+    this.drawerCoverWidth = 1.6;
+    this.drawerCoverHeight = 0.2;
 
-    
-    
+    const DrawerCoverGeometry = new THREE.PlaneGeometry(
+      this.drawerCoverWidth,
+      this.drawerCoverHeight
+    );
+    const DrawerCover = new THREE.Mesh(DrawerCoverGeometry, blueMaterial);
+    DrawerCover.position.set(0, (this.baseHeight / 2 ), 1.6/2);
+    this.add(DrawerCover);
 
+    //4 legs boxGeometry
+    const legOffsetX = this.bottomHeight / 2; // metade da altura do bottom para definir os cantos no eixo X
+    const legOffsetZ = this.baseDepth / 2; // metade da profundidade do bottom para o eixo Z
 
+    // Geometria das pernas
+    const legWidth = 0.2;
+    const legHeight = 0.2;
+    const legDepth = 0.2;
+    const legGeometry = new THREE.BoxGeometry(legWidth, legHeight, legDepth);
 
-    const edges = new THREE.EdgesGeometry(baseGeometry);
-    const edgePositions = edges.attributes.position.array;
-
-    const createEdgeWithBox = (start, end, thickness) => {
-      const direction = new THREE.Vector3().subVectors(end, start);
-      const length = direction.length(); 
-
-      const edgeGeometry = new THREE.BoxGeometry(thickness, thickness, length + 0.15);
-      const edge = new THREE.Mesh(edgeGeometry, darkwoodMaterial);
-
-      edge.position.copy(start).add(direction.multiplyScalar(0.5));
-      
-      edge.lookAt(end);
-      
-      this.add(edge);
-    };
-
-    for (let i = 0; i < edgePositions.length; i += 6) {
-      const start = new THREE.Vector3(
-        edgePositions[i],
-        edgePositions[i + 1],
-        edgePositions[i + 2]
-      );
-      const end = new THREE.Vector3(
-        edgePositions[i + 3],
-        edgePositions[i + 4],
-        edgePositions[i + 5]
-      );
-      createEdgeWithBox(start, end, 0.15);
-    }
-
-    const knob = new THREE.Mesh(new THREE.BoxGeometry(0.1, 1, 0.15), darkwoodMaterial);
-    knob.position.set(0.5, 0, 1);
-    const knob2 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 1, 0.15), darkwoodMaterial);
-    knob2.position.set(-0.5, 0, 1);
-    this.add(knob2);
-    this.add(knob);
-
-    
-    
-
-
-    const legsGeometry = new THREE.CylinderGeometry(this.topCylinderBase, this.botCylinderBase, this.cylinderHeight, 64);
-    const leg1 = new THREE.Mesh(legsGeometry, darkwoodMaterial);
-    leg1.position.set(this.baseWidth / 2 - this.cylinderGap / 2, (-this.baseHeight / 2 - this.cylinderHeight / 2) + 0.1, this.baseDepth / 2 - this.cylinderGap / 2);
-    leg1.rotation.z = Math.PI / 6;
+    // Ajustar a posição das pernas para os cantos da base (Bottom)
+    const leg1 = new THREE.Mesh(legGeometry, purpleMaterial);
+    leg1.position.set(-legOffsetX, -legHeight , -legOffsetZ + legWidth / 2); // Canto inferior esquerdo
     this.add(leg1);
 
-    const leg2 = new THREE.Mesh(legsGeometry, darkwoodMaterial);
-    leg2.position.set(-this.baseWidth / 2 + this.cylinderGap / 2, (-this.baseHeight / 2 - this.cylinderHeight / 2) + 0.1, this.baseDepth / 2 - this.cylinderGap / 2);
-    leg2.rotation.z = - Math.PI / 6;
+    const leg2 = new THREE.Mesh(legGeometry, purpleMaterial);
+    leg2.position.set(-legOffsetX, -legHeight , legOffsetZ - legWidth / 2); // Canto superior esquerdo
     this.add(leg2);
 
-    const leg3 = new THREE.Mesh(legsGeometry, darkwoodMaterial);
-    leg3.position.set(this.baseWidth / 2 - this.cylinderGap / 2, (-this.baseHeight / 2 - this.cylinderHeight / 2) + 0.1, -this.baseDepth / 2 + this.cylinderGap / 2);
-    leg3.rotation.z = Math.PI / 6;
+    const leg3 = new THREE.Mesh(legGeometry, purpleMaterial);
+    leg3.position.set(legOffsetX, -legHeight , -legOffsetZ + legWidth / 2); // Canto inferior direito
     this.add(leg3);
 
-    const leg4 = new THREE.Mesh(legsGeometry, darkwoodMaterial);
-    leg4.position.set(-this.baseWidth / 2 + this.cylinderGap / 2, (-this.baseHeight / 2 - this.cylinderHeight / 2) + 0.1, -this.baseDepth / 2 + this.cylinderGap / 2);
-    leg4.rotation.z = - Math.PI / 6;
+    const leg4 = new THREE.Mesh(legGeometry, purpleMaterial);
+    leg4.position.set(legOffsetX, -legHeight , legOffsetZ - legWidth / 2); // Canto superior direito
     this.add(leg4);
+
+
+
+    //Books (semi-circle cylinder and box)
+    
+    // Material para os livros
+    const bookMaterial1 = new THREE.MeshStandardMaterial({ color: 0xf5872b }); 
+    const bookMaterial2 = new THREE.MeshStandardMaterial({ color: 0xa5c4e9 }); 
+    const bookMaterial3 = new THREE.MeshStandardMaterial({ color: 0xd9d3e8 }); 
+
+    // Parâmetros dos livros
+    const bookWidth = 0.25;  
+    const bookHeight = 0.8; 
+    const bookDepth = 0.6; 
+
+    // Geometrias comuns para todos os livros
+    const spineGeometry = new THREE.CylinderGeometry(bookWidth / 2, bookWidth / 2, bookHeight, 32, 1, false);
+    const bodyGeometry = new THREE.BoxGeometry(bookWidth,bookHeight , bookDepth);
+
+    // Criação do primeiro livro
+    const spine1 = new THREE.Mesh(spineGeometry, bookMaterial1);
+    spine1.rotation.z = -0.3 ; 
+    spine1.position.set(0.5, 0.5, bookDepth / 2 + 0.1);
+    this.add(spine1);
+
+    const body1 = new THREE.Mesh(bodyGeometry, bookMaterial1);
+    body1.position.set(0.5, 0.5, 0.1);
+    body1.rotation.z = -0.3 ; 
+    this.add(body1);
+
+    // Criação do segundo livro
+    const spine2 = new THREE.Mesh(spineGeometry, bookMaterial2);
+    spine2.rotation.z = -0.3 ;
+    spine2.position.set(0.25, 0.5, bookDepth / 2 + 0.15);
+    this.add(spine2);
+
+    const body2 = new THREE.Mesh(bodyGeometry, bookMaterial2);
+    body2.position.set(0.25, 0.5, 0.15);
+    body2.rotation.z = -0.3 ;
+    this.add(body2);
+
+    // Criação do terceiro livro
+    const spine3 = new THREE.Mesh(spineGeometry, bookMaterial3);
+    spine3.rotation.z = -0.3 ;
+    spine3.position.set(0, 0.5, bookDepth / 2 + 0.2);
+    this.add(spine3);
+
+    const body3 = new THREE.Mesh(bodyGeometry, bookMaterial3);
+    body3.position.set(0, 0.5, 0.2);
+    body3.rotation.z = -0.3 ;
+    this.add(body3);
+
+    
+
 
   }
 }

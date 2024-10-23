@@ -162,9 +162,6 @@ class Lamp extends THREE.Object3D {
     light.shadow.bias = -0.001; // Adicionado para reduzir artefatos
     this.add(light);
 
-    // Adicionar um helper para visualizar a área de sombra
-    const shadowHelper = new THREE.CameraHelper(light.shadow.camera);
-    this.add(shadowHelper);
   }
 }
 
