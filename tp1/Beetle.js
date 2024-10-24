@@ -13,102 +13,52 @@ class Beetle extends THREE.Object3D {
     this.app = app;
     this.type = "Group";
 
-    const textureLoader = new THREE.TextureLoader();
-
-    const darkwoodambientOcclusionTexture = textureLoader.load(
-      "./textures/dark-wood/Wood_011_ambientOcclusion.jpg"
-    );
-    const darkwoodbaseColorTexture = textureLoader.load(
-      "./textures/dark-wood/Wood_011_basecolor.jpg"
-    );
-    const darkwoodnormalMapTexture = textureLoader.load(
-      "./textures/dark-wood/Wood_011_normal.jpg"
-    );
-    const darkwoodroughnessMapTexture = textureLoader.load(
-      "./textures/dark-wood/Wood_011_roughness.jpg"
-    );
-    const darkwoodheightMapTexture = textureLoader.load(
-      "./textures/dark-wood/Wood_011_height.png"
-    );
-
-    const darkwoodMaterial = new THREE.MeshStandardMaterial({
-      map: darkwoodbaseColorTexture,
-      aoMap: darkwoodambientOcclusionTexture,
-      normalMap: darkwoodnormalMapTexture,
-      roughnessMap: darkwoodroughnessMapTexture,
-      displacementMap: darkwoodheightMapTexture,
-      displacementScale: 0,
-    });
-
-    const corkambientOcclusionTexture = textureLoader.load(
-      "./textures/cork/Cork_002_OCC.jpg"
-    );
-    const corkbasediffuseMap = textureLoader.load(
-      "./textures/cork/Cork_002_COLOR.jpg"
-    );
-    const corknormalMapTexture = textureLoader.load(
-      "./textures/cork/Cork_002_NORM.jpg"
-    );
-    const corkroughnessMapTexture = textureLoader.load(
-      "./textures/cork/Cork_002_ROUGH.jpg"
-    );
-    const corkheightMapTexture = textureLoader.load(
-      "./textures/cork/Cork_002_DISP.png"
-    );
-    const corkMaterial = new THREE.MeshBasicMaterial({
-      map: corkbasediffuseMap,
-    });
     
-    
-    // MeshStandardMaterial({
-    //   map: corkbasediffuseMap,
-    //   normalMap: corknormalMapTexture,
-    //   roughnessMap: corkroughnessMapTexture,
-    //   aoMap: corkambientOcclusionTexture,
-    //   displacementMap: corkheightMapTexture,
-    //   displacementScale: 0,
-    //   roughness: 1, // Máxima rugosidade para eliminar reflexos
-    //   metalness: 0, // Sem metalicidade (sem brilho metálico)
-    //   reflectivity: 0, // Sem reflexão
+    const frameMaterial = new THREE.MeshStandardMaterial({
+      color: 0xc98a11,
+    });
+    // const backframeMaterial = new THREE.MeshStandardMaterial({
+    //   color: 0xffffff,
     // });
 
-    corkbasediffuseMap.wrapS = THREE.RepeatWrapping;
-    corkbasediffuseMap.wrapT = THREE.RepeatWrapping;
-    corkbasediffuseMap.repeat.set(2, 2);
+    const textureLoader = new THREE.TextureLoader();
+    const backframeMap = textureLoader.load("textures/road/istockphoto-1272388577-612x612.jpg");
+    const backframeMaterial = new THREE.MeshBasicMaterial({ map: backframeMap });
 
-    corknormalMapTexture.wrapS = THREE.RepeatWrapping;
-    corknormalMapTexture.wrapT = THREE.RepeatWrapping;
-    corknormalMapTexture.repeat.set(2, 2);
+    const tbwidth = 3;
+    const lrwidth = 2;
 
-    const frameGeometryTB = new THREE.BoxGeometry(4 + 0.1, 0.1, 0.1);
-    const frameGeometryLR = new THREE.BoxGeometry(2, 0.1, 0.1);
+    const frameGeometryTB = new THREE.BoxGeometry(tbwidth + 0.1, 0.1, 0.1);
+    const frameGeometryLR = new THREE.BoxGeometry(lrwidth, 0.1, 0.1);
 
     //left side
-    const leftside = new THREE.Mesh(frameGeometryLR, darkwoodMaterial);
-    leftside.position.set(0, 1, 2);
-    leftside.rotation.z = Math.PI / 2;
+    const leftside = new THREE.Mesh(frameGeometryLR, frameMaterial);
+    leftside.position.set( tbwidth/2, 1,0);
+    leftside.rotation.z = Math.PI/2 ;
     this.add(leftside);
     //right side
-    const rightside = new THREE.Mesh(frameGeometryLR, darkwoodMaterial);
-    rightside.position.set(0, 1, -2);
+    const rightside = new THREE.Mesh(frameGeometryLR, frameMaterial);
+    rightside.position.set(-tbwidth/2, 1,0 );
     rightside.rotation.z = Math.PI / 2;
     this.add(rightside);
     //top side
-    const topside = new THREE.Mesh(frameGeometryTB, darkwoodMaterial);
+    const topside = new THREE.Mesh(frameGeometryTB, frameMaterial);
     topside.position.set(0, 2, 0);
-    topside.rotation.y = Math.PI / 2;
+    topside.rotation.z = Math.PI ;
     this.add(topside);
     //bottom side
-    const bottomside = new THREE.Mesh(frameGeometryTB, darkwoodMaterial);
+    const bottomside = new THREE.Mesh(frameGeometryTB, frameMaterial);
     bottomside.position.set(0, 0, 0);
-    bottomside.rotation.y = Math.PI / 2;
+    bottomside.rotation.z = Math.PI;
     this.add(bottomside);
 
     //back frame plane
-    const backframeGeometry = new THREE.PlaneGeometry(4, 2);
-    const backframe = new THREE.Mesh(backframeGeometry, corkMaterial);
+    const backframeGeometry = new THREE.PlaneGeometry(tbwidth, lrwidth);
+    backframeMaterial.map.offset.set(0, -0.05); // Move a textura para baixo
+    backframeMaterial.map.needsUpdate = true;
+    const backframe = new THREE.Mesh(backframeGeometry, backframeMaterial);
     backframe.position.set(0, 1, 0);
-    backframe.rotation.y = Math.PI / 2;
+    backframe.rotation.z = 2*Math.PI ;
     this.add(backframe);
 
 
@@ -123,7 +73,7 @@ class Beetle extends THREE.Object3D {
     const material = new THREE.MeshStandardMaterial({
       emissive: neonColor, // Cor emissiva para o efeito neon
       emissiveIntensity: 10, // Intensidade do brilho
-      color: 0x000000, // Cor base
+      color: 0xffffff, // Cor base
       roughness: 0.3, // Tornar a superfície um pouco suave
       metalness: 1, // Pode ajustar a quantidade de brilho metálico
       side : THREE.DoubleSide,
@@ -143,12 +93,12 @@ class Beetle extends THREE.Object3D {
 
     const curveTubeGeometry = new THREE.TubeGeometry(curve, tubeSegments, tubeRadius, 8, false);
     const curveTubeObject = new THREE.Mesh(curveTubeGeometry, material);
-    curveTubeObject.position.set(0, 0.5, 0.7); 
-    curveTubeObject.rotation.y = Math.PI / 2;
+    curveTubeObject.position.set(0.7, 0.2, 0); 
+    curveTubeObject.rotation.z = 2*Math.PI ;
     this.add(curveTubeObject);
     const curveTubeObject2 = new THREE.Mesh(curveTubeGeometry, material);
-    curveTubeObject2.position.set(0, 0.5, -0.7);
-    curveTubeObject2.rotation.y = Math.PI / 2;
+    curveTubeObject2.position.set(-0.7, 0.2,0 );
+    curveTubeObject2.rotation.z = 2*Math.PI ;
     this.add(curveTubeObject2);
     
     // 1/4 circle
@@ -164,9 +114,8 @@ class Beetle extends THREE.Object3D {
     
     const curveTubeGeometry2 = new THREE.TubeGeometry(curve2, tubeSegments, tubeRadius, 8, false);
     const curveTubeObject3 = new THREE.Mesh(curveTubeGeometry2, material);
-    curveTubeObject3.position.set(0, 0.5, 0);
-    curveTubeObject3.rotation.y = Math.PI / 2;
-    curveTubeObject3.rotation.x = Math.PI / 2;
+    curveTubeObject3.position.set(0, 0.2, 0);
+    curveTubeObject3.rotation.z = Math.PI / 2 ;
     this.add(curveTubeObject3);
 
     // 1/4 circle small
@@ -182,15 +131,40 @@ class Beetle extends THREE.Object3D {
     
     const curveTubeGeometry3 = new THREE.TubeGeometry(curve3, tubeSegments, tubeRadius, 8, false);
     const curveTubeObject4 = new THREE.Mesh(curveTubeGeometry3, material);
-    curveTubeObject4.position.set(0, 1.05, 0);
-    curveTubeObject4.rotation.y = Math.PI / 2;
+    curveTubeObject4.position.set(0, 0.75, 0);
+    curveTubeObject4.rotation.z = 2*Math.PI ;
     this.add(curveTubeObject4);
 
     const curveTubeObject5 = new THREE.Mesh(curveTubeGeometry3, material);
-    curveTubeObject5.position.set(0, 0.5, -0.55);
-    curveTubeObject5.rotation.y = Math.PI / 2;
+    curveTubeObject5.position.set(0.55, 0.2, 0);
+    curveTubeObject5.rotation.z = 2*Math.PI ;
     this.add(curveTubeObject5);
-  
+    
+    //nail
+    const nailGeometry = new THREE.CylinderGeometry(0.03, 0.02, 0.2, 32);
+    const nail = new THREE.Mesh(nailGeometry, material);
+    nail.rotation.x = Math.PI / 2;
+    nail.position.set(0, 2.44, 0);
+    this.add(nail);
+
+    //strings
+    const stringGeometry = new THREE.CylinderGeometry(0.01, 0.01, 1.57, 32);
+    const string = new THREE.Mesh(stringGeometry, material);
+    string.rotation.z = -1.3 ;
+    string.position.set(-0.7, 2.25, 0);
+    this.add(string);
+
+    const string2 = new THREE.Mesh(stringGeometry, material);
+    string2.rotation.z = 1.3 ;
+    string2.position.set(0.7, 2.25, 0);
+    this.add(string2);
+    
+
+
+
+    
+
+
   }
 }
 

@@ -20,64 +20,20 @@ class MyContents {
     this.app = app;
     this.axis = null;
 
-    this.walltextures = {
-      ambientOcclusion: "./textures/wood-wall/Wood_Wall_003_ambientOcclusion.jpg",
-      baseColor: "./textures/wood-wall/Wood_Wall_003_basecolor.jpg",
-      normalMap: "./textures/wood-wall/Wood_Wall_003_normal.jpg",
-      roughnessMap: "./textures/wood-wall/Wood_Wall_003_roughness.jpg",
-      heightMap: "./textures/wood-wall/Wood_Wall_003_height.png",
-    };
-    this.planetextures = {
-      ambientOcclusion: "./textures/tiles-floor/Marble_Tiles_001_ambientOcclusion.jpg",
-      baseColor: "./textures/tiles-floor/Marble_Tiles_001_basecolor.jpg",
-      normalMap: "./textures/tiles-floor/Marble_Tiles_001_normal.jpg",
-      roughnessMap: "./textures/tiles-floor/Marble_Tiles_001_roughness.jpg",
-      heightMap: "./textures/tiles-floor/Marble_Tiles_001_height.png",
-    };
-
-
     // wall related attributes
-    this.wallThickness = 0.2;
-    this.wallHeight = 8;
+    this.wallHeight = 10;
 
 
     //floor related attributes
     this.floorWidth = 18;
     this.floorWidth2 = 22;
-    this.floorHeight = 15;
   }
 
   /*
   * Create a Plane Mesh
   */
   buildWalls() {
-    const textureLoader = new THREE.TextureLoader();
-
-    const ambientOcclusionTexture = textureLoader.load(this.walltextures.ambientOcclusion);
-    const baseColorTexture = textureLoader.load(this.walltextures.baseColor);
-    const normalMapTexture = textureLoader.load(this.walltextures.normalMap);
-    const roughnessMapTexture = textureLoader.load(this.walltextures.roughnessMap);
-    const heightMapTexture = textureLoader.load(this.walltextures.heightMap);
-
-    baseColorTexture.wrapS = THREE.RepeatWrapping;
-    baseColorTexture.wrapT = THREE.RepeatWrapping;
-    baseColorTexture.repeat.set(2, 2);
-
-    normalMapTexture.wrapS = THREE.RepeatWrapping;
-    normalMapTexture.wrapT = THREE.RepeatWrapping;
-    normalMapTexture.repeat.set(2, 2);
-
-    const wallMaterial = new THREE.MeshStandardMaterial({
-      map: baseColorTexture,
-      aoMap: ambientOcclusionTexture,
-      normalMap: normalMapTexture,
-      roughnessMap: roughnessMapTexture,
-      displacementMap: heightMapTexture,
-      displacementScale: 0,
-      roughness: 1,       // Completamente rugoso
-      metalness: 0,       // Sem metal
-      reflectivity: 0,     // Sem reflexo
-    });
+    const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xf8a2ac });
 
     const wallGeometry = new THREE.PlaneGeometry(
       this.floorWidth,
@@ -115,30 +71,8 @@ class MyContents {
    * Create a Plane Mesh
    */
   buildFloor() {
-    const textureLoader = new THREE.TextureLoader();
-
-    const ambientOcclusionTexture = textureLoader.load(this.planetextures.ambientOcclusion);
-    const baseColorTexture = textureLoader.load(this.planetextures.baseColor);
-    const normalMapTexture = textureLoader.load(this.planetextures.normalMap);
-    const roughnessMapTexture = textureLoader.load(this.planetextures.roughnessMap);
-    const heightMapTexture = textureLoader.load(this.planetextures.heightMap);
-
-    baseColorTexture.wrapS = THREE.RepeatWrapping;
-    baseColorTexture.wrapT = THREE.RepeatWrapping;
-    baseColorTexture.repeat.set(4, 4);
-
-    normalMapTexture.wrapS = THREE.RepeatWrapping;
-    normalMapTexture.wrapT = THREE.RepeatWrapping;
-    normalMapTexture.repeat.set(4, 4);
-
-    const planeMaterial = new THREE.MeshStandardMaterial({
-      map: baseColorTexture,
-      aoMap: ambientOcclusionTexture,
-      normalMap: normalMapTexture,
-      roughnessMap: roughnessMapTexture,
-      displacementMap: heightMapTexture,
-      displacementScale: 0.000001,
-    });
+    
+    const planeMaterial = new THREE.MeshStandardMaterial( { color: 0x0a9a95});
 
     let plane = new THREE.PlaneGeometry(this.floorWidth2, this.floorWidth);
     this.planeMesh = new THREE.Mesh(plane, planeMaterial);
@@ -189,15 +123,17 @@ class MyContents {
     rug.position.set(1, 0.1, -this.floorWidth/2 + 6);
     this.app.scene.add(rug);
 
-    // // create a lamp
-    // const lamp = new Lamp(this);
-    // this.app.scene.add(lamp);
-    // lamp.position.set(1, 3 - 0.01, - this.floorWidth / 2 + 1.1);
+    // create a lamp
+    const lamp = new Lamp(this);
+    this.app.scene.add(lamp);
+    lamp.position.set(-3.7, 1.69, - this.floorWidth / 2 + 0.7);
 
     //create beetle frame
     const beetle = new Beetle(this);
+    beetle.position.set(1,4.5,- this.floorWidth / 2 + 0.05);
+    beetle.rotation.z = -0.2;
     this.app.scene.add(beetle);
-    beetle.position.set(- this.floorWidth / 2 + 0.05 ,3,0);
+    
 
     // add a point light on top of the model
     const pointLight = new THREE.PointLight(0xffffff, 500, 0);
