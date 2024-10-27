@@ -7,6 +7,8 @@ import { Table } from "./Table.js";
 import { Spring } from "./Spring.js";
 import { Sofa } from "./Sofa.js";
 import { Rug } from "./Rug.js";
+import { Telephone } from "./Telephone.js";
+
 
 /**
  *  This class contains the contents of out application
@@ -126,7 +128,13 @@ class MyContents {
     // create a lamp
     const lamp = new Lamp(this);
     this.app.scene.add(lamp);
-    lamp.position.set(-3.7, 1.69, - this.floorWidth / 2 + 0.7);
+    lamp.position.set(-3.8, 1.69, - this.floorWidth / 2 + 0.55);
+
+    //create telephone
+    const telephone = new Telephone(this);
+    telephone.position.set(-3.1, 1.69, - this.floorWidth / 2 + 1.6);
+    telephone.scale.set(0.8,0.8,0.8);
+    this.app.scene.add(telephone);
 
     //create beetle frame
     const beetle = new Beetle(this);
