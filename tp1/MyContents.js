@@ -8,6 +8,8 @@ import { Spring } from "./Spring.js";
 import { Sofa } from "./Sofa.js";
 import { Rug } from "./Rug.js";
 import { Telephone } from "./Telephone.js";
+import { Pictures } from "./Pictures.js";
+import { TV } from "./TV.js";
 
 
 /**
@@ -97,15 +99,15 @@ class MyContents {
       this.app.scene.add(this.axis);
     }
 
-    // create a table
-    const table = new Table(this);
-    this.app.scene.add(table);
-    table.scale.set(3,2,3);
+    // // create a table
+    // const table = new Table(this);
+    // this.app.scene.add(table);
+    // table.scale.set(3,2,3);
 
-    //create a spring
-    const spring = new Spring(this);
-    this.app.scene.add(spring);
-    spring.position.set(0, 2, 0);
+    // //create a spring
+    // const spring = new Spring(this);
+    // this.app.scene.add(spring);
+    // spring.position.set(0, 2, 0);
 
     // create a cabinet
     const cabinet = new Cabinet(this);
@@ -141,7 +143,29 @@ class MyContents {
     beetle.position.set(1,4.5,- this.floorWidth / 2 + 0.05);
     beetle.rotation.z = -0.2;
     this.app.scene.add(beetle);
+
+    //create picture1
+    const picture1 = new Pictures(this, '/sgi-t03-g03/tp1/textures/pictures/jorge1.jpg');
+    picture1.position.set(-8 , 3, this.floorWidth / 2 - 0.05 );
+    picture1.rotation.y = -Math.PI/2;
+    this.app.scene.add(picture1);
     
+    //create picture2
+    const picture2 = new Pictures(this, '/sgi-t03-g03/tp1/textures/pictures/jorge2.jpg');
+    picture2.position.set( -5, 5, this.floorWidth / 2 - 0.05 );
+    picture2.rotation.y = -Math.PI/2;
+    this.app.scene.add(picture2);
+    
+    //create a TV
+    const tv = new TV(this);
+    tv.position.set(0, 0, this.floorWidth / 2 - 1);
+    this.app.scene.add(tv);
+
+
+
+
+
+
 
     // add a point light on top of the model
     const pointLight = new THREE.PointLight(0xffffff, 500, 0);
