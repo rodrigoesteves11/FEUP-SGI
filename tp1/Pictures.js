@@ -68,3 +68,4 @@ Pictures.prototype.isGroup = true;
 
 export { Pictures };
 
+//NOTA O QUADRO DEVE SER OVAL E NÃO RETANGULAR

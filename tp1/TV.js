@@ -53,9 +53,10 @@ class TV extends THREE.Object3D {
     this.add(screenBack);
     //TV Screen
     const geometryScreen = new THREE.PlaneGeometry(5.3, 2.5);
-    const screenMap = textureLoader.load("/sgi-t03-g03/tp1/textures/TV/tv.jpg");
+    const screenMap = textureLoader.load("/sgi-t03-g03/tp1/textures/TV/tv2.jpg");
     const screenMaterial = new THREE.MeshStandardMaterial({ map: screenMap, side: THREE.DoubleSide });
     const screen= new THREE.Mesh(geometryScreen, screenMaterial);
+    screen.rotation.y = Math.PI;
     screen.position.set(0, 2.5, -0.25);
     this.add(screen);
 

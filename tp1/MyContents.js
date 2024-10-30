@@ -10,6 +10,7 @@ import { Rug } from "./Rug.js";
 import { Telephone } from "./Telephone.js";
 import { Pictures } from "./Pictures.js";
 import { TV } from "./TV.js";
+import { TallLamp } from "./TallLamp.js";
 
 
 /**
@@ -161,10 +162,23 @@ class MyContents {
     tv.position.set(0, 0, this.floorWidth / 2 - 1);
     this.app.scene.add(tv);
 
+    //create Tall Lamp
+    const tallLamp = new TallLamp(this);
+    tallLamp.position.set(8, 0, -this.floorWidth/2 + 1);
+    this.app.scene.add(tallLamp);
 
+    //Spotlight for Tall Lamp
+    const light = new THREE.SpotLight(0xfff2d3, 20, 10, Math.PI/3.5 , 0.3, 1.5);
+    light.position.set(6.4, 6.9, -this.floorWidth/2 + 1);
+    light.target.position.set(4.55, 0, -this.floorWidth/2 + 1.3); // Ajuste a posição de destino para apontar para baixo
+    this.app.scene.add(light);
+    this.app.scene.add(light.target);
 
+    // //Spotlight Helper
+    //  const helper = new THREE.SpotLightHelper(light);
+    //  this.app.scene.add(helper);
 
-
+    
 
 
     // add a point light on top of the model
