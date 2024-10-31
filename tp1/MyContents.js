@@ -13,6 +13,8 @@ import { TV } from "./TV.js";
 import { TallLamp } from "./TallLamp.js";
 import { Donut } from "./Donut.js";
 import { Curtains } from "./Curtains.js";
+import { Flowers } from "./Flowers.js";
+
 
 /**
  *  This class contains the contents of out application
@@ -264,7 +266,8 @@ class MyContents {
     // Create a spring
     const spring = new Spring(this);
     this.app.scene.add(spring);
-    spring.position.set(0.4, 0.92, -this.floorWidth / 2 + 5.5);
+    spring.scale.set(0.7, 0.7, 0.7);
+    spring.position.set(0.5, 0.97, -this.floorWidth / 2 + 5.5);
 
     // Create a curtains
     const curtains = new Curtains(this);
@@ -328,19 +331,21 @@ class MyContents {
     tallLamp.position.set(8, 0, -this.floorWidth / 2 + 1);
     this.app.scene.add(tallLamp);
 
-    //Spotlight for Tall Lamp
-    const light = new THREE.SpotLight(
-      0xfff2d3,
-      20,
-      10,
-      Math.PI / 3.5,
-      0.3,
-      1.5
-    );
-    light.position.set(6.4, 6.9, -this.floorWidth / 2 + 1);
-    light.target.position.set(4.55, 0, -this.floorWidth / 2 + 1.3); // Ajuste a posição de destino para apontar para baixo
-    this.app.scene.add(light);
-    this.app.scene.add(light.target);
+     
+    //create Flowers
+    const flowers = new Flowers(this);
+    flowers.position.set(8, 0, this.floorWidth / 2 - 1);
+    this.app.scene.add(flowers);
+
+
+
+
+    //Spotlight for Tall Lamp (NEEDS ITS OWN CLASS)
+    const Talllight = new THREE.SpotLight(0xfff2d3, 20, 10, Math.PI/3.5 , 0.3, 1.5);
+    Talllight.position.set(6.4, 6.9, -this.floorWidth/2 + 1);
+    Talllight.target.position.set(4.55, 0, -this.floorWidth/2 + 1.3); // Ajuste a posição de destino para apontar para baixo
+    this.app.scene.add(Talllight);
+    this.app.scene.add(Talllight.target);
 
     // //Spotlight Helper
     //  const helper = new THREE.SpotLightHelper(light);
