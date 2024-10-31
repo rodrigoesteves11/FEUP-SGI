@@ -70,9 +70,6 @@ class Rug extends THREE.Object3D {
 
       this.add(rugMesh); // Add each ring to the rug group
     }
-
-    // Position the rug slightly above the floor
-    this.position.set(0, 0.01, 0); // Y = 0.01 to avoid clipping with the ground
   }
 
   // Function to generate UV mapping
