@@ -15,7 +15,7 @@ class Beetle extends THREE.Object3D {
 
     
     const frameMaterial = new THREE.MeshStandardMaterial({
-      color: 0xc98a11,
+      color: 0xc48b11,
     });
     // const backframeMaterial = new THREE.MeshStandardMaterial({
     //   color: 0xffffff,
