@@ -207,6 +207,78 @@ class Donut extends THREE.Object3D {
 
       this.add(sprinkle);
     }
+    // Candle materials and geometry
+    const candleColor = 0xffb6c1; // Light pink for the candles
+    const candleMaterial = new THREE.MeshStandardMaterial({
+      color: candleColor,
+    });
+
+    // Flame materials for inner and outer cones
+    const innerFlameMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffa500, // Bright orange for the inner flame
+      emissive: 0xffa500,
+      emissiveIntensity: 1,
+      transparent: true,
+      opacity: 0.8,
+    });
+
+    const outerFlameMaterial = new THREE.MeshStandardMaterial({
+      color: 0xff4500, // Softer red-orange for the outer flame
+      emissive: 0xff4500,
+      emissiveIntensity: 0.5,
+      transparent: true,
+      opacity: 0.4,
+    });
+
+    // Candle properties
+    const candleRadius = 0.01;
+    const candleHeight = 0.1;
+    const flameHeightInner = 0.04;
+    const flameRadiusInner = 0.01;
+    const flameHeightOuter = 0.06;
+    const flameRadiusOuter = 0.02;
+
+    // Positions for 4 candles at equal intervals around the donut
+    const numCandles = 5;
+    const angleIncrement = (2 * Math.PI - sliceAngle) / numCandles;
+    const candleDistanceFromCenter = (minRadius + maxRadius) / 2; // Position between inner and outer edges
+
+    for (let i = 1; i < numCandles ; i++) {
+      const angle = i * angleIncrement;
+      const x = candleDistanceFromCenter * Math.cos(angle);
+      const z = candleDistanceFromCenter * Math.sin(angle);
+
+      // Candle
+      const candleGeometry = new THREE.CylinderGeometry(
+        candleRadius,
+        candleRadius,
+        candleHeight,
+        16
+      );
+      const candle = new THREE.Mesh(candleGeometry, candleMaterial);
+      candle.position.set(x, 0.2 + candleHeight / 2, z); // Position candle on top of frosting
+      this.add(candle);
+
+      // Inner flame (brighter core)
+      const innerFlameGeometry = new THREE.ConeGeometry(
+        flameRadiusInner,
+        flameHeightInner,
+        32
+      );
+      const innerFlame = new THREE.Mesh(innerFlameGeometry, innerFlameMaterial);
+      innerFlame.position.set(x, 0.2 + candleHeight + flameHeightInner / 2, z); // Position inner flame above candle
+      this.add(innerFlame);
+
+      // Outer flame (softer glow)
+      const outerFlameGeometry = new THREE.ConeGeometry(
+        flameRadiusOuter,
+        flameHeightOuter,
+        32
+      );
+      const outerFlame = new THREE.Mesh(outerFlameGeometry, outerFlameMaterial);
+      outerFlame.position.set(x, 0.2 + candleHeight + flameHeightOuter / 2, z); // Position outer flame above candle
+      this.add(outerFlame);
+    }
 
 
   }
