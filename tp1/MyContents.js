@@ -18,6 +18,7 @@ import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js
 import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 import { Vase } from "./Vase.js";
 import { Newspaper } from "./Newspaper.js";
+import { Door } from "./Door.js";
 
 
 
@@ -341,7 +342,7 @@ class MyContents {
     // create rug
     const rug = new Rug(this);
     rug.scale.set(2, 1.75, 2);
-    rug.position.set(1, 0.1, -this.floorWidth / 2 + 6);
+    rug.position.set(1, 0.001, -this.floorWidth / 2 + 6);
     this.app.scene.add(rug);
 
     // create a lamp
@@ -393,6 +394,11 @@ class MyContents {
     const vase = new Vase(this);
     vase.position.set(4.3, 1, this.floorWidth / 2 - 1.1);
     this.app.scene.add(vase);
+
+    // create a door
+    const door = new Door(this);
+    door.position.setX(this.floorWidth2/2 - 0.1);
+    this.app.scene.add(door);
 
 
     /* NOTAS: RODRIGO ALL LIGHTS NEED OWN CLASS */
