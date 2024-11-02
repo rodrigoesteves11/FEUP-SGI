@@ -16,22 +16,25 @@ class Donut extends THREE.Object3D {
       color: 0xD971AC, // Pink frosting color
       roughness: 0.5,
       metalness: 0.1,
+      side: THREE.DoubleSide,
     });
 
     const donutBaseMaterial = new THREE.MeshStandardMaterial({
       color: 0xD2A679, // Donut bread color
       roughness: 0.7,
+      side: THREE.DoubleSide,
     });
 
     const plateMaterial = new THREE.MeshStandardMaterial({
       color: 0xFFFFFF, // White plate color
       roughness: 0.9,
+      
     });
 
     // Donut dimensions with a smaller hole
     const donutRadius = 0.4;
     const tubeRadius = 0.2;
-    const sliceAngle = Math.PI / 4; // Angle of the slice (45 degrees)
+    const sliceAngle = Math.PI / 6; 
 
     // Create donut base with a slice removed
     const donutGeometry = new THREE.TorusGeometry(
@@ -39,11 +42,11 @@ class Donut extends THREE.Object3D {
       tubeRadius,
       32,
       64,
-      2 * Math.PI  // Incomplete torus to create a gap
+      2 * Math.PI - sliceAngle 
     );
     const donutBase = new THREE.Mesh(donutGeometry, donutBaseMaterial);
-    donutBase.rotation.x = Math.PI / 2; // Rotate to align with Y-axis
-    donutBase.position.y = -0.05; // Slightly raised to sit on top of the donut base
+    donutBase.rotation.x = Math.PI / 2; 
+    donutBase.position.y = -0.05; 
     this.add(donutBase);
 
     // Frosting on top of donut with a slice removed
@@ -52,12 +55,34 @@ class Donut extends THREE.Object3D {
       tubeRadius * 0.9,
       32,
       64,
-      2 * Math.PI 
+      Math.PI * 2 - sliceAngle
     );
     const frosting = new THREE.Mesh(frostingGeometry, donutMaterial);
     frosting.position.y = 0.02; // Slightly raised to sit on top of the donut base
     frosting.rotation.x = Math.PI / 2;
     this.add(frosting);
+
+    //Slice cover
+    const coverfrostingGeometry = new THREE.CircleGeometry(tubeRadius * 0.9, 32);
+    const coverfrosting = new THREE.Mesh(coverfrostingGeometry, donutMaterial);
+    coverfrosting.position.set(0.345, 0.02, -0.2);
+    coverfrosting.rotation.y = Math.PI / 6;
+    this.add(coverfrosting);
+
+    const coverGeometry = new THREE.CircleGeometry(tubeRadius, 32);
+    const coverbase = new THREE.Mesh(coverGeometry, donutBaseMaterial);
+    coverbase.position.set(0.311, -0.05, -0.1799);
+    coverbase.rotation.y = Math.PI / 6;
+    this.add(coverbase);
+
+    //Slice cover 2
+    const coverfrosting2 = new THREE.Mesh(coverfrostingGeometry, donutMaterial);
+    coverfrosting2.position.set(0.4, 0.02, 0);
+    this.add(coverfrosting2);
+
+    const coverbase2 = new THREE.Mesh(coverGeometry, donutBaseMaterial);
+    coverbase2.position.set(0.36, -0.05, -0.0001);
+    this.add(coverbase2);
 
     // Sprinkles
     const sprinkleColors = [0xFF69B4, 0xFFD700, 0xADFF2F, 0x87CEEB, 0xFF6347];
@@ -65,32 +90,33 @@ class Donut extends THREE.Object3D {
     const minRadius = donutRadius * 0.75; // Minimum radius to keep sprinkles outside the hole
     const maxRadius = donutRadius * 1.1; // Maximum radius to stay within the donut's outer edge
 
+    const sprinkleGeometry = new THREE.CylinderGeometry(0.005, 0.005, 0.04, 8);
+    
     for (let i = 0; i < sprinkleCount; i++) {
       const sprinkleMaterial = new THREE.MeshStandardMaterial({
         color: sprinkleColors[Math.floor(Math.random() * sprinkleColors.length)],
         metalness: 0.3,
         roughness: 0.2,
       });
-      const sprinkleGeometry = new THREE.CylinderGeometry(0.005, 0.005, 0.04, 8);
       const sprinkle = new THREE.Mesh(sprinkleGeometry, sprinkleMaterial);
-
+    
       // Randomize position within circular area, but exclude the slice angle
       const radius = Math.random() * (maxRadius - minRadius) + minRadius;
       let angle;
       do {
-        angle = Math.random() * (2 * Math.PI );
-      } while (angle > (2 * Math.PI ) && angle < sliceAngle); // Avoid placing in slice area
-
+        angle = Math.random() * (2 * Math.PI);
+      } while (angle < sliceAngle || angle > (2 * Math.PI - sliceAngle)); // Avoid placing in slice area
+    
       const posX = radius * Math.cos(angle);
       const posZ = radius * Math.sin(angle);
-
+    
       sprinkle.position.set(posX, 0.20, posZ);
       sprinkle.rotation.set(
         Math.random() * Math.PI,
         Math.random() * Math.PI,
         Math.random() * Math.PI
       );
-
+    
       this.add(sprinkle);
     }
 
@@ -101,6 +127,88 @@ class Donut extends THREE.Object3D {
     const plate = new THREE.Mesh(plateGeometry, plateMaterial);
     plate.position.y = -0.2; // Position the plate slightly below the donut
     this.add(plate);
+
+
+    //Plate  with slice
+    const plate2 = new THREE.Mesh(plateGeometry, plateMaterial);
+    plate2.position.set(-1.3, -0.2, 0);
+    plate2.scale.set(0.8, 1, 0.8);
+    plate2.rotation.y = Math.PI / 6;
+    this.add(plate2);
+
+    //Slice
+    const slicedonutGeometry = new THREE.TorusGeometry(
+      donutRadius * 0.9,
+      tubeRadius,
+      32,
+      64,
+      sliceAngle 
+    );
+    const slicedonutBase = new THREE.Mesh(slicedonutGeometry, donutBaseMaterial);
+    slicedonutBase.rotation.x = Math.PI / 2; 
+    slicedonutBase.position.set(-1.65, -0.05, -0.1);
+    this.add(slicedonutBase);
+
+    // Frosting on top of donut with a slice removed
+    const slicefrostingGeometry = new THREE.TorusGeometry(
+      donutRadius,
+      tubeRadius * 0.9,
+      32,
+      64,
+      sliceAngle
+    );
+    const slicefrosting = new THREE.Mesh(slicefrostingGeometry, donutMaterial);
+    slicefrosting.position.set(-1.65, 0.02, -0.1); // Slightly raised to sit on top of the donut base
+    slicefrosting.rotation.x = Math.PI / 2;
+    this.add(slicefrosting);
+
+    //Slice cover
+    const slicecoverfrosting = new THREE.Mesh(coverfrostingGeometry, donutMaterial);
+    slicecoverfrosting.position.set(-1.304, 0.02, 0.0993);
+    slicecoverfrosting.rotation.y = -Math.PI / 6;
+    this.add(slicecoverfrosting);
+
+    const slicecoverbase = new THREE.Mesh(coverGeometry, donutBaseMaterial);
+    slicecoverbase.position.set(-1.338, -0.05, 0.08);
+    slicecoverbase.rotation.y = -Math.PI / 6;
+    this.add(slicecoverbase);
+
+    //Slice cover 2
+    const slicecoverfrosting2 = new THREE.Mesh(coverfrostingGeometry, donutMaterial);
+    slicecoverfrosting2.position.set(-1.25, 0.02, -0.09999);
+    this.add(slicecoverfrosting2);
+
+    const slicecoverbase2 = new THREE.Mesh(coverGeometry, donutBaseMaterial);
+    slicecoverbase2.position.set(-1.29, -0.05, -0.10001);
+    this.add(slicecoverbase2);
+
+    // Sprinkles on slice
+    for (let i = 0; i < sprinkleCount / 6; i++) { // Fewer sprinkles for the slice
+      const sprinkleMaterial = new THREE.MeshStandardMaterial({
+        color: sprinkleColors[Math.floor(Math.random() * sprinkleColors.length)],
+        metalness: 0.3,
+        roughness: 0.2,
+      });
+      const sprinkle = new THREE.Mesh(sprinkleGeometry, sprinkleMaterial);
+
+      // Randomize position within the slice's surface
+      const radius = Math.random() * (maxRadius - minRadius) + minRadius;
+      const angle = Math.random() * sliceAngle;
+
+      const posX = -1.65 + radius * Math.cos(angle);
+      const posZ = -0.1 + radius * Math.sin(angle);
+
+      sprinkle.position.set(posX, 0.2, posZ);
+      sprinkle.rotation.set(
+        Math.random() * Math.PI,
+        Math.random() * Math.PI,
+        Math.random() * Math.PI
+      );
+
+      this.add(sprinkle);
+    }
+
+
   }
 }
 

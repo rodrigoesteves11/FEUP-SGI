@@ -52,13 +52,23 @@ class TV extends THREE.Object3D {
     screenBack.position.set(0, 2.5, 0.35);
     this.add(screenBack);
     //TV Screen
+
+    // Carregar texturas de canais
+    this.channels = [
+      textureLoader.load("./textures/TV/tv.jpg"),
+      textureLoader.load("./textures/TV/tv2.jpg"),
+      //textureLoader.load("./textures/TV/tv3.jpg")
+    ];
+    this.currentChannel = 1;
+
+
+
     const geometryScreen = new THREE.PlaneGeometry(5.3, 2.5);
-    const screenMap = textureLoader.load("./textures/TV/tv2.jpg");
-    const screenMaterial = new THREE.MeshStandardMaterial({ map: screenMap, side: THREE.DoubleSide });
-    const screen= new THREE.Mesh(geometryScreen, screenMaterial);
-    screen.rotation.y = Math.PI;
-    screen.position.set(0, 2.5, -0.25);
-    this.add(screen);
+    this.screenMaterial = new THREE.MeshStandardMaterial({ map: this.channels[this.currentChannel], side: THREE.DoubleSide });
+    this.screen= new THREE.Mesh(geometryScreen, this.screenMaterial);
+    this.screen.rotation.y = Math.PI;
+    this.screen.position.set(0, 2.5, -0.25);
+    this.add(this.screen);    
 
     //TV Inside Frames
     //Top
@@ -194,6 +204,11 @@ class TV extends THREE.Object3D {
 
 
 
+  }
+  changeChannel() {
+    this.currentChannel = (this.currentChannel + 1) % this.channels.length;
+    this.screenMaterial.map = this.channels[this.currentChannel];
+    this.screenMaterial.needsUpdate = true;
   }
 }
 

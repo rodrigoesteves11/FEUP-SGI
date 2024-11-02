@@ -14,6 +14,11 @@ import { TallLamp } from "./TallLamp.js";
 import { Donut } from "./Donut.js";
 import { Curtains } from "./Curtains.js";
 import { Flowers } from "./Flowers.js";
+import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
+import { Vase } from "./Vase.js";
+import { Newspaper } from "./Newspaper.js";
+
 
 
 /**
@@ -33,14 +38,14 @@ class MyContents {
 
     //floor related attributes
     this.floorWidth = 18;
-    this.floorWidth2 = 22;
+    this.floorWidth2 = 20;
   }
 
   /*
    * Create a Plane Mesh
    */
   buildWalls() {
-    const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xf8a2ac });
+    const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xf8a2ac, roughness: 1 });
 
     // Define wall geometry sizes
     const wallGeometry = new THREE.PlaneGeometry(
@@ -213,6 +218,7 @@ class MyContents {
     );
 
     /*
+    EX LEFT WALL wihout window
     { x: -this.floorWidth2 / 2, y: this.wallHeight / 2, z: 0 },
       Math.PI / 2,
       wallGeometry
@@ -239,6 +245,47 @@ class MyContents {
     this.app.scene.add(this.planeMesh);
   }
 
+  /*
+    * Create a footer 
+  */
+  buildfooter() {
+    const footerMaterial = new THREE.MeshStandardMaterial({ color: 0xf8a2ac, roughness: 1 }); 
+    const footerHeight = 0.2;
+    const footerDepth = 0.1;
+  
+    
+    const frontfooter = new THREE.Mesh(
+      new THREE.BoxGeometry(this.floorWidth2, footerHeight, footerDepth),
+      footerMaterial
+    );
+    frontfooter.position.set(0, footerHeight / 2, -this.floorWidth / 2 + footerDepth / 2);
+    this.app.scene.add(frontfooter);
+  
+    
+    const backfooter = new THREE.Mesh(
+      new THREE.BoxGeometry(this.floorWidth2, footerHeight, footerDepth),
+      footerMaterial
+    );
+    backfooter.position.set(0, footerHeight / 2, this.floorWidth / 2 - footerDepth / 2);
+    this.app.scene.add(backfooter);
+  
+    
+    const leftfooter = new THREE.Mesh(
+      new THREE.BoxGeometry(footerDepth, footerHeight, this.floorWidth),
+      footerMaterial
+    );
+    leftfooter.position.set(-this.floorWidth2 / 2 + footerDepth / 2, footerHeight / 2, 0);
+    this.app.scene.add(leftfooter);
+  
+    
+    const rightfooter = new THREE.Mesh(
+      new THREE.BoxGeometry(footerDepth, footerHeight, this.floorWidth),
+      footerMaterial
+    );
+    rightfooter.position.set(this.floorWidth2 / 2 - footerDepth / 2, footerHeight / 2, 0);
+    this.app.scene.add(rightfooter);
+  }
+
   /**
    * initializes the contents
    */
@@ -263,16 +310,21 @@ class MyContents {
     this.app.scene.add(donut);
     donut.position.set(1, 1.33, -this.floorWidth / 2 + 6);
 
+    //Create a jornal
+    const journal = new Newspaper(this);
+    journal.position.set(1.8, 1, -this.floorWidth / 2 + 6);
+    this.app.scene.add(journal);
+
     // Create a spring
     const spring = new Spring(this);
     this.app.scene.add(spring);
-    spring.scale.set(0.7, 0.7, 0.7);
-    spring.position.set(0.5, 0.97, -this.floorWidth / 2 + 5.5);
+    spring.scale.set(0.5, 0.5, 0.7);
+    spring.position.set(-3.7, 1.7, -this.floorWidth / 2 + 1.6);
 
     // Create a curtains
     const curtains = new Curtains(this);
     this.app.scene.add(curtains);
-    curtains.position.setX(-this.floorWidth / 2 - 1.5);
+    curtains.position.setX(-this.floorWidth / 2 - 0.5 );
 
     // create a cabinet
     const cabinet = new Cabinet(this);
@@ -282,7 +334,7 @@ class MyContents {
 
     // create sofa
     const sofa = new Sofa(this);
-    sofa.position.set(1, 0, -this.floorWidth / 2 + 1.3);
+    sofa.position.set(1, 0, -this.floorWidth / 2 + 1.4);
     sofa.scale.set(2.5, 2.5, 2.5);
     this.app.scene.add(sofa);
 
@@ -325,20 +377,38 @@ class MyContents {
     const tv = new TV(this);
     tv.position.set(0, 0, this.floorWidth / 2 - 1);
     this.app.scene.add(tv);
+    this.app.tv = tv; 
 
     //create Tall Lamp
     const tallLamp = new TallLamp(this);
     tallLamp.position.set(8, 0, -this.floorWidth / 2 + 1);
     this.app.scene.add(tallLamp);
-
-     
+ 
     //create Flowers
     const flowers = new Flowers(this);
     flowers.position.set(8, 0, this.floorWidth / 2 - 1);
     this.app.scene.add(flowers);
 
+    //create Vase
+    const vase = new Vase(this);
+    vase.position.set(4.3, 1, this.floorWidth / 2 - 1.1);
+    this.app.scene.add(vase);
 
 
+    /* NOTAS: RODRIGO ALL LIGHTS NEED OWN CLASS */
+
+
+    // RectAreaLight para simular o brilho do ecrã
+    const screenLight = new THREE.RectAreaLight(0xffffff, 1, 5.3, 2.5); // Cor, intensidade e dimensões
+    screenLight.position.set(0, 2.5, this.floorWidth / 2 - 1.4); // Posiciona a luz bem próxima do ecrã
+    screenLight.rotation.y = Math.PI; // Roda a luz para apontar para o ecrã
+    this.app.scene.add(screenLight);
+
+    const screenLight2 = new THREE.RectAreaLight(0xffffff, 3, 5.3, 2.5); // Cor, intensidade e dimensões
+    screenLight2.position.set(0, 2.5, this.floorWidth / 2 - 1.35); // Posiciona a luz bem próxima do ecrã
+    this.app.scene.add(screenLight2);
+
+    // this.app.scene.add( new RectAreaLightHelper( screenLight2 ) );
 
     //Spotlight for Tall Lamp (NEEDS ITS OWN CLASS)
     const Talllight = new THREE.SpotLight(0xfff2d3, 20, 10, Math.PI/3.5 , 0.3, 1.5);
@@ -347,7 +417,7 @@ class MyContents {
     this.app.scene.add(Talllight);
     this.app.scene.add(Talllight.target);
 
-    // //Spotlight Helper
+    // // Spotlight Helper
     //  const helper = new THREE.SpotLightHelper(light);
     //  this.app.scene.add(helper);
 
@@ -368,6 +438,10 @@ class MyContents {
     this.buildFloor();
 
     this.buildWalls();
+
+    this.buildfooter();
+
+    
   }
 
   /**

@@ -16,8 +16,8 @@ class Cabinet extends THREE.Object3D {
     const textureLoader = new THREE.TextureLoader();
 
     
-    const blueMaterial = new THREE.MeshStandardMaterial({ color: 0x528ebf });
-    const purpleMaterial = new THREE.MeshStandardMaterial({ color: 0x9b699e });
+    const blueMaterial = new THREE.MeshStandardMaterial({ color: 0x528ebf, side: THREE.DoubleSide, roughness: 0.8 });
+    const purpleMaterial = new THREE.MeshStandardMaterial({ color: 0x9b699e, side: THREE.DoubleSide, roughness: 0.8 });
 
 
 

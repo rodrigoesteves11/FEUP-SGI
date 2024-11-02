@@ -17,7 +17,7 @@ class Lamp extends THREE.Object3D {
 
     //Lamp Base "Torus"
     const geometryBase = new THREE.TorusGeometry(0.28, 0.07, 16, 100);
-    const materialBase = new THREE.MeshStandardMaterial({ color: 0xb85527 });
+    const materialBase = new THREE.MeshStandardMaterial({ color: 0xb85527, side: THREE.DoubleSide, metalness: 0.3, roughness: 0.3 });
     const base = new THREE.Mesh(geometryBase, materialBase);
     base.rotation.x = Math.PI / 2;
     base.position.set(0, -0.05, 0);
@@ -31,14 +31,14 @@ class Lamp extends THREE.Object3D {
 
     //Lamp Top Body "1/2 Sphere"
     const geometryTop = new THREE.SphereGeometry(0.27, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
-    const materialTop = new THREE.MeshStandardMaterial({ color: 0x669042 });
+    const materialTop = new THREE.MeshStandardMaterial({ color: 0x669042, side: THREE.DoubleSide, metalness: 0.3, roughness: 0.3 });
     const top = new THREE.Mesh(geometryTop, materialTop);
     top.position.set(0, 0.65, 0);
     this.add(top);
 
     //Lamp Pole "Cylinder"
     const geometryPole = new THREE.CylinderGeometry(0.05, 0.05, 1, 32);
-    const materialPole = new THREE.MeshStandardMaterial({ color: 0x8397cc });
+    const materialPole = new THREE.MeshStandardMaterial({ color: 0x8397cc, side: THREE.DoubleSide, metalness: 0.5, roughness: 0.3 });
     const pole = new THREE.Mesh(geometryPole, materialPole);
     pole.position.set(0, 0.75, 0);
     this.add(pole);
@@ -47,7 +47,7 @@ class Lamp extends THREE.Object3D {
     const geometryShadeTop = new THREE.TorusGeometry(0.25, 0.04, 16, 100);
     const geometryShadeBottom = new THREE.TorusGeometry(0.43, 0.04, 16, 100);
     const geometryShadeMid = new THREE.CylinderGeometry(0.27, 0.45, 0.765, 64, 1, true);
-    const materialShade = new THREE.MeshStandardMaterial({ color: 0xb361a6, side: THREE.DoubleSide });
+    const materialShade = new THREE.MeshStandardMaterial({ color: 0xb361a6, side: THREE.DoubleSide, side: THREE.DoubleSide, opacity: 0.91, transparent: true, roughness : 0.9  });
     const shadeTop = new THREE.Mesh(geometryShadeTop, materialShade);
     shadeTop.rotation.x = Math.PI / 2;
     shadeTop.position.set(0, 1.85, 0);
@@ -74,12 +74,12 @@ class Lamp extends THREE.Object3D {
       emissiveIntensity: 1     // The strength of the emissive glow
     });
     const bulb = new THREE.Mesh(geometryBulb, materialBulb);
-    bulb.position.set(0, 1.5, 0);
+    bulb.position.set(0, 1.4, 0);
     this.add(bulb);
 
     // Create a PointLight and position it at the bulb
     const pointLight = new THREE.PointLight(0xfff2d3, 4, 50); // color, intensity, distance
-    pointLight.position.set(0, 1.5, 0);
+    pointLight.position.set(0, 1.4, 0);
     this.add(pointLight);
 
     /*

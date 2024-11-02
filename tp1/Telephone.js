@@ -12,8 +12,7 @@ class Telephone extends THREE.Object3D {
 
     const textureLoader = new THREE.TextureLoader();
 
-    const materialBase = new THREE.MeshStandardMaterial({ color: 0x57c3ba, side: THREE.DoubleSide });
-    const materialBase2 = new THREE.MeshStandardMaterial({ color: 0xfffa2b, side: THREE.DoubleSide });
+    const materialBase = new THREE.MeshStandardMaterial({ color: 0x57c3ba, side: THREE.DoubleSide, metalness: 0.3, roughness: 0.9 });
 
     // Telephone Base
     const geometryBase = new THREE.BoxGeometry(0.8, 0.2, 1);
@@ -30,7 +29,8 @@ class Telephone extends THREE.Object3D {
 
     const geometryTriangle = new THREE.BufferGeometry();
     geometryTriangle.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-    geometryTriangle.computeVertexNormals(); // Calcula normais automaticamente para iluminação
+    
+    geometryTriangle.computeVertexNormals(); 
 
     const triangleMesh = new THREE.Mesh(geometryTriangle, materialBase);
     triangleMesh.position.set(0.4, 0.1, -0.1);
@@ -71,7 +71,7 @@ class Telephone extends THREE.Object3D {
 
     // Cubes for telephone buttons
     const geometryCube = new THREE.BoxGeometry(0.12, 0.12, 0.1);
-    const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, side: THREE.DoubleSide, metalness: 0, roughness: 1 });
 
     const positions = [
       [0.15, 0.31, 0.05], [0, 0.31, 0.05], [-0.15, 0.31, 0.05],

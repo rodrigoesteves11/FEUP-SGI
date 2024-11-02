@@ -39,8 +39,8 @@ class Spring extends THREE.Object3D {
       roughnessMap: steelroughnessMapTexture,
       displacementMap: steelheightMapTexture,
       displacementScale: 0,
-      metalness: 0.5,
-      roughness: 0.8,
+      metalness: 0.7,
+      roughness: 0.7,
     });
 
     class CustomSinCurve extends THREE.Curve {
@@ -68,7 +68,6 @@ class Spring extends THREE.Object3D {
     const geometry = new THREE.TubeGeometry( path, 200, 0.02, 8, false );
     const mesh = new THREE.Mesh( geometry, steelMaterial );
     mesh.rotation.x = Math.PI/2;
-    mesh.position.set(2, 0.4, 0);
     this.add( mesh );
     
   }

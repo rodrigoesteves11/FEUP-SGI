@@ -12,13 +12,13 @@ class TallLamp extends THREE.Object3D {
     
     const textureLoader = new THREE.TextureLoader();
 
-    const baseMaterial = new THREE.MeshStandardMaterial({ color: 0x915996, side: THREE.DoubleSide });
-    const supportMaterial = new THREE.MeshStandardMaterial({ color: 0x5f7ed0, side: THREE.DoubleSide });
-    const lampShadeMaterial = new THREE.MeshStandardMaterial({ color: 0xb6602d, side: THREE.DoubleSide });
+    const baseMaterial = new THREE.MeshStandardMaterial({ color: 0x915996, side: THREE.DoubleSide, metalness: 0.3, roughness: 0.3 });
+    const supportMaterial = new THREE.MeshStandardMaterial({ color: 0x5f7ed0, side: THREE.DoubleSide, metalness: 0.3, roughness: 0.3 });
+    const lampShadeMaterial = new THREE.MeshStandardMaterial({ color: 0xb6602d, side: THREE.DoubleSide, opacity: 0.91, transparent: true, roughness : 0.9 });
 
 
     //Base
-    const geometryBase = new THREE.SphereGeometry(0.8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
+    const geometryBase = new THREE.SphereGeometry(0.8, 32, 32, 0, Math.PI * 2, 0, Math.PI / 3.5);
     const base = new THREE.Mesh(geometryBase, baseMaterial);
     base.position.set(0, -0.5, 0);
     this.add(base);

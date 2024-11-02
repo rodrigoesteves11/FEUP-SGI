@@ -34,6 +34,11 @@ class MyGuiInterface  {
         cameraFolder.add(this.app, 'activeCameraName', [ 'Perspective','Perspective2', 'Left', 'Top', 'Front', 'Back', 'Right'] ).name("active camera");
         // note that we are using a property from the app 
         cameraFolder.open()
+
+         // Folder for TV controls
+         const tvFolder = this.datgui.addFolder('TV Controls');
+         tvFolder.add(this.app.tv, 'changeChannel').name('Change Channel');
+         tvFolder.open();
     }
 }
 
