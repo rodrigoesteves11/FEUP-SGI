@@ -21,6 +21,7 @@ import { Newspaper } from "./Newspaper.js";
 import { Door } from "./Door.js";
 import { LampLight } from "./LampLight.js";
 import { TallLampLight } from "./TallLampLight.js";
+import { DonutLight } from "./DonutLight.js";
 
 
 
@@ -199,7 +200,9 @@ class MyContents {
       rightFrame.rotation.y = rotationY;
       this.app.scene.add(rightFrame);
 
-      // Half Sphere to hide the inner sphere (which represents the outside of the window)
+      // Half sphere and 2 box geometry to hide the ouside window
+      // First create 2 box geometries to hide the top and bottom of the sphere
+
       const sphereRadius = Math.max(windowWidth, windowHeight); // Adjust radius to cover the window area
       const invisibleMaterial = new THREE.MeshBasicMaterial({
         color: 0x00ff00,
@@ -213,15 +216,25 @@ class MyContents {
         0.1
       );
 
-      const invibleMesh = new THREE.Mesh(invibleGeometry, invisibleMaterial);
-      invibleMesh.position.set(
+      const invibleMeshTop = new THREE.Mesh(invibleGeometry, invisibleMaterial);
+      invibleMeshTop.position.set(
         position.x,
         this.wallHeight + windowHeight / 2,
         position.z + 0.01
       );
 
-      invibleMesh.rotation.y = -Math.PI / 2;
-      this.app.scene.add(invibleMesh);
+      invibleMeshTop.rotation.y = -Math.PI / 2;
+      this.app.scene.add(invibleMeshTop);
+
+      const invibleMeshBottom = new THREE.Mesh(invibleGeometry, invisibleMaterial);
+      invibleMeshBottom.position.set(
+        position.x,
+        0,
+        position.z + 0.01
+      );
+
+      invibleMeshBottom.rotation.y = -Math.PI / 2;
+      this.app.scene.add(invibleMeshBottom);
 
       // Outdoor half-sphere
       const textureLoader = new THREE.TextureLoader();
@@ -397,6 +410,10 @@ class MyContents {
     const donut = new Donut(this);
     this.app.scene.add(donut);
     donut.position.set(1, 1.33, -this.floorWidth / 2 + 6);
+
+    // Create Donut Spotlight
+    const donutSpotlight = new DonutLight(this);
+    this.app.scene.add(donutSpotlight);
 
     //Create a jornal
     const journal = new Newspaper(this);
