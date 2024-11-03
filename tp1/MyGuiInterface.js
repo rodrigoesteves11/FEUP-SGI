@@ -52,6 +52,12 @@ class MyGuiInterface  {
         lampFolder.add(this.app.lampLight, 'toggleHelper').name('Toggle Helper');
         lampFolder.open();
 
+        // Folder for Lamp controls
+        const donutLightFolder = this.datgui.addFolder('Donut Light Controls');
+        donutLightFolder.add(this.app.donutLight, 'turnOffLight').name('Toggle Spot Light');
+        donutLightFolder.add(this.app.donutLight, 'toggleHelper').name('Toggle Helper');
+        donutLightFolder.open();
+
 
     }
 }

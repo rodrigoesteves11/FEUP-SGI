@@ -247,7 +247,7 @@ class MyContents {
       ); // Half-sphere geometry
       const texture = textureLoader.load(
         "./textures/window/equirectangular_neighbor_texture.png"
-      ); // Load your texture
+      ); // Load texture
       texture.wrapS = THREE.RepeatWrapping; // Ensure texture wraps correctly for a half-sphere
       const sphereMaterial = new THREE.MeshBasicMaterial({
         map: texture,
@@ -412,8 +412,10 @@ class MyContents {
     donut.position.set(1, 1.33, -this.floorWidth / 2 + 6);
 
     // Create Donut Spotlight
-    const donutSpotlight = new DonutLight(this);
-    this.app.scene.add(donutSpotlight);
+    const donutSpotLight = new DonutLight(this);
+    donutSpotLight.position.set(0, 5, 0);
+    this.app.donutLight = donutSpotLight;
+    this.app.scene.add(donutSpotLight);
 
     //Create a jornal
     const journal = new Newspaper(this);
@@ -428,6 +430,7 @@ class MyContents {
 
     // Create a curtains
     const curtains = new Curtains(this);
+    this.app.curtains = curtains;
     this.app.scene.add(curtains);
     curtains.position.setX(-this.floorWidth / 2 - 0.5);
 
