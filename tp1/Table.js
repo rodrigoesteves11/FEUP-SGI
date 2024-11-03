@@ -88,6 +88,21 @@ class Table extends THREE.Object3D {
     const leg4 = new THREE.Mesh(legGeometry, tableLegsMaterial);
     leg4.position.set(legOffsetX, legHeight / 2, legOffsetZ);
     this.add(leg4);
+
+    leg1.castShadow = true;
+    leg1.receiveShadow = true;
+    
+    leg2.castShadow = true;
+    leg2.receiveShadow = true;
+    
+    leg3.castShadow = true;
+    leg3.receiveShadow = true;
+
+    leg4.castShadow = true;
+    leg4.receiveShadow = true;
+    
+    tableTop.castShadow = true;
+    tableTop.receiveShadow = true;
   }
 }
 

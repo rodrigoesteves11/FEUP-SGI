@@ -118,6 +118,8 @@ class Donut extends THREE.Object3D {
       );
     
       this.add(sprinkle);
+      sprinkle.castShadow = true;
+      sprinkle.receiveShadow = true;
     }
 
     // Plate under the donut
@@ -206,6 +208,8 @@ class Donut extends THREE.Object3D {
       );
 
       this.add(sprinkle);
+      sprinkle.castShadow = true;
+      sprinkle.receiveShadow = true;
     }
     // Candle materials and geometry
     const candleColor = 0xffb6c1; // Light pink for the candles
@@ -258,6 +262,8 @@ class Donut extends THREE.Object3D {
       const candle = new THREE.Mesh(candleGeometry, candleMaterial);
       candle.position.set(x, 0.2 + candleHeight / 2, z); // Position candle on top of frosting
       this.add(candle);
+      candle.castShadow = true;
+      candle.receiveShadow = true;
 
       // Inner flame (brighter core)
       const innerFlameGeometry = new THREE.ConeGeometry(
@@ -279,6 +285,57 @@ class Donut extends THREE.Object3D {
       outerFlame.position.set(x, 0.2 + candleHeight + flameHeightOuter / 2, z); // Position outer flame above candle
       this.add(outerFlame);
     }
+
+    donutBase.castShadow = true;
+    donutBase.receiveShadow = true;
+
+    frosting.castShadow = true;
+    frosting.receiveShadow = true;
+
+    coverfrosting.castShadow = true;
+    coverfrosting.receiveShadow = true;
+
+    coverbase.castShadow = true;
+    coverbase.receiveShadow = true;
+
+    coverfrosting2.castShadow = true;
+    coverfrosting2.receiveShadow = true;
+
+    coverbase2.castShadow = true;
+    coverbase2.receiveShadow = true;
+
+    plate.castShadow = true;
+    plate.receiveShadow = true;
+
+    plate2.castShadow = true;
+    plate2.receiveShadow = true;
+
+    slicedonutBase.castShadow = true;
+    slicedonutBase.receiveShadow = true;
+
+    slicefrosting.castShadow = true;
+    slicefrosting.receiveShadow = true;
+
+    slicecoverfrosting2.castShadow = true;
+    slicecoverfrosting2.receiveShadow = true;
+
+    slicecoverbase2.castShadow = true;
+    slicecoverbase2.receiveShadow = true;
+
+    slicecoverbase2.castShadow = true;
+    slicecoverbase2.receiveShadow = true;
+
+    slicecoverbase2.castShadow = true;
+    slicecoverbase2.receiveShadow = true;
+
+    slicecoverbase2.castShadow = true;
+    slicecoverbase2.receiveShadow = true;
+
+    slicecoverbase2.castShadow = true;
+    slicecoverbase2.receiveShadow = true;
+
+    slicecoverbase2.castShadow = true;
+    slicecoverbase2.receiveShadow = true;
 
 
   }

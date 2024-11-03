@@ -69,6 +69,9 @@ class Rug extends THREE.Object3D {
       rugMesh.position.set(0, offsetY, 0); // Position on Y-axis slightly to avoid clipping
 
       this.add(rugMesh); // Add each ring to the rug group
+
+      rugMesh.castShadow = true;
+      rugMesh.receiveShadow = true;
     }
   }
 
