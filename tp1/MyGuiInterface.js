@@ -58,7 +58,10 @@ class MyGuiInterface  {
         donutLightFolder.add(this.app.donutLight, 'toggleHelper').name('Toggle Helper');
         donutLightFolder.open();
 
-
+        // Folder for Curtain controls
+        const curtainFolder = this.datgui.addFolder('Curtain Controls');
+        curtainFolder.add(this.app.openCloseCurtains, 'toggleCurtains').name('Open/Close Curtains');
+        curtainFolder.open();
     }
 }
 

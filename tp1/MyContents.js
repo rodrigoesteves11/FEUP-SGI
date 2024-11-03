@@ -430,7 +430,7 @@ class MyContents {
 
     // Create a curtains
     const curtains = new Curtains(this);
-    this.app.curtains = curtains;
+    this.app.openCloseCurtains = curtains;
     this.app.scene.add(curtains);
     curtains.position.setX(-this.floorWidth / 2 - 0.5);
 
