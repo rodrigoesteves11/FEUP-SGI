@@ -77,25 +77,30 @@ class Lamp extends THREE.Object3D {
     bulb.position.set(0, 1.4, 0);
     this.add(bulb);
 
-    // Create a PointLight and position it at the bulb
-    const pointLight = new THREE.PointLight(0xfff2d3, 4, 50); // color, intensity, distance
-    pointLight.position.set(0, 1.4, 0);
-    this.add(pointLight);
+    //Shadows
+    base.castShadow = true;
+    base.receiveShadow = true;
 
-    /*
-      NEED TO HAD SHADOWS
-    */
+    mid.castShadow = true;
+    mid.receiveShadow = true;
 
-      
-    // Optionally add a helper to visualize the light in the scene
-    const lightHelper = new THREE.PointLightHelper(pointLight);
-    this.add(lightHelper);
+    top.castShadow = true;
+    top.receiveShadow = true;
 
+    pole.castShadow = true;
+    pole.receiveShadow = true;
 
+    shadeTop.castShadow = true;
+    shadeTop.receiveShadow = true;
 
+    //shadeBottom.castShadow = true;
+    //shadeBottom.receiveShadow = true;
 
+    shadeMid.castShadow = true;
+    shadeMid.receiveShadow = true;
 
-
+    poleLight.castShadow = true;
+    poleLight.receiveShadow = true;
   }
 }
 

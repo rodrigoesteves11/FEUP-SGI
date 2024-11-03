@@ -65,11 +65,12 @@ class Door extends THREE.Object3D {
 
       const crackGeometry = new THREE.BoxGeometry(
         0.02,
-        rectHeight*2 + ellipseRadiusY*2,
+        rectHeight + ellipseRadiusY,
         0.05
     );
     const crack = new THREE.Mesh(crackGeometry, crackMaterial);
     crack.position.setX(-0.05);
+    crack.position.setY(rectHeight/2 + ellipseRadiusY/2);
     this.add(crack);
 
     // Door Handles
@@ -78,11 +79,11 @@ class Door extends THREE.Object3D {
     const handleMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
 
     const leftHandle = new THREE.Mesh(handleGeometry, handleMaterial);
-    leftHandle.position.set(-0.175, (rectHeight + ellipseRadiusY)/2, -0.5);
+    leftHandle.position.set(-0.175, (rectHeight + ellipseRadiusY)/2, -0.6);
     this.add(leftHandle);
 
     const rightHandle = new THREE.Mesh(handleGeometry, handleMaterial);
-    rightHandle.position.set(-0.175, (rectHeight + ellipseRadiusY)/2, 0.5);
+    rightHandle.position.set(-0.175, (rectHeight + ellipseRadiusY)/2, 0.6);
     this.add(rightHandle);
 
   }

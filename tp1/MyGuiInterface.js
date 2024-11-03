@@ -35,10 +35,24 @@ class MyGuiInterface  {
         // note that we are using a property from the app 
         cameraFolder.open()
 
-         // Folder for TV controls
-         const tvFolder = this.datgui.addFolder('TV Controls');
-         tvFolder.add(this.app.tv, 'changeChannel').name('Change Channel');
-         tvFolder.open();
+        // Folder for TV controls
+        const tvFolder = this.datgui.addFolder('TV Controls');
+        tvFolder.add(this.app.tv, 'changeChannel').name('Change Channel');
+        tvFolder.open();
+
+        // Folder for Lamp controls
+        const tallLampFolder = this.datgui.addFolder('Tall Lamp Controls');
+        tallLampFolder.add(this.app.tallLamp, 'turnOffLight').name('Toggle Lamp');
+        tallLampFolder.add(this.app.tallLamp, 'toggleHelper').name('Toggle Helper');
+        tallLampFolder.open();
+
+        // Folder for Lamp controls
+        const lampFolder = this.datgui.addFolder('Lamp Controls');
+        lampFolder.add(this.app.lampLight, 'turnOffLight').name('Toggle Lamp');
+        lampFolder.add(this.app.lampLight, 'toggleHelper').name('Toggle Helper');
+        lampFolder.open();
+
+
     }
 }
 

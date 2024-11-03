@@ -126,6 +126,8 @@ class Sofa extends THREE.Object3D {
       const pillowMesh = new THREE.Mesh(pillowGeometry, sofaMaterial);
       pillowMesh.rotation.x = Math.PI / 2; // Lay it flat along the X-Z plane
       pillowMesh.position.set(-1.15 + i * 0.8, 0.4, -0.25); // Adjust position on Y-axis (height) and X-axis (horizontal)
+      pillowMesh.castShadow = true; 
+      pillowMesh.receiveShadow = true; 
       this.add(pillowMesh);
     }
 
@@ -187,8 +189,30 @@ class Sofa extends THREE.Object3D {
     for (let i = 0; i < 3; i++) {
       const sphereMesh = new THREE.Mesh(sphereGeometry, sofaMaterial);
       sphereMesh.position.set(-0.8 + i * 0.8, 0.8, - 0.3); // Adjust positions along X-axis
+      sphereMesh.receiveShadow = true; 
       this.add(sphereMesh);
     }
+
+    baseMesh.castShadow = true;
+    baseMesh.receiveShadow = true;
+
+    backrestMesh.castShadow = true;
+    backrestMesh.receiveShadow = true;
+
+    leftArmrest.castShadow = true;
+    leftArmrest.receiveShadow = true;
+
+    rightArmrest.castShadow = true;
+    rightArmrest.receiveShadow = true;
+
+    leftHalfCylinder.castShadow = true;
+    leftHalfCylinder.receiveShadow = true;
+
+    rightHalfCylinder.castShadow = true;
+    rightHalfCylinder.receiveShadow = true;
+  
+        
+  
   }
 }
 

@@ -68,6 +68,8 @@ class Spring extends THREE.Object3D {
     const geometry = new THREE.TubeGeometry( path, 200, 0.02, 8, false );
     const mesh = new THREE.Mesh( geometry, steelMaterial );
     mesh.rotation.x = Math.PI/2;
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     this.add( mesh );
     
   }

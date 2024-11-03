@@ -90,6 +90,9 @@ class Cabinet extends THREE.Object3D {
     const Top = new THREE.Mesh(TopGeometry, purpleMaterial);
     Top.position.set(0, this.baseHeight, 0);
     Top.rotation.z = Math.PI / 2;
+    Top.castShadow = true;
+    Top.receiveShadow = true;
+    
     this.add(Top);
 
     // Inside of the cabinet
@@ -171,7 +174,7 @@ class Cabinet extends THREE.Object3D {
 
 
     //Books (semi-circle cylinder and box)
-    
+
     // Material para os livros
     const bookMaterial1 = new THREE.MeshStandardMaterial({ color: 0xf5872b }); 
     const bookMaterial2 = new THREE.MeshStandardMaterial({ color: 0xa5c4e9 }); 

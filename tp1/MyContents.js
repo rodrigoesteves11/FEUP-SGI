@@ -19,6 +19,10 @@ import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUnifo
 import { Vase } from "./Vase.js";
 import { Newspaper } from "./Newspaper.js";
 import { Door } from "./Door.js";
+import { LampLight } from "./LampLight.js";
+import { TallLampLight } from "./TallLampLight.js";
+
+
 
 /**
  *  This class contains the contents of out application
@@ -63,6 +67,8 @@ class MyContents {
       const wall = new THREE.Mesh(wallGeometry, wallMaterial);
       wall.position.set(position.x, position.y, position.z);
       wall.rotation.y = rotationY;
+      wall.castShadow = true;
+      wall.receiveShadow = true;
       this.app.scene.add(wall);
     };
 
@@ -316,6 +322,7 @@ class MyContents {
     let plane = new THREE.PlaneGeometry(this.floorWidth2, this.floorWidth);
     this.planeMesh = new THREE.Mesh(plane, planeMaterial);
     this.planeMesh.rotation.x = -Math.PI / 2;
+    this.planeMesh.receiveShadow = true;
     this.app.scene.add(this.planeMesh);
   }
 
@@ -334,44 +341,36 @@ class MyContents {
       new THREE.BoxGeometry(this.floorWidth2, footerHeight, footerDepth),
       footerMaterial
     );
-    frontfooter.position.set(
-      0,
-      footerHeight / 2,
-      -this.floorWidth / 2 + footerDepth / 2
-    );
+    frontfooter.position.set(0, footerHeight / 2, -this.floorWidth / 2 + footerDepth / 2);
+    frontfooter.castShadow = true;
+    frontfooter.receiveShadow = true;
     this.app.scene.add(frontfooter);
 
     const backfooter = new THREE.Mesh(
       new THREE.BoxGeometry(this.floorWidth2, footerHeight, footerDepth),
       footerMaterial
     );
-    backfooter.position.set(
-      0,
-      footerHeight / 2,
-      this.floorWidth / 2 - footerDepth / 2
-    );
+    backfooter.position.set(0, footerHeight / 2, this.floorWidth / 2 - footerDepth / 2);
+    backfooter.castShadow = true;
+    backfooter.receiveShadow = true;
     this.app.scene.add(backfooter);
 
     const leftfooter = new THREE.Mesh(
       new THREE.BoxGeometry(footerDepth, footerHeight, this.floorWidth),
       footerMaterial
     );
-    leftfooter.position.set(
-      -this.floorWidth2 / 2 + footerDepth / 2,
-      footerHeight / 2,
-      0
-    );
+    leftfooter.position.set(-this.floorWidth2 / 2 + footerDepth / 2, footerHeight / 2, 0);
+    leftfooter.castShadow = true;
+    leftfooter.receiveShadow = true;
     this.app.scene.add(leftfooter);
 
     const rightfooter = new THREE.Mesh(
       new THREE.BoxGeometry(footerDepth, footerHeight, this.floorWidth),
       footerMaterial
     );
-    rightfooter.position.set(
-      this.floorWidth2 / 2 - footerDepth / 2,
-      footerHeight / 2,
-      0
-    );
+    rightfooter.position.set(this.floorWidth2 / 2 - footerDepth / 2, footerHeight / 2, 0);
+    rightfooter.castShadow = true;
+    rightfooter.receiveShadow = true;
     this.app.scene.add(rightfooter);
   }
 
@@ -438,6 +437,12 @@ class MyContents {
     this.app.scene.add(lamp);
     lamp.position.set(-3.8, 1.69, -this.floorWidth / 2 + 0.55);
 
+    //create a lampLight
+    const lampLight = new LampLight(this);
+    lampLight.position.set(-3.8, 1.69, -this.floorWidth / 2 + 0.55);
+    this.app.lampLight = lampLight;
+    this.app.scene.add(lampLight);
+
     //create telephone
     const telephone = new Telephone(this);
     telephone.position.set(-3.1, 1.69, -this.floorWidth / 2 + 1.6);
@@ -473,6 +478,13 @@ class MyContents {
     tallLamp.position.set(8, 0, -this.floorWidth / 2 + 1);
     this.app.scene.add(tallLamp);
 
+    //create Tall Lamp Light
+    const tallLampLight = new TallLampLight(this, sofa.position);
+    tallLampLight.position.set(6.4, 5.9, -this.floorWidth/2 + 1);
+    this.app.tallLamp = tallLampLight;
+    this.app.scene.add(tallLampLight);
+
+ 
     //create Flowers
     const flowers = new Flowers(this);
     flowers.position.set(8, 0, this.floorWidth / 2 - 1);
@@ -488,7 +500,6 @@ class MyContents {
     door.position.setX(this.floorWidth2 / 2 - 0.1);
     this.app.scene.add(door);
 
-    /* NOTAS: RODRIGO ALL LIGHTS NEED OWN CLASS */
 
     // RectAreaLight para simular o brilho do ecrã
     const screenLight = new THREE.RectAreaLight(0xffffff, 1, 5.3, 2.5); // Cor, intensidade e dimensões
@@ -501,24 +512,6 @@ class MyContents {
     this.app.scene.add(screenLight2);
 
     // this.app.scene.add( new RectAreaLightHelper( screenLight2 ) );
-
-    //Spotlight for Tall Lamp (NEEDS ITS OWN CLASS)
-    const Talllight = new THREE.SpotLight(
-      0xfff2d3,
-      20,
-      10,
-      Math.PI / 3.5,
-      0.3,
-      1.5
-    );
-    Talllight.position.set(6.4, 6.9, -this.floorWidth / 2 + 1);
-    Talllight.target.position.set(4.55, 0, -this.floorWidth / 2 + 1.3); // Ajuste a posição de destino para apontar para baixo
-    this.app.scene.add(Talllight);
-    this.app.scene.add(Talllight.target);
-
-    // // Spotlight Helper
-    //  const helper = new THREE.SpotLightHelper(light);
-    //  this.app.scene.add(helper);
 
     // add a point light on top of the model
     const pointLight = new THREE.PointLight(0xffffff, 500, 0);

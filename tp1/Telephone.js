@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { MyApp } from './MyApp.js';
+import { MyNurbsBuilder } from "./utils/MyNurbsBuilder.js";
 
 /**
  * A Telephone is a 3D object that represents a telephone.
@@ -20,32 +21,19 @@ class Telephone extends THREE.Object3D {
     base.position.set(0, 0, 0);
     this.add(base);
 
-    // Telephone Body pyramid
-    const vertices = new Float32Array([
-      0, 0, 0.6,  // Vértice A
-      0, 0, 0,    // Vértice B
-      0, 0.3, 0   // Vértice C
-    ]);
+    //Telephone Incline
+    const geometryIncline = new THREE.BoxGeometry(0.8, 0.671, 0.1);
+    const incline = new THREE.Mesh(geometryIncline, materialBase);
+    incline.position.set(0, 0.205, 0.178);
+    incline.rotation.x = -THREE.MathUtils.degToRad(63.43)
+    this.add(incline);
 
-    const geometryTriangle = new THREE.BufferGeometry();
-    geometryTriangle.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-    
-    geometryTriangle.computeVertexNormals(); 
-
-    const triangleMesh = new THREE.Mesh(geometryTriangle, materialBase);
-    triangleMesh.position.set(0.4, 0.1, -0.1);
-    this.add(triangleMesh);
-
-    const triangleMesh2 = new THREE.Mesh(geometryTriangle, materialBase);
-    triangleMesh2.position.set(-0.4, 0.1, -0.1);
-    this.add(triangleMesh2);
-
-    // Plane for telephone body
-    const geometryPlane = new THREE.PlaneGeometry(0.8, 0.67);
-    const plane = new THREE.Mesh(geometryPlane, materialBase);
-    plane.position.set(0, 0.25, 0.2);
-    plane.rotation.x = -THREE.MathUtils.degToRad(63.43);
-    this.add(plane);
+    //Telephone Incline Inside
+    const geometryInclineInside = new THREE.BoxGeometry(0.8, 0.5, 0.23);
+    const inclineInside = new THREE.Mesh(geometryInclineInside, materialBase);
+    inclineInside.position.set(0, 0.16, 0.03);
+    inclineInside.rotation.x = -THREE.MathUtils.degToRad(63.43)
+    this.add(inclineInside);
 
     // Telephone Body Box
     const geometryBody = new THREE.BoxGeometry(0.8, 0.3, 0.4);
@@ -83,8 +71,32 @@ class Telephone extends THREE.Object3D {
       const cube = new THREE.Mesh(geometryCube, cubeMaterial);
       cube.rotation.x = -THREE.MathUtils.degToRad(63.43);
       cube.position.set(...pos);
+      cube.castShadow = true;
+      cube.receiveShadow = true;
       this.add(cube);
     });
+
+    base.castShadow = true;
+    base.receiveShadow = true;
+
+    body.castShadow = true;
+    body.receiveShadow = true;
+
+    incline.castShadow = true;
+    incline.receiveShadow = true;
+
+    inclineInside.castShadow = true;
+    inclineInside.receiveShadow = true;
+
+    phone.castShadow = true;
+    phone.receiveShadow = true;
+
+    phone2.castShadow = true;
+    phone2.receiveShadow = true;
+
+    phoneBody.castShadow = true;
+    phoneBody.receiveShadow = true;
+
   }
 }
 

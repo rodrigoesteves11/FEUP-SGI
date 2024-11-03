@@ -96,14 +96,26 @@ class TallLamp extends THREE.Object3D {
     bulb.position.set(-1.65, 6.9, 0);
     this.add(bulb);
 
-     
+    base.castShadow = true;
+    base.receiveShadow = true;
 
+    pole.castShadow = true;
+    pole.receiveShadow = true;
 
-    
-    
-    // PointLight(0xfff2d3, 6, 200);
-    // light.position.set(-1.65, 6.9, 0);
-    // this.add(light);
+    supportBase.castShadow = true;
+    supportBase.receiveShadow = true;
+
+    supportBall.castShadow = true;
+    supportBall.receiveShadow = true;
+
+    tube.castShadow = true;
+    tube.receiveShadow = true;
+
+    //abajur.castShadow = true;
+    //abajur.receiveShadow = true;
+
+    border.castShadow = true;
+    border.receiveShadow = true;
 
     
 
