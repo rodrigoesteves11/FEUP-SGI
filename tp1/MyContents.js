@@ -22,6 +22,7 @@ import { Door } from "./Door.js";
 import { LampLight } from "./LampLight.js";
 import { TallLampLight } from "./TallLampLight.js";
 import { DonutLight } from "./DonutLight.js";
+import { WindowLight } from "./WindowLight.js";
 
 
 
@@ -105,6 +106,8 @@ class MyContents {
       const wall = new THREE.Mesh(wallGeometryWithWindow, wallMaterial);
       wall.position.set(position.x, position.y, position.z);
       wall.rotation.y = rotationY;
+      wall.castShadow = true;
+      wall.receiveShadow = true;
       this.app.scene.add(wall);
 
       // Glass pane
@@ -147,6 +150,8 @@ class MyContents {
         position.z + frameDepth / 2
       );
       topFrame.rotation.y = rotationY;
+      topFrame.castShadow = true;
+      topFrame.receiveShadow = true;
       this.app.scene.add(topFrame);
 
       // Bottom frame
@@ -164,6 +169,8 @@ class MyContents {
         position.z + frameDepth / 2
       );
       bottomFrame.rotation.y = rotationY;
+      bottomFrame.castShadow = true;
+      bottomFrame.receiveShadow = true;
       this.app.scene.add(bottomFrame);
 
       // Left frame
@@ -181,6 +188,8 @@ class MyContents {
         position.z + frameDepth / 2 - windowWidth / 2
       );
       leftFrame.rotation.y = rotationY;
+      leftFrame.castShadow = true;
+      leftFrame.receiveShadow = true;
       this.app.scene.add(leftFrame);
 
       // Right frame
@@ -198,6 +207,8 @@ class MyContents {
         position.z + frameDepth / 2 + windowWidth / 2
       );
       rightFrame.rotation.y = rotationY;
+      rightFrame.castShadow = true;
+      rightFrame.receiveShadow = true;
       this.app.scene.add(rightFrame);
 
       // Half sphere and 2 box geometry to hide the ouside window
@@ -396,7 +407,7 @@ class MyContents {
     if (this.axis === null) {
       // create and attach the axis to the scene
       this.axis = new MyAxis(this);
-      this.app.scene.add(this.axis);
+      //this.app.scene.add(this.axis);
     }
 
     // create a table
@@ -413,7 +424,7 @@ class MyContents {
 
     // Create Donut Spotlight
     const donutSpotLight = new DonutLight(this);
-    donutSpotLight.position.set(0, 5, 0);
+    donutSpotLight.position.set(0, 10, 0);
     this.app.donutLight = donutSpotLight;
     this.app.scene.add(donutSpotLight);
 
@@ -499,11 +510,15 @@ class MyContents {
     this.app.scene.add(tallLamp);
 
     //create Tall Lamp Light
-    const tallLampLight = new TallLampLight(this, sofa.position);
+    const tallLampLight = new TallLampLight(this);
     tallLampLight.position.set(6.4, 5.9, -this.floorWidth/2 + 1);
     this.app.tallLamp = tallLampLight;
     this.app.scene.add(tallLampLight);
 
+    //create window light
+    const windowLight = new WindowLight(this);
+    windowLight.position.set(-this.floorWidth2 / 2 - 15, 20, 0);
+    this.app.scene.add(windowLight);
  
     //create Flowers
     const flowers = new Flowers(this);
@@ -522,26 +537,42 @@ class MyContents {
 
 
     // RectAreaLight para simular o brilho do ecrã
-    const screenLight = new THREE.RectAreaLight(0xffffff, 1, 5.3, 2.5); // Cor, intensidade e dimensões
-    screenLight.position.set(0, 2.5, this.floorWidth / 2 - 1.4); // Posiciona a luz bem próxima do ecrã
-    screenLight.rotation.y = Math.PI; // Roda a luz para apontar para o ecrã
-    this.app.scene.add(screenLight);
-
     const screenLight2 = new THREE.RectAreaLight(0xffffff, 3, 5.3, 2.5); // Cor, intensidade e dimensões
     screenLight2.position.set(0, 2.5, this.floorWidth / 2 - 1.35); // Posiciona a luz bem próxima do ecrã
     this.app.scene.add(screenLight2);
 
     // this.app.scene.add( new RectAreaLightHelper( screenLight2 ) );
 
-    // add a point light on top of the model
-    const pointLight = new THREE.PointLight(0xffffff, 500, 0);
-    pointLight.position.set(0, 20, 0);
-    this.app.scene.add(pointLight);
+    // // add a point light on top of the model
+    // const pointLight = new THREE.PointLight(0xffffff, 500, 0);
+    // pointLight.position.set(0, 20, 0);
+    // this.app.scene.add(pointLight);
+
+    // // add a point light helper for the previous point light
+    // const sphereSize = 0.5;
+    // const pointLightHelper = new THREE.PointLightHelper(pointLight, sphereSize);
+    // this.app.scene.add(pointLightHelper);
+
+    const pointLight = new THREE.PointLight( 0xffffff, 500, 0 );
+    pointLight.position.set( 0, 20, 0 );
+    // add shadow casting
+    pointLight.castShadow = true
+    pointLight.shadow.mapSize.width = 4096
+    pointLight.shadow.mapSize.height = 4096
+    pointLight.shadow.bias = -0.001;
+    pointLight.shadow.camera.near = 0.5
+    pointLight.shadow.camera.far = 100
+    pointLight.shadow.camera.left = -15
+    pointLight.shadow.camera.right = 15
+    pointLight.shadow.camera.top = 15
+    pointLight.shadow.camera.bottom = -15
+    this.app.scene.add( pointLight );
 
     // add a point light helper for the previous point light
     const sphereSize = 0.5;
-    const pointLightHelper = new THREE.PointLightHelper(pointLight, sphereSize);
-    this.app.scene.add(pointLightHelper);
+    const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+    this.app.scene.add( pointLightHelper );
+
 
     // add an ambient light
     const ambientLight = new THREE.AmbientLight(0x555555);

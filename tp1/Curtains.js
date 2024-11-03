@@ -110,6 +110,28 @@ class Curtains extends THREE.Object3D {
       rodLength / 2
     );
     this.add(rightConnector);
+
+    this.rightCurtain.castShadow = true;
+    this.rightCurtain.receiveShadow = true;
+
+    this.leftCurtain.castShadow = true;
+    this.leftCurtain.receiveShadow = true;
+
+    rod.castShadow = true;
+    rod.receiveShadow = true;
+
+    leftFinisher.castShadow = true;
+    leftFinisher.receiveShadow = true;
+
+    rightFinisher.castShadow = true;
+    rightFinisher.receiveShadow = true;
+
+    leftConnector.castShadow = true;
+    leftConnector.receiveShadow = true;
+
+    rightConnector.castShadow = true;
+    rightConnector.receiveShadow = true;
+
   }
 
   // Animation function for opening and closing curtains
@@ -175,6 +197,8 @@ class Curtains extends THREE.Object3D {
 
     return points;
   }
+
+
 }
 
 Curtains.prototype.isGroup = true;

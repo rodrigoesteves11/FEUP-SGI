@@ -31,7 +31,7 @@ class MyGuiInterface  {
     init() {
         // adds a folder to the gui interface for the camera
         const cameraFolder = this.datgui.addFolder('Camera')
-        cameraFolder.add(this.app, 'activeCameraName', [ 'Perspective','Perspective2', 'Left', 'Top', 'Front', 'Back', 'Right'] ).name("active camera");
+        cameraFolder.add(this.app, 'activeCameraName', [ 'Perspective','Perspective2', 'Left', 'Top', 'Front', 'Back', 'Right'] ).name("Active Camera");
         // note that we are using a property from the app 
         cameraFolder.open()
 
@@ -54,7 +54,7 @@ class MyGuiInterface  {
 
         // Folder for Lamp controls
         const donutLightFolder = this.datgui.addFolder('Donut Light Controls');
-        donutLightFolder.add(this.app.donutLight, 'turnOffLight').name('Toggle Spot Light');
+        donutLightFolder.add(this.app.donutLight, 'turnOffLight').name('Toggle Lamp');
         donutLightFolder.add(this.app.donutLight, 'toggleHelper').name('Toggle Helper');
         donutLightFolder.open();
 

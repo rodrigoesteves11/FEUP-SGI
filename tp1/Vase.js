@@ -49,9 +49,13 @@ class Vase extends THREE.Object3D {
     const geometry = this.nurbsBuilder.build(controlPoints, 3, 3, 32, 32, material);
 
     const mesh = new THREE.Mesh(geometry, material);
+	mesh.castShadow = true;
+	mesh.receiveShadow = true;
     this.add(mesh);
     const mesh2 = new THREE.Mesh(geometry, material);
     mesh2.rotation.y = Math.PI;
+	mesh2.castShadow = true;
+	mesh2.receiveShadow = true;
     this.add(mesh2);
 
     //Bottom
@@ -59,6 +63,8 @@ class Vase extends THREE.Object3D {
     const bottom = new THREE.Mesh(geometryBottom, material);
     bottom.rotation.x = Math.PI / 2;
     bottom.position.set(0, -0.99, 0);
+	bottom.castShadow = true;
+	bottom.receiveShadow = true;
     this.add(bottom);
 
   }

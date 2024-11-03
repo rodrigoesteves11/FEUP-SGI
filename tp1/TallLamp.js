@@ -111,8 +111,8 @@ class TallLamp extends THREE.Object3D {
     tube.castShadow = true;
     tube.receiveShadow = true;
 
-    //abajur.castShadow = true;
-    //abajur.receiveShadow = true;
+    abajur.castShadow = true;
+    abajur.receiveShadow = true;
 
     border.castShadow = true;
     border.receiveShadow = true;

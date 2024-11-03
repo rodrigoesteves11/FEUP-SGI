@@ -64,7 +64,7 @@ class TV extends THREE.Object3D {
 
 
     const geometryScreen = new THREE.PlaneGeometry(5.3, 2.5);
-    this.screenMaterial = new THREE.MeshStandardMaterial({ map: this.channels[this.currentChannel], side: THREE.DoubleSide });
+    this.screenMaterial = new THREE.MeshBasicMaterial({ map: this.channels[this.currentChannel], side: THREE.DoubleSide });
     this.screen= new THREE.Mesh(geometryScreen, this.screenMaterial);
     this.screen.rotation.y = Math.PI;
     this.screen.position.set(0, 2.5, -0.25);
@@ -116,6 +116,8 @@ class TV extends THREE.Object3D {
   positions.forEach(position => {
       const detail = new THREE.Mesh(geometryDetail, tvDetailMaterial);
       detail.position.set(...position);
+      detail.castShadow = true;
+      detail.receiveShadow = true;
       this.add(detail);
   });
     
@@ -167,6 +169,8 @@ class TV extends THREE.Object3D {
   const geometryAntennaBase = new THREE.SphereGeometry(0.35, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
   const antennaBase = new THREE.Mesh(geometryAntennaBase, tvBoxDetailMaterial);
   antennaBase.position.set(1, 4.3, 0.05);
+  antennaBase.castShadow = true;
+  antennaBase.receiveShadow = true;
   this.add(antennaBase);
 
   //TV Antennas Stick (zigzag)
@@ -185,22 +189,63 @@ class TV extends THREE.Object3D {
   const tube = new THREE.Mesh(tubeGeometry, tvBoxDetailMaterial);
   tube.position.set(1.2, 4.5, 0.05);
   tube.rotation.z = Math.PI / 4;
+  tube.castShadow = true;
+  tube.receiveShadow = true;
   this.add(tube);
   const tube2 = new THREE.Mesh(tubeGeometry, tvBoxDetailMaterial);
   tube2.position.set(0.8, 4.5, 0.05);
   tube2.rotation.y = -Math.PI;
   tube2.rotation.z = Math.PI / 4;
+  tube2.castShadow = true;
+  tube2.receiveShadow = true;
   this.add(tube2);
 
   //TV Antenna Ball
   const geometryAntennaBall = new THREE.SphereGeometry(0.05, 32, 32);
   const antennaBall = new THREE.Mesh(geometryAntennaBall, tvBoxDetailMaterial);
   antennaBall.position.set(0.45, 4.96, 0.05);
+  antennaBall.castShadow = true;
+  antennaBall.receiveShadow = true;
   this.add(antennaBall);
   const antennaBall2 = new THREE.Mesh(geometryAntennaBall, tvBoxDetailMaterial);
   antennaBall2.position.set(1.55, 4.96, 0.05);
+  antennaBall2.castShadow = true;
+  antennaBall2.receiveShadow = true;
   this.add(antennaBall2);
 
+  // Configurar a sombra para cada objeto relevante
+  base.castShadow = true;
+  base.receiveShadow = true;
+
+  support.castShadow = true;
+  support.receiveShadow = true;
+
+  screenTop.castShadow = true;
+  screenTop.receiveShadow = true;
+
+  screenBottom.castShadow = true;
+  screenBottom.receiveShadow = true;
+
+  screenLeft.castShadow = true;
+  screenLeft.receiveShadow = true;
+
+  screenRight.castShadow = true;
+  screenRight.receiveShadow = true;
+
+  screenBack.castShadow = true;
+  screenBack.receiveShadow = true;
+
+  insideTop.castShadow = true;
+  insideTop.receiveShadow = true;
+
+  insideBottom.castShadow = true;
+  insideBottom.receiveShadow = true;
+
+  insideLeft.castShadow = true;
+  insideLeft.receiveShadow = true;
+
+  insideRight.castShadow = true;
+  insideRight.receiveShadow = true;
 
 
 

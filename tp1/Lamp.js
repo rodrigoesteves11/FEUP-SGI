@@ -93,8 +93,8 @@ class Lamp extends THREE.Object3D {
     shadeTop.castShadow = true;
     shadeTop.receiveShadow = true;
 
-    //shadeBottom.castShadow = true;
-    //shadeBottom.receiveShadow = true;
+    shadeBottom.castShadow = true;
+    shadeBottom.receiveShadow = true;
 
     shadeMid.castShadow = true;
     shadeMid.receiveShadow = true;

@@ -23,7 +23,8 @@ class Beetle extends THREE.Object3D {
 
     const textureLoader = new THREE.TextureLoader();
     const backframeMap = textureLoader.load("textures/road/istockphoto-1272388577-612x612.jpg");
-    const backframeMaterial = new THREE.MeshStandardMaterial({ map: backframeMap });
+    const backframeMaterial = new THREE.MeshBasicMaterial({ map: backframeMap });
+    backframeMaterial.color = new THREE.Color(0xdddbdb); // Define um tom mais escuro
 
     const tbwidth = 3;
     const lrwidth = 2;

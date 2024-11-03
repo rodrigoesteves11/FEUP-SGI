@@ -67,6 +67,8 @@ class Newspaper extends THREE.Object3D {
     for (let i = 0; i < numPages; i++) {
       const leftPage = new THREE.Mesh(geometry, leftSideMaterial);
       leftPage.position.set(0, pageRotation * i, i * pageSpacing);
+	  leftPage.castShadow = true;
+	  leftPage.receiveShadow = true;
       this.add(leftPage);
     }
 
@@ -75,6 +77,8 @@ class Newspaper extends THREE.Object3D {
       const rightPage = new THREE.Mesh(geometry, rightSideMaterial);
       rightPage.position.set(1, pageRotation * i, i * pageSpacing);
 	  rightPage.rotation.y = Math.PI
+	  rightPage.castShadow = true;
+	  rightPage.receiveShadow = true;
       this.add(rightPage);
     }
   }

@@ -52,12 +52,16 @@ class Flowers extends THREE.Object3D {
     const geometryBase = new THREE.CylinderGeometry(0.7, 0.5, 0.9, 64, 32, true);
     const base = new THREE.Mesh(geometryBase, flowerBaseMaterial);
     base.position.set(0, 0.45, 0);
+    base.castShadow = true;
+    base.receiveShadow = true;
     this.add(base);
 
     //Flower Base inside
     const geometryBaseInside = new THREE.CylinderGeometry(0.6, 0.4, 0.9, 64, 32, true);
     const baseInside = new THREE.Mesh(geometryBaseInside, flowerBaseMaterial);
     baseInside.position.set(0, 0.45, 0);
+    baseInside.castShadow = true;
+    baseInside.receiveShadow = true;
     this.add(baseInside);
 
     //Flower Base Top Ring
@@ -65,6 +69,8 @@ class Flowers extends THREE.Object3D {
     const baseTop = new THREE.Mesh(geometryBaseTop, flowerBaseMaterial);
     baseTop.position.set(0, 0.9, 0);
     baseTop.rotation.x = Math.PI / 2;
+    baseTop.castShadow = true;
+    baseTop.receiveShadow = true;
     this.add(baseTop);
 
     //Base Dirt
@@ -95,6 +101,8 @@ class Flowers extends THREE.Object3D {
       );
       const baseCurved = new THREE.Mesh(geometryBaseCurved, flowerMaterial2);
       baseCurved.position.set(x, 0.6, z);
+      baseCurved.castShadow = true;
+      baseCurved.receiveShadow = true;
       this.add(baseCurved);
 
       //Flower Center
@@ -105,6 +113,8 @@ class Flowers extends THREE.Object3D {
       });
       const center = new THREE.Mesh(geometryCenter, centerMaterial);
       center.position.set(x, 1.2, z);
+      center.castShadow = true;
+      center.receiveShadow = true;
       this.add(center);
 
       //Flower Petals
@@ -123,6 +133,8 @@ class Flowers extends THREE.Object3D {
         petal.rotation.x = 0.4;
         petal.rotation.y = r;
         petal.translateY(0.15);
+        petal.castShadow = true;
+        petal.receiveShadow = true;
         this.add(petal);
       }
     };

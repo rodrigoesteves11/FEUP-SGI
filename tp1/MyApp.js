@@ -20,7 +20,7 @@ class MyApp {
     this.activeCameraName = null;
     this.lastCameraName = null;
     this.cameras = [];
-    this.frustumSize = 10;
+    this.frustumSize = 20;
 
     // other attributes
     this.renderer = null;
@@ -75,8 +75,8 @@ class MyApp {
     perspective1.position.set(5, 5, 5);
     this.cameras["Perspective"] = perspective1;
 
-    const perspective2 = new THREE.PerspectiveCamera(60, aspect, 0.1, 1000);
-    perspective2.position.set(-5, 5, 3);  // Different initial position
+    const perspective2 = new THREE.PerspectiveCamera(80, aspect, 0.1, 1000);
+    perspective2.position.set(-5, 5, 5);
     this.cameras['Perspective2'] = perspective2;
 
 
@@ -85,8 +85,8 @@ class MyApp {
     const right = (this.frustumSize / 2) * aspect;
     const top = this.frustumSize / 2;
     const bottom = -this.frustumSize / 2;
-    const near = -this.frustumSize / 2;
-    const far = this.frustumSize;
+    const near = -this.frustumSize / 4;
+    const far = this.frustumSize * 4 ;
 
     // create a left view orthographic camera
     const orthoLeft = new THREE.OrthographicCamera(
@@ -108,8 +108,8 @@ class MyApp {
       right,
       top,
       bottom,
-      near,
-      far
+      near -this.frustumSize / 4,
+      far + this.frustumSize * 4
     );
     orthoTop.up = new THREE.Vector3(0, 0, 1);
     orthoTop.position.set(0, this.frustumSize / 4, 0);

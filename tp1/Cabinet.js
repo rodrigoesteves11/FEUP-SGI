@@ -36,6 +36,8 @@ class Cabinet extends THREE.Object3D {
     const Bottom = new THREE.Mesh(BottomGeometry, purpleMaterial);
     Bottom.rotateZ(Math.PI / 2);
     Bottom.position.set(0, 0, 0); // Ajustar posição do Bottom
+    Bottom.castShadow = true;
+    Bottom.receiveShadow = true;
     this.add(Bottom);
 
     // Left side
@@ -49,6 +51,8 @@ class Cabinet extends THREE.Object3D {
       0
     );
     Left.rotation.y = Math.PI;
+    Left.castShadow = true;
+    Left.receiveShadow = true;
     this.add(Left);
 
     // Right side
@@ -62,6 +66,8 @@ class Cabinet extends THREE.Object3D {
       0
     );
     Right.rotation.y = Math.PI;
+    Right.castShadow = true;
+    Right.receiveShadow = true;
     this.add(Right);
 
     // Back side
@@ -75,6 +81,8 @@ class Cabinet extends THREE.Object3D {
       -this.baseDepth / 2 + this.baseWidth / 2
     );
     Back.rotateY(Math.PI / 2);
+    Back.castShadow = true;
+    Back.receiveShadow = true;
     this.add(Back);
 
     // Top side of the cabinet
@@ -105,11 +113,15 @@ class Cabinet extends THREE.Object3D {
     const d1 = new THREE.Mesh(dGeometry, purpleMaterial);
     d1.rotateZ(Math.PI / 2);
     d1.position.set(0, this.baseHeight / 2 + 0.2, 0);
+    d1.castShadow = true;
+    d1.receiveShadow = true;
     this.add(d1);
     
     const d2 = new THREE.Mesh(dGeometry, purpleMaterial);
     d2.rotateZ(Math.PI / 2);
     d2.position.set(0, this.baseHeight - 0.1, 0);
+    d2.castShadow = true;
+    d2.receiveShadow = true;
     this.add(d2);
 
     //Drawer
@@ -124,12 +136,16 @@ class Cabinet extends THREE.Object3D {
     const Drawer = new THREE.Mesh(DrawerGeometry, purpleMaterial);
     Drawer.position.set(0, this.baseHeight - 0.35, 0);
     Drawer.rotation.z = Math.PI / 2;
+    Drawer.castShadow = true;
+    Drawer.receiveShadow = true;
     this.add(Drawer);
 
     //Handle
     const knobGeometry = new THREE.SphereGeometry(0.06, 32, 32);
     const knobMesh = new THREE.Mesh(knobGeometry, blueMaterial);
     knobMesh.position.set(0,this.baseHeight - 0.35 , 1.6 / 2); // Ajustar posição para a frente
+    knobMesh.castShadow = true;
+    knobMesh.receiveShadow = true;
     this.add(knobMesh);
 
     //Bottom Drawer Cover
@@ -142,6 +158,8 @@ class Cabinet extends THREE.Object3D {
     );
     const DrawerCover = new THREE.Mesh(DrawerCoverGeometry, blueMaterial);
     DrawerCover.position.set(0, (this.baseHeight / 2 ), 1.6/2);
+    DrawerCover.castShadow = true;
+    DrawerCover.receiveShadow = true;
     this.add(DrawerCover);
 
     //4 legs boxGeometry
@@ -157,18 +175,26 @@ class Cabinet extends THREE.Object3D {
     // Ajustar a posição das pernas para os cantos da base (Bottom)
     const leg1 = new THREE.Mesh(legGeometry, purpleMaterial);
     leg1.position.set(-legOffsetX, -legHeight , -legOffsetZ + legWidth / 2); // Canto inferior esquerdo
+    leg1.castShadow = true;
+    leg1.receiveShadow = true;
     this.add(leg1);
 
     const leg2 = new THREE.Mesh(legGeometry, purpleMaterial);
     leg2.position.set(-legOffsetX, -legHeight , legOffsetZ - legWidth / 2); // Canto superior esquerdo
+    leg2.castShadow = true;
+    leg2.receiveShadow = true;
     this.add(leg2);
 
     const leg3 = new THREE.Mesh(legGeometry, purpleMaterial);
     leg3.position.set(legOffsetX, -legHeight , -legOffsetZ + legWidth / 2); // Canto inferior direito
+    leg3.castShadow = true;
+    leg3.receiveShadow = true;
     this.add(leg3);
 
     const leg4 = new THREE.Mesh(legGeometry, purpleMaterial);
     leg4.position.set(legOffsetX, -legHeight , legOffsetZ - legWidth / 2); // Canto superior direito
+    leg4.castShadow = true;
+    leg4.receiveShadow = true;
     this.add(leg4);
 
 
@@ -193,33 +219,45 @@ class Cabinet extends THREE.Object3D {
     const spine1 = new THREE.Mesh(spineGeometry, bookMaterial1);
     spine1.rotation.z = -0.3 ; 
     spine1.position.set(0.5, 0.5, bookDepth / 2 + 0.1);
+    spine1.castShadow = true;
+    spine1.receiveShadow = true;
     this.add(spine1);
 
     const body1 = new THREE.Mesh(bodyGeometry, bookMaterial1);
     body1.position.set(0.5, 0.5, 0.1);
     body1.rotation.z = -0.3 ; 
+    body1.castShadow = true;
+    body1.receiveShadow = true;
     this.add(body1);
 
     // Criação do segundo livro
     const spine2 = new THREE.Mesh(spineGeometry, bookMaterial2);
     spine2.rotation.z = -0.3 ;
     spine2.position.set(0.25, 0.5, bookDepth / 2 + 0.15);
+    spine2.castShadow = true;
+    spine2.receiveShadow = true;
     this.add(spine2);
 
     const body2 = new THREE.Mesh(bodyGeometry, bookMaterial2);
     body2.position.set(0.25, 0.5, 0.15);
     body2.rotation.z = -0.3 ;
+    body2.castShadow = true;
+    body2.receiveShadow = true;
     this.add(body2);
 
     // Criação do terceiro livro
     const spine3 = new THREE.Mesh(spineGeometry, bookMaterial3);
     spine3.rotation.z = -0.3 ;
     spine3.position.set(0, 0.5, bookDepth / 2 + 0.2);
+    spine3.castShadow = true;
+    spine3.receiveShadow = true;
     this.add(spine3);
 
     const body3 = new THREE.Mesh(bodyGeometry, bookMaterial3);
     body3.position.set(0, 0.5, 0.2);
     body3.rotation.z = -0.3 ;
+    body3.castShadow = true;
+    body3.receiveShadow = true;
     this.add(body3);
 
     
