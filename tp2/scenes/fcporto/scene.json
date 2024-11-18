@@ -1,0 +1,4166 @@
+    {
+        "yasf": {
+            "globals": {
+                "background": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "ambient": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "i": 0.2
+                },
+                "fog": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "near": 30.0,
+                    "far": 100.0
+                }
+            },
+            "textures": {
+                "andre_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/andre.png"
+                },
+                "bosingwa_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/bosingwa.png"
+                },
+                "claudio_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/claudio.png"
+                },
+                "diogo_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/diogo.png"
+                },
+                "djalo_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/djalo.png"
+                },
+                "eustaquio_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/eustaquio.png"
+                },
+                "fabio_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/fabio.png"
+                },
+                "galeno_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/galeno.png"
+                },
+                "ivan_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/ivan.png"
+                },
+                "joao_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/joao.png"
+                },
+                "martim_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/martim.png"
+                },
+                "moura_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/moura.png"
+                },
+                "namaso_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/namaso.png"
+                },
+                "nehuen_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/nehuen.png"
+                },
+                "nico_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/nico.png"
+                },
+                "samuel_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/samuel.png"
+                },
+                "varela_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/varela.png"
+                },
+                "vasco_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/vasco.png"
+                },
+                "ze_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/ze.png"
+                },
+                "samuuu_texture": {
+                    "filepath": "scenes/fcporto/textures/shirts/samuuu.png"
+                },
+                "tableTex": {
+                    "filepath": "scenes/fcporto/textures/table.png"
+                },
+                "badge_texture": {
+                    "filepath": "scenes/fcporto/textures/porto_ceiling.png"
+                },
+                "top_wall_texture": {
+                    "filepath": "scenes/fcporto/textures/top.png"
+                },
+                "left_wall_texture": {
+                    "filepath": "scenes/fcporto/textures/left_wall.png"
+                },
+                "right_wall_texture": {
+                    "filepath": "scenes/fcporto/textures/right_wall.png"
+                },
+                "front_wall_texture": {
+                    "filepath": "scenes/fcporto/textures/front_wall_text.png"
+                },
+                "back_wall_texture": {
+                    "filepath": "scenes/fcporto/textures/back_wall.png"
+                },
+                "tv_screen": {
+                    "filepath": "scenes/fcporto/textures/tv.jpeg"
+                }
+            },
+            "materials": {
+                "table_material": {
+                    "color": {
+                        "r": 0.8,
+                        "g": 0.8,
+                        "b": 0.8
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0
+                },
+                "floor_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.37,
+                        "g": 0.4,
+                        "b": 0.43
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 90.0,
+                    "transparent": false,
+                    "opacity": 1.0
+                },
+                "wall_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.9,
+                        "g": 0.9,
+                        "b": 0.8
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 90.0,
+                    "transparent": false,
+                    "opacity": 1.0
+                },
+                "left_wall_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.9,
+                        "g": 0.9,
+                        "b": 0.8
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 90.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "left_wall_texture",
+                    "texlength_s": 30,
+                    "texlength_t": 12
+                },
+                "right_wall_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.9,
+                        "g": 0.9,
+                        "b": 0.8
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 90.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "right_wall_texture",
+                    "texlength_s": 30,
+                    "texlength_t": 12
+                },
+                "front_wall_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.9,
+                        "g": 0.9,
+                        "b": 0.8
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 90.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "front_wall_texture",
+                    "texlength_s": 21,
+                    "texlength_t": 12
+                },
+                "back_wall_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.9,
+                        "g": 0.9,
+                        "b": 0.8
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 90.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "back_wall_texture",
+                    "texlength_s": 21,
+                    "texlength_t": 12
+                },
+                "top_wall_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.9,
+                        "g": 0.9,
+                        "b": 0.8
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 90.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "top_wall_texture",
+                    "texlength_s": 21,
+                    "texlength_t": 30
+                },
+                "ceiling_light_material": {
+                    "emissive": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "color": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 100.0,
+                    "transparent": false,
+                    "opacity": 1.0
+                },
+                "ceiling_badge_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.9,
+                        "g": 0.9,
+                        "b": 0.8
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 90.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "badge_texture",
+                    "texlength_s": 1,
+                    "texlength_t": 1
+                },
+                "bench_cube_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.0667,
+                        "g": 0.0667,
+                        "b": 0.31
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 0.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "shading": "flat"
+                },
+                "tv_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 0.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "shading": "flat"
+                },
+                "tv_screen_material": {
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 0.0,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "tv_screen",
+                    "texlength_s": 6,
+                    "texlength_t": 3
+                },
+                "andre_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "andre_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "bosingwa_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "bosingwa_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "claudio_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "claudio_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "diogo_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "diogo_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "djalo_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "djalo_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "eustaquio_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "eustaquio_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "fabio_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "fabio_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "galeno_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "galeno_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "ivan_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "ivan_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "joao_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "joao_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "martim_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "martim_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "moura_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "moura_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "namaso_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "namaso_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "nehuen_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "nehuen_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "nico_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "nico_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "samuel_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "samuel_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "varela_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "varela_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "vasco_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "vasco_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "ze_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "ze_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                },
+                "samuuu_material": {
+                    "color": {
+                        "r": 1.0,
+                        "g": 1.0,
+                        "b": 1.0
+                    },
+                    "emissive": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "specular": {
+                        "r": 0.0,
+                        "g": 0.0,
+                        "b": 0.0
+                    },
+                    "shininess": 10,
+                    "transparent": false,
+                    "opacity": 1.0,
+                    "textureref": "samuuu_texture",
+                    "texlength_s": 2,
+                    "texlength_t": 3
+                }
+            },
+            "cameras": {
+                "initial": "cam1",
+                "cam1": {
+                    "type": "perspective",
+                    "angle": 60,
+                    "near": 0.1,
+                    "far": 1000,
+                    "location": {
+                        "x": 15,
+                        "y": 15,
+                        "z": 15
+                    },
+                    "target": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                "cam2": {
+                    "type": "orthogonal",
+                    "near": 0.1,
+                    "far": 1000,
+                    "location": {
+                        "x": 0,
+                        "y": 15,
+                        "z": 15
+                    },
+                    "target": {
+                        "x": 0,
+                        "y": 15,
+                        "z": 0
+                    },
+                    "left": -5,
+                    "right": 5,
+                    "bottom": -5,
+                    "top": 5
+                }
+            },
+            "graph": {
+                "rootid": "scene",
+                "scene": {
+                    "type": "node",
+                    "children": {
+                        "table": {
+                            "type": "noderef",
+                            "nodeId": "table"
+                        },
+                        "room": {
+                            "type": "noderef",
+                            "nodeId": "room"
+                        },
+                        "bench1":{
+                            "type": "noderef",
+                            "nodeId": "bench1"
+                        },
+                        "bench2":{
+                            "type": "noderef",
+                            "nodeId": "bench2"
+                        }, 
+                        "bench3":{
+                            "type": "noderef",
+                            "nodeId": "bench3"
+                        }, 
+                        "bench4":{
+                            "type": "noderef",
+                            "nodeId": "bench4"
+                        },
+                        "bench5":{
+                            "type": "noderef",
+                            "nodeId": "bench5"
+                        },
+                        "bench6":{
+                            "type": "noderef",
+                            "nodeId": "bench6"
+                        },
+                        "bench7":{
+                            "type": "noderef",
+                            "nodeId": "bench7"
+                        },
+                        "bench8":{
+                            "type": "noderef",
+                            "nodeId": "bench8"
+                        },
+                        "bench9":{
+                            "type": "noderef",
+                            "nodeId": "bench9"
+                        }, 
+                        "bench10":{
+                            "type": "noderef",
+                            "nodeId": "bench10"
+                        }, 
+                        "bench11":{
+                            "type": "noderef",
+                            "nodeId": "bench11"
+                        }, 
+                        "bench12":{
+                            "type": "noderef",
+                            "nodeId": "bench12"
+                        }, 
+                        "bench13":{
+                            "type": "noderef",
+                            "nodeId": "bench13"
+                        }, 
+                        "bench14":{
+                            "type": "noderef",
+                            "nodeId": "bench14"
+                        }, 
+                        "bench15":{
+                            "type": "noderef",
+                            "nodeId": "bench15"
+                        }, 
+                        "bench16":{
+                            "type": "noderef",
+                            "nodeId": "bench16"
+                        }, 
+                        "bench17":{
+                            "type": "noderef",
+                            "nodeId": "bench17"
+                        },
+                        "bench18":{
+                            "type": "noderef",
+                            "nodeId": "bench18"
+                        },
+                        "bench19":{
+                            "type": "noderef",
+                            "nodeId": "bench19"
+                        },
+                        "bench20":{
+                            "type": "noderef",
+                            "nodeId": "bench20"
+                        },
+                        "cabinet1":{
+                            "type": "noderef",
+                            "nodeId": "cabinet1"
+                        },
+                        "cabinet2":{
+                            "type": "noderef",
+                            "nodeId": "cabinet2"
+                        },
+                        "cabinet3":{
+                            "type": "noderef",
+                            "nodeId": "cabinet3"
+                        },
+                        "cabinet4":{
+                            "type": "noderef",
+                            "nodeId": "cabinet4"
+                        },
+                        "cabinet5":{
+                            "type": "noderef",
+                            "nodeId": "cabinet5"
+                        },
+                        "cabinet6":{
+                            "type": "noderef",
+                            "nodeId": "cabinet6"
+                        },
+                        "cabinet7":{
+                            "type": "noderef",
+                            "nodeId": "cabinet7"
+                        },
+                        "cabinet8":{
+                            "type": "noderef",
+                            "nodeId": "cabinet8"
+                        },              
+                        "cabinet9":{
+                            "type": "noderef",
+                            "nodeId": "cabinet9"
+                        },
+                        "cabinet10":{
+                            "type": "noderef",
+                            "nodeId": "cabinet10"
+                        },
+                        "cabinet11":{
+                            "type": "noderef",
+                            "nodeId": "cabinet11"
+                        },
+                        "cabinet12":{
+                            "type": "noderef",
+                            "nodeId": "cabinet12"
+                        },
+                        "cabinet13":{
+                            "type": "noderef",
+                            "nodeId": "cabinet13"
+                        },
+                        "cabinet14":{
+                            "type": "noderef",
+                            "nodeId": "cabinet14"
+                        },
+                        "cabinet15":{
+                            "type": "noderef",
+                            "nodeId": "cabinet15"
+                        },
+                        "cabinet16":{
+                            "type": "noderef",
+                            "nodeId": "cabinet16"
+                        },
+                        "cabinet17":{
+                            "type": "noderef",
+                            "nodeId": "cabinet17"
+                        },
+                        "cabinet18":{
+                            "type": "noderef",
+                            "nodeId": "cabinet18"
+                        },
+                        "cabinet19":{
+                            "type": "noderef",
+                            "nodeId": "cabinet19"
+                        },
+                        "cabinet20":{
+                            "type": "noderef",
+                            "nodeId": "cabinet20"
+                        },
+                        "tv":{
+                            "type": "noderef",
+                            "nodeId":"tv"
+                        },
+                        "point_light": {
+                            "type": "pointlight",
+                            "enabled": true,
+                            "color": {
+                                "r": 1.0,
+                                "g": 1.0,
+                                "b": 1.0
+                            },
+                            "intensity": 10.0,
+                            "distance": 100,
+                            "decay": 1.0,
+                            "castshadow": true,
+                            "position": {
+                                "x": 0.0,
+                                "y": 11.5,
+                                "z": 0.0
+                            }
+                        },
+                        "spot_light": {
+                            "type": "spotlight",
+                            "enabled": true,
+                            "color": {
+                                "r": 0.08,
+                                "g": 0.96,
+                                "b": 0.93
+                            },
+                            "target": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }, 		
+                            "angle": 30.0,
+                            "intensity": 10.0,
+                            "distance": 15,
+                            "decay": 1.0,
+                            "penumbra": 1.0,
+                            "castshadow": true,
+                            "position": {
+                                "x": 0.0,
+                                "y": 10.99,
+                                "z": 0.0
+                            }
+                        }
+                    }
+                },
+                "table": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 1.1,
+                                "z": 0.0
+                            }
+                        },
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 2,
+                                "y": 2,
+                                "z": 2
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "materialref": {
+                        "materialId": "table_material"
+                    },
+                    "children": {
+                        "tableTop": {
+                            "type": "noderef",
+                            "nodeId": "tableTop"
+                        },
+                        "leg1": {
+                            "type": "noderef",
+                            "nodeId": "leg1"
+                        },
+                        "leg2": {
+                            "type": "noderef",
+                            "nodeId": "leg2"
+                        },
+                        "leg3": {
+                            "type": "noderef",
+                            "nodeId": "leg3"
+                        },
+                        "leg4": {
+                            "type": "noderef",
+                            "nodeId": "leg4"
+                        }
+                    }
+                },
+                "tableTop": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 0.48,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 1.0,
+                                "y": 0.1,
+                                "z": 2.0
+                            }
+                        }
+                    ],
+                    "children": {
+                        "unitCube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "unit_cube": {
+                    "type": "node",
+                    "children": {
+                        "rectangle1": {
+                            "type": "noderef",
+                            "nodeId": "rectangle1"
+                        },
+                        "rectangle2": {
+                            "type": "noderef",
+                            "nodeId": "rectangle2"
+                        },
+                        "rectangle3": {
+                            "type": "noderef",
+                            "nodeId": "rectangle3"
+                        },
+                        "rectangle4": {
+                            "type": "noderef",
+                            "nodeId": "rectangle4"
+                        },
+                        "rectangle5": {
+                            "type": "noderef",
+                            "nodeId": "rectangle5"
+                        },
+                        "rectangle6": {
+                            "type": "noderef",
+                            "nodeId": "rectangle6"
+                        }
+                    }
+                },
+                "rectangle1": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 0,
+                                "z": -0.5
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0,
+                                "y": 180,
+                                "z": 0
+                            }
+                        }
+                    ],
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -0.5,
+                                "y": -0.5
+                            },
+                            "xy2": {
+                                "x": 0.5,
+                                "y": 0.5
+                            }
+                        }
+                    }
+                },
+                "rectangle2": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0.5
+                            }
+                        }
+                    ],
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -0.5,
+                                "y": -0.5
+                            },
+                            "xy2": {
+                                "x": 0.5,
+                                "y": 0.5
+                            }
+                        }
+                    }
+                },
+                "rectangle3": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": -0.5,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 90,
+                                "y": 0,
+                                "z": 0
+                            }
+                        }
+                    ],
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -0.5,
+                                "y": -0.5
+                            },
+                            "xy2": {
+                                "x": 0.5,
+                                "y": 0.5
+                            }
+                        }
+                    }
+                },
+                "rectangle4": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 0.5,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": -90,
+                                "y": 0,
+                                "z": 0
+                            }
+                        }
+                    ],
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -0.5,
+                                "y": -0.5
+                            },
+                            "xy2": {
+                                "x": 0.5,
+                                "y": 0.5
+                            }
+                        }
+                    }
+                },
+                "rectangle5": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -0.5,
+                                "y": 0,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0,
+                                "y": -90,
+                                "z": 0
+                            }
+                        }
+                    ],
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -0.5,
+                                "y": -0.5
+                            },
+                            "xy2": {
+                                "x": 0.5,
+                                "y": 0.5
+                            }
+                        }
+                    }
+                },
+                "rectangle6": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.5,
+                                "y": 0,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0,
+                                "y": 90,
+                                "z": 0
+                            }
+                        }
+                    ],
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -0.5,
+                                "y": -0.5
+                            },
+                            "xy2": {
+                                "x": 0.5,
+                                "y": 0.5
+                            }
+                        }
+                    }
+                },
+                "leg":{
+                    "type":"node",
+                    "children":{
+                        "cylinderPrim":{
+                            "type":"cylinder",
+                            "base" : 0.05,
+                            "top" : 0.05,
+                            "height" : 1,
+                            "slices" : 20,
+                            "stacks" : 20,
+                            "capsclose":true
+                        }
+                    }
+                },
+                "leg1": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.45,
+                                "y": 0.0,
+                                "z": 0.95
+                            }
+                        }
+                    ],
+                    "children": {
+                        "leg": {
+                            "type": "noderef",
+                            "nodeId": "leg"
+                        }
+                    }
+                },
+                "leg2": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.45,
+                                "y": 0.0,
+                                "z": -0.95
+                            }
+                        }
+                    ],
+                    "children": {
+                        "leg": {
+                            "type": "noderef",
+                            "nodeId": "leg"
+                        }
+                    }
+                },
+                "leg3": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -0.45,
+                                "y": 0.0,
+                                "z": 0.95
+                            }
+                        }
+                    ],
+                    "children": {
+                        "leg": {
+                            "type": "noderef",
+                            "nodeId": "leg"
+                        }
+                    }
+                },
+                "leg4": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -0.45,
+                                "y": 0.0,
+                                "z": -0.95
+                            }
+                        }
+                    ],
+                    "children": {
+                        "leg": {
+                            "type": "noderef",
+                            "nodeId": "leg"
+                        }
+                    }
+                },
+                "room": {
+                    "type": "node",
+                    "children": {
+                        "floor": {
+                            "type": "noderef",
+                            "nodeId": "floor"
+                        },
+                        "ceiling": {
+                            "type": "noderef",
+                            "nodeId": "ceiling"
+                        },
+                        "ceiling_badge": {
+                            "type": "noderef",
+                            "nodeId": "ceiling_badge"
+                        },
+                        "left_wall": {
+                            "type": "noderef",
+                            "nodeId": "left_wall"
+                        },
+                        "right_wall": {
+                            "type": "noderef",
+                            "nodeId": "right_wall"
+                        },
+                        "front_wall": {
+                            "type": "noderef",
+                            "nodeId": "front_wall"
+                        },
+                        "back_wall": {
+                            "type": "noderef",
+                            "nodeId": "back_wall"
+                        }
+                    }
+                },
+                "floor": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": -90,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "floor_material"
+                    },
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "plane": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -10.5,
+                                "y": -15.0
+                            },
+                            "xy2": {
+                                "x": 10.5,
+                                "y": 15.0
+                            }
+                        }
+                    }
+                },
+                "ceiling": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 90,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 12.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "top_wall_material"
+                    },
+                    "children": {
+                        "plane": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -10.5,
+                                "y": -15.0
+                            },
+                            "xy2": {
+                                "x": 10.5,
+                                "y": 15.0
+                            }
+                        }
+                    }
+                },
+                "ceiling_badge": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 12.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "children": {
+                        "ceiling_cylinder": {
+                            "type": "noderef",
+                            "nodeId": "ceiling_cylinder"
+                        },
+                        "ceiling_circle": {
+                            "type": "noderef",
+                            "nodeId": "ceiling_circle"
+                        }
+                    }
+                },
+                "left_wall": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -10.5,
+                                "y": 6.0,
+                                "z": 0.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "left_wall_material"
+                    },
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "wall1": {
+                            "type": "noderef",
+                            "nodeId": "wall1"
+                        }
+                    }
+                },
+                "right_wall": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 10.5,
+                                "y": 6.0,
+                                "z": 0.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "right_wall_material"
+                    },
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "wall1": {
+                            "type": "noderef",
+                            "nodeId": "wall1"
+                        }
+                    }
+                },
+                "front_wall": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 6.0,
+                                "z": 15.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "front_wall_material"
+                    },
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "wall2": {
+                            "type": "noderef",
+                            "nodeId": "wall2"
+                        }
+                    }
+                },
+                "back_wall": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 6.0,
+                                "z": -15.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "back_wall_material"
+                    },
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "wall2": {
+                            "type": "noderef",
+                            "nodeId": "wall2"
+                        }
+                    }
+                },
+                "wall1": {
+                    "type": "node",
+                    "children": {
+                        "plane": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -15.0,
+                                "y": 0.0
+                            },
+                            "xy2": {
+                                "x": 15.0,
+                                "y": 12.0
+                            }
+                        }
+                    }
+                },
+                "wall2": {
+                    "type": "node",
+                    "children": {
+                        "plane": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -10.5,
+                                "y": 0.0
+                            },
+                            "xy2": {
+                                "x": 10.5,
+                                "y": 12.0
+                            }
+                        }
+                    }
+                },
+                "ceiling_cylinder":{
+                    "type":"node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 0.5,
+                                "y": 1.0,
+                                "z": 1.0
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -0.5,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "ceiling_light_material"
+                    },
+                    "children":{
+                        "cylinderPrim":{
+                            "type":"cylinder",
+                            "base" : 7.5,
+                            "top" : 7.5,
+                            "height" : 1,
+                            "slices" : 20,
+                            "stacks" : 20,
+                            "capsclose":true
+                        }
+                    }
+                },
+                "ceiling_circle":{
+                    "type":"node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 0.5,
+                                "y": 1.0,
+                                "z": 1.0
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -1,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "ceiling_badge_material"
+                    },
+                    "children":{
+                        "cylinderPrim":{
+                            "type":"cylinder",
+                            "base" : 7.5,
+                            "top" : 7.5,
+                            "height" : 0.01,
+                            "slices" : 20,
+                            "stacks" : 1,
+                            "capsclose":true
+                        }
+                    }
+                },
+                "bench1":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -7.5,
+                                "y": 0.5,
+                                "z": -4.7
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench2":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -7.5,
+                                "y": 0.5,
+                                "z": -2.6
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench3":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -7.5,
+                                "y": 0.5,
+                                "z": -0.5
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench4":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -7.5,
+                                "y": 0.5,
+                                "z": 1.6
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench5":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -7.5,
+                                "y": 0.5,
+                                "z": 3.7
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench6":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -7.5,
+                                "y": 0.5,
+                                "z": 5.8
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench7":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -7.5,
+                                "y": 0.5,
+                                "z": 7.9
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench8":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -5.25,
+                                "y": 0.5,
+                                "z": 10.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },"bench9":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -3.15,
+                                "y": 0.5,
+                                "z": 10.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench10":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -1.05,
+                                "y": 0.5,
+                                "z": 10.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench11":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 1.05,
+                                "y": 0.5,
+                                "z": 10.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench12":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 3.15,
+                                "y": 0.5,
+                                "z": 10.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench13":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 5.25,
+                                "y": 0.5,
+                                "z": 10.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench14":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 7.5,
+                                "y": 0.5,
+                                "z": 7.9
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench15":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 7.5,
+                                "y": 0.5,
+                                "z": 5.8
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench16":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 7.5,
+                                "y": 0.5,
+                                "z": 3.7
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench17":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 7.5,
+                                "y": 0.5,
+                                "z": 1.6
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench18":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 7.5,
+                                "y": 0.5,
+                                "z": -0.5
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench19":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 7.5,
+                                "y": 0.5,
+                                "z": -2.6
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench20":{
+                    "type": "node",
+                    "transforms":[
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 7.5,
+                                "y": 0.5,
+                                "z": -4.7
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children":{
+                        "bench_cube":{
+                            "type": "noderef",
+                            "nodeId": "bench_cube"
+                        },
+                        "bench_pillow":{
+                            "type": "noderef",
+                            "nodeId": "bench_pillow"
+                        }
+                    }
+                },
+                "bench_cube": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 1.0,
+                                "y": 1.0,
+                                "z": 1.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "bench_pillow": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 1.0,
+                                "y": 0.2,
+                                "z": 1.0
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 0.6,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "wall_material"
+                    },
+                    "children": {
+                        "cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "cabinet1": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -10.5,
+                                "y": 0.0,
+                                "z": -4.7
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        }                        
+                    ],
+                    
+ 
+ "castshadows": true,
+                    "receiveshadows": true,                   "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt1": {
+                            "type": "noderef",
+                            "nodeId": "shirt1"
+                        }
+                    }
+                },
+                "cabinet2": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -10.5,
+                                "y": 0.0,
+                                "z": -2.6
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        }                        
+                    ],
+                    
+ 
+ "castshadows": true,
+                    "receiveshadows": true,                   "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt2": {
+                            "type": "noderef",
+                            "nodeId": "shirt2"
+                        }
+                    }
+                },
+                "cabinet3": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -10.5,
+                                "y": 0.0,
+                                "z": -0.5
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt3": {
+                            "type": "noderef",
+                            "nodeId": "shirt3"
+                        }
+                    }
+                },
+                "cabinet4": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -10.5,
+                                "y": 0.0,
+                                "z": 1.6
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt4": {
+                            "type": "noderef",
+                            "nodeId": "shirt4"
+                        }
+                    }
+                },
+                "cabinet5": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -10.5,
+                                "y": 0.0,
+                                "z": 3.7
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt5": {
+                            "type": "noderef",
+                            "nodeId": "shirt5"
+                        }
+                    }
+                },
+                "cabinet6": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -10.5,
+                                "y": 0.0,
+                                "z": 5.8
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt6": {
+                            "type": "noderef",
+                            "nodeId": "shirt6"
+                        }
+                    }
+                },
+                "cabinet7": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -10.5,
+                                "y": 0.0,
+                                "z": 7.9
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt7": {
+                            "type": "noderef",
+                            "nodeId": "shirt7"
+                        }
+                    }
+                },
+                "cabinet8": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -5.25,
+                                "y": 0.0,
+                                "z": 15.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt8": {
+                            "type": "noderef",
+                            "nodeId": "shirt8"
+                        }
+                    }
+                },
+                "cabinet9": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -3.15,
+                                "y": 0.0,
+                                "z": 15.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt9": {
+                            "type": "noderef",
+                            "nodeId": "shirt9"
+                        }
+                    }
+                },
+                "cabinet10": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -1.05,
+                                "y": 0.0,
+                                "z": 15.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt10": {
+                            "type": "noderef",
+                            "nodeId": "shirt10"
+                        }
+                    }
+                },
+                "cabinet11": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 1.05,
+                                "y": 0.0,
+                                "z": 15.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt11": {
+                            "type": "noderef",
+                            "nodeId": "shirt11"
+                        }
+                    }
+                },
+                "cabinet12": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 3.15,
+                                "y": 0.0,
+                                "z": 15.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt12": {
+                            "type": "noderef",
+                            "nodeId": "shirt12"
+                        }
+                    }
+                },
+                "cabinet13": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 5.25,
+                                "y": 0.0,
+                                "z": 15.0
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt13": {
+                            "type": "noderef",
+                            "nodeId": "shirt13"
+                        }
+                    }
+                },
+                "cabinet14": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 10.5,
+                                "y": 0.0,
+                                "z": 7.9
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt14": {
+                            "type": "noderef",
+                            "nodeId": "shirt14"
+                        }
+                    }
+                },
+                "cabinet15": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 10.5,
+                                "y": 0.0,
+                                "z": 5.8
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt15": {
+                            "type": "noderef",
+                            "nodeId": "shirt15"
+                        }
+                    }
+                },
+                "cabinet16": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 10.5,
+                                "y": 0.0,
+                                "z": 3.7
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt16": {
+                            "type": "noderef",
+                            "nodeId": "shirt16"
+                        }
+                    }
+                },
+                "cabinet17": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 10.5,
+                                "y": 0.0,
+                                "z": 1.6
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt17": {
+                            "type": "noderef",
+                            "nodeId": "shirt17"
+                        }
+                    }
+                },
+                "cabinet18": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 10.5,
+                                "y": 0.0,
+                                "z": -0.5
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt18": {
+                            "type": "noderef",
+                            "nodeId": "shirt18"
+                        }
+                    }
+                },
+                "cabinet19": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 10.5,
+                                "y": 0.0,
+                                "z": -2.6
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt19": {
+                            "type": "noderef",
+                            "nodeId": "shirt19"
+                        }
+                    }
+                },
+                "cabinet20": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 10.5,
+                                "y": 0.0,
+                                "z": -4.7
+                            }
+                        },
+                        {
+                            "type": "rotate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -90.0,
+                                "z": 0.0
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "board": {
+                            "type": "noderef",
+                            "nodeId": "board"
+                        },
+                        "closet": {
+                            "type": "noderef",
+                            "nodeId": "closet"
+                        },
+                        "shirt20": {
+                            "type": "noderef",
+                            "nodeId": "shirt20"
+                        }
+                    }
+                },
+                "board": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 4.0,
+                                "z": 0.0
+                            }
+                        }                        
+                    ],
+                    "children": {
+                        "top_border": {
+                            "type": "noderef",
+                            "nodeId": "top_border"
+                        },
+                        "bottom_border": {
+                            "type": "noderef",
+                            "nodeId": "bottom_border"
+                        },
+                        "left_border": {
+                            "type": "noderef",
+                            "nodeId": "left_border"
+                        },
+                        "right_border": {
+                            "type": "noderef",
+                            "nodeId": "right_border"
+                        }
+                    }
+                },
+                "shirt1": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bosingwa_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt2": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "martim_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt3": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "namaso_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt4": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "diogo_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt5": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "djalo_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt6": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "eustaquio_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt7": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "fabio_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt8": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "galeno_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt9": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "ivan_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt10": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "joao_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt11": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "andre_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt12": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "moura_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt13": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "claudio_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt14": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "nehuen_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt15": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "nico_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt16": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "samuel_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt17": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "samuuu_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt18": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "varela_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt19": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "vasco_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "shirt20": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0,
+                                "y": 4.0,
+                                "z": 0.7
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "ze_material"
+                    },
+                    "children": {
+                        "rectanglePrim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -1.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 1.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                },
+                "top_border": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 1.5,
+                                "z": 0.5
+                            }
+                        },
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 2.1,
+                                "y": 0.1,
+                                "z": 1.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "unit_cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "bottom_border": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": -1.5,
+                                "z": 0.5
+                            }
+                        },
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 2.1,
+                                "y": 0.1,
+                                "z": 1.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "unit_cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "left_border": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -1.0,
+                                "y": 0.0,
+                                "z": 0.5
+                            }
+                        },
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 0.1,
+                                "y": 3.0,
+                                "z": 1.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "unit_cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "right_border": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 1.0,
+                                "y": 0.0,
+                                "z": 0.5
+                            }
+                        },
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 0.1,
+                                "y": 3.0,
+                                "z": 1.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "unit_cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "closet": {
+                    "type": "node",
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "closet_back": {
+                            "type": "noderef",
+                            "nodeId": "closet_back"
+                        },
+                        "closet_left": {
+                            "type": "noderef",
+                            "nodeId": "closet_left"
+                        },
+                        "closet_right": {
+                            "type": "noderef",
+                            "nodeId": "closet_right"
+                        },
+                        "closet_shelf": {
+                            "type": "noderef",
+                            "nodeId": "closet_shelf"
+                        },
+                        "closet_seat": {
+                            "type": "noderef",
+                            "nodeId": "closet_seat"
+                        }
+                    }
+                },
+                "closet_back": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 2.1,
+                                "y": 2.5,
+                                "z": 0.1
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 1.25,
+                                "z": 0.05
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "closet_left": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 0.1,
+                                "y": 2.5,
+                                "z": 1.0
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": -1.0,
+                                "y": 1.25,
+                                "z": 0.5
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "closet_right": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 0.1,
+                                "y": 2.5,
+                                "z": 1.0
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 1.0,
+                                "y": 1.25,
+                                "z": 0.5
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "closet_shelf": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 2.0,
+                                "z": 0.5
+                            }
+                        },
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 1.9,
+                                "y": 0.1,
+                                "z": 1.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "bench_cube_material"
+                    },
+                    "children": {
+                        "unit_cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "closet_seat": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 1.9,
+                                "y": 0.2,
+                                "z": 1.0
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 1.25,
+                                "z": 1.0
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "wall_material"
+                    },
+                    "children": {
+                        "cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "tv": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 7.5,
+                                "z": -14.8
+                            }
+                        }
+                    ],
+                    "castshadows": true,
+                    "receiveshadows": true,
+                    "children": {
+                        "tv_frame": {
+                            "type": "noderef",
+                            "nodeId": "tv_frame"
+                        },
+                        "tv_screen": {
+                            "type": "noderef",
+                            "nodeId": "tv_screen"
+                        },
+                        "tv_stand": {
+                            "type": "noderef",
+                            "nodeId": "tv_stand"
+                        }
+                    }
+                },
+                "tv_frame": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 6.2,
+                                "y": 3.2,
+                                "z": 0.1
+                            }
+                        },
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.2
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "tv_material"
+                    },
+                    "children": {
+                        "unit_cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "tv_stand": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "scale",
+                            "amount": {
+                                "x": 0.5,
+                                "y": 0.5,
+                                "z": 0.4
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "tv_material"
+                    },
+                    "children": {
+                        "unit_cube": {
+                            "type": "noderef",
+                            "nodeId": "unit_cube"
+                        }
+                    }
+                },
+                "tv_screen": {
+                    "type": "node",
+                    "transforms": [
+                        {
+                            "type": "translate",
+                            "amount": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.26
+                            }
+                        }
+                    ],
+                    "materialref": {
+                        "materialId": "tv_screen_material"
+                    },
+                    "children": {
+                        "rectangle_prim": {
+                            "type": "rectangle",
+                            "xy1": {
+                                "x": -3.0,
+                                "y": -1.5
+                            },
+                            "xy2": {
+                                "x": 3.0,
+                                "y": 1.5
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
