@@ -22,7 +22,7 @@ class MyContents {
 
         
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
-        this.reader.open("scenes/fcporto/scene.json");
+        this.reader.open("scenes/demo/SGI_TP2_JSON_T03_G03_V1.json");
     }
 
     /**
