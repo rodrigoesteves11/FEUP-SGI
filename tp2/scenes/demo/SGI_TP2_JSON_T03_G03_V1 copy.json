@@ -154,7 +154,7 @@
                 "filepath": "scenes/demo/textures/Wood_Wall_003_basecolor.jpg"
             },
             "caketexture": {
-                "filepath": "scenes/demo/textures/Chocolate_001_baseColor.jpg"
+                "filepath": "scenes/demo/textures/solar_panel.png"
             },
             "chairtexture": {
                 "filepath": "scenes/demo/textures/Plastic_Rough_001_basecolor.jpg"
@@ -579,6 +579,49 @@
                 "type": "node",
                 "receiveshadows": true,
                 "castshadows": true,
+                "children":{
+                    "house4segment1": {
+                        "type": "noderef",
+                        "nodeId": "house4segment1"
+                    },
+                    "house4segment2": {
+                        "type": "noderef",
+                        "nodeId": "house4segment2"
+                    },
+                    "house4segment3": {
+                        "type": "noderef",
+                        "nodeId": "house4segment3"
+                    },
+                    "house4segment4": {
+                        "type": "noderef",
+                        "nodeId": "house4segment4"
+                    },
+                    "house4segment5": {
+                        "type": "noderef",
+                        "nodeId": "house4segment5"
+                    },
+                    "house4window1": {
+                        "type": "noderef",
+                        "nodeId": "house4window1"
+                    },
+                    "house4window2": {
+                        "type": "noderef",
+                        "nodeId": "house4window2"
+                    },
+                    "house4window3": {
+                        "type": "noderef",
+                        "nodeId": "house4window3"
+                    },
+                    "house4window4": {
+                        "type": "noderef",
+                        "nodeId": "house4window4"
+                    }
+                }
+            },
+            "house4segment1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
                 "transforms": [
                     {
                         "type": "translate",
@@ -617,6 +660,326 @@
                             "stacks" : 32,
                             "capsclose":true
                         }
+                }
+            },
+            "house4segment2":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3.25,
+                            "y": 0.5,
+                            "z": -2.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.1,
+                            "y": 0.25,
+                            "z": 1.1
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "tablematerial"
+                },
+                "children": {
+                    "cylinderPrim":{
+                            "type":"cylinder",
+                            "base" : 1,
+                            "top" : 1,
+                            "height" : 1,
+                            "slices" : 32,
+                            "stacks" : 32,
+                            "capsclose":true
+                        }
+                }
+            },
+            "house4segment3":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3.25,
+                            "y": 0.5,
+                            "z": -1
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.1,
+                            "y": 0.5,
+                            "z": 1.1
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "tablematerial"
+                },
+                "children": {
+                    "cylinderPrim":{
+                            "type":"cylinder",
+                            "base" : 1,
+                            "top" : 1,
+                            "height" : 1,
+                            "slices" : 32,
+                            "stacks" : 32,
+                            "capsclose":true
+                        }
+                }
+            },
+            "house4segment4":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3.25,
+                            "y": 0.5,
+                            "z": -3.50
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.1,
+                            "y": 0.5,
+                            "z": 1.1
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "tablematerial"
+                },
+                "children": {
+                    "cylinderPrim":{
+                            "type":"cylinder",
+                            "base" : 1,
+                            "top" : 1,
+                            "height" : 1,
+                            "slices" : 32,
+                            "stacks" : 32,
+                            "capsclose":true
+                        }
+                }
+            },
+            "house4segment5":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3.25,
+                            "y": 1.4,
+                            "z": -2.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.5,
+                            "y": 0.25,
+                            "z": 2
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "tablematerial"
+                },
+                "children": {
+                   "unitCube": {
+                        "type": "noderef",
+                        "nodeId": "unitCube"
+                    }
+                }
+            },
+            "house4window1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3.85,
+                            "y": 1.25,
+                            "z": -2.8
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.4,
+                            "y": 0.1,
+                            "z": 0.9
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -40
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "cakematerial"
+                },
+                "children": {
+                    "unitCube": {
+                        "type": "noderef",
+                        "nodeId": "unitCube"
+                    }
+                }
+            },
+            "house4window2":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 2.65,
+                            "y": 1.25,
+                            "z": -2.8
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.4,
+                            "y": 0.1,
+                            "z": 0.9
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 40
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "cakematerial"
+                },
+                "children": {
+                    "unitCube": {
+                        "type": "noderef",
+                        "nodeId": "unitCube"
+                    }
+                }
+            },
+            "house4window3":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3.85,
+                            "y": 1.25,
+                            "z": -1.7
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.4,
+                            "y": 0.1,
+                            "z": 0.9
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -40
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "cakematerial"
+                },
+                "children": {
+                    "unitCube": {
+                        "type": "noderef",
+                        "nodeId": "unitCube"
+                    }
+                }
+            },
+            "house4window4":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 2.65,
+                            "y": 1.25,
+                            "z": -1.7
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.4,
+                            "y": 0.1,
+                            "z": 0.9
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 40
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "cakematerial"
+                },
+                "children": {
+                    "unitCube": {
+                        "type": "noderef",
+                        "nodeId": "unitCube"
+                    }
                 }
             },
             "house5":{
