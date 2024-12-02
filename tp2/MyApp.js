@@ -1,4 +1,3 @@
-
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { MyContents } from './MyContents.js';
@@ -50,6 +49,8 @@ class MyApp  {
         this.renderer = new THREE.WebGLRenderer({antialias:true});
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setClearColor("#000000");
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         // Configure renderer size
         this.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -72,34 +73,6 @@ class MyApp  {
         perspective1.position.set(10,10,3)
         this.cameras['Perspective'] = perspective1
 
-        // defines the frustum size for the orthographic cameras
-        const left = -this.frustumSize / 2 * aspect
-        const right = this.frustumSize /2 * aspect 
-        const top = this.frustumSize / 2 
-        const bottom = -this.frustumSize / 2
-        const near = -this.frustumSize /2
-        const far =  this.frustumSize
-
-        // create a left view orthographic camera
-        const orthoLeft = new THREE.OrthographicCamera( left, right, top, bottom, near, far);
-        orthoLeft.up = new THREE.Vector3(0,1,0);
-        orthoLeft.position.set(-this.frustumSize /4,0,0) 
-        orthoLeft.lookAt( new THREE.Vector3(0,0,0) );
-        this.cameras['Left'] = orthoLeft
-
-        // create a top view orthographic camera
-        const orthoTop = new THREE.OrthographicCamera( left, right, top, bottom, near, far);
-        orthoTop.up = new THREE.Vector3(0,0,1);
-        orthoTop.position.set(0, this.frustumSize /4, 0) 
-        orthoTop.lookAt( new THREE.Vector3(0,0,0) );
-        this.cameras['Top'] = orthoTop
-
-        // create a front view orthographic camera
-        const orthoFront = new THREE.OrthographicCamera( left, right, top, bottom, near, far);
-        orthoFront.up = new THREE.Vector3(0,1,0);
-        orthoFront.position.set(0,0, this.frustumSize /4) 
-        orthoFront.lookAt( new THREE.Vector3(0,0,0) );
-        this.cameras['Front'] = orthoFront
     }
 
     /**
@@ -118,29 +91,46 @@ class MyApp  {
      * it updates the active camera and the controls
      */
     updateCameraIfRequired() {
+    // Câmera mudou?
+    if (this.lastCameraName !== this.activeCameraName) {
+        this.lastCameraName = this.activeCameraName;
+        this.activeCamera = this.cameras[this.activeCameraName];
 
-        // camera changed?
-        if (this.lastCameraName !== this.activeCameraName) {
-            this.lastCameraName = this.activeCameraName;
-            this.activeCamera = this.cameras[this.activeCameraName]
-            document.getElementById("camera").innerHTML = this.activeCameraName
-           
-            // call on resize to update the camera aspect ratio
-            // among other things
-            this.onResize()
+        // Verificar se a câmera ativa existe
+        if (!this.activeCamera) {
+            console.error(`Câmera '${this.activeCameraName}' não encontrada.`);
+            return;
+        }
 
-            // are the controls yet?
-            if (this.controls === null) {
-                // Orbit controls allow the camera to orbit around a target.
-                this.controls = new OrbitControls( this.activeCamera, this.renderer.domElement );
-                this.controls.enableZoom = true;
-                this.controls.update();
-            }
-            else {
-                this.controls.object = this.activeCamera
-            }
+        document.getElementById("camera").innerHTML = this.activeCameraName;
+
+        // Atualiza a projeção da câmera
+        if (this.activeCamera.isPerspectiveCamera) {
+            this.activeCamera.aspect = window.innerWidth / window.innerHeight;
+            this.activeCamera.updateProjectionMatrix();
+        } else if (this.activeCamera.isOrthographicCamera) {
+            const aspect = window.innerWidth / window.innerHeight;
+            const frustumHeight = this.activeCamera.top - this.activeCamera.bottom;
+            const frustumWidth = frustumHeight * aspect;
+            this.activeCamera.left = -frustumWidth / 2;
+            this.activeCamera.right = frustumWidth / 2;
+            this.activeCamera.updateProjectionMatrix();
+        }
+
+        // Atualiza os controles
+        if (this.controls === null) {
+            // Orbit controls allow the camera to orbit around a target.
+            this.controls = new OrbitControls(this.activeCamera, this.renderer.domElement);
+            this.controls.enableZoom = true;
+            this.controls.update();
+        } else {
+            this.controls.object = this.activeCamera;
+            this.controls.update();
         }
     }
+}
+
+    
 
     /**
      * the window resize handler

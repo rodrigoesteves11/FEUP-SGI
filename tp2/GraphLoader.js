@@ -4,10 +4,6 @@ class GraphLoader {
         this.nodes = {}; 
     }
 
-    /**
-     * Lê e organiza os dados do grafo
-     * @param {Object} graph Estrutura completa do grafo
-     */
     read(graph) {
         if (!graph || !graph.rootid) {
             console.log("O grafo não possui um 'rootid' válido.");
@@ -23,9 +19,10 @@ class GraphLoader {
                 type: nodeData.type || "node",
                 transforms: nodeData.transforms || [],
                 materialRef: nodeData.materialref?.materialId?.toLowerCase() || null,
-                children: nodeData.children || {},
-                castShadows: nodeData.castshadows || false,
-                receiveShadows: nodeData.receiveshadows || false
+                children: nodeData.children|| {},
+                lodNodes: nodeData.lodNodes || {},
+                castShadows: nodeData.castshadows || null,
+                receiveShadows: nodeData.receiveshadows || null
             };
         }
     }

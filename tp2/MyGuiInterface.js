@@ -1,34 +1,52 @@
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { MyApp } from './MyApp.js';
 import { MyContents } from './MyContents.js';
-
 /**
-    This class customizes the gui interface for the app
-*/
-class MyGuiInterface  {
-
+ * This class customizes the GUI interface for the app
+ */
+class MyGuiInterface {
     /**
      * 
      * @param {MyApp} app The application object 
      */
     constructor(app) {
-        this.app = app
-        this.datgui =  new GUI();
-        this.contents = null
+        this.app = app;
+        this.app.gui = this; 
+        this.datgui = new GUI();
+        this.contents = null;
+
+        this.guiParams = {
+            camera: null
+        };
+
+        this.cameraController = null;
     }
 
-    /**
-     * Set the contents object
-     * @param {MyContents} contents the contents objects 
-     */
     setContents(contents) {
-        this.contents = contents
+        this.contents = contents;
+    }
+
+
+    init() {
     }
 
     /**
-     * Initialize the gui interface
+     * Updates the camera list in the GUI.
      */
-    init() {
+    updateCameraList() {
+        const cameraNames = Object.keys(this.app.cameras);
+
+        if (cameraNames.length > 0) {
+            this.guiParams.camera = this.app.activeCameraName;
+
+            this.cameraController = this.datgui.add(this.guiParams, 'camera', cameraNames)
+                .name('Câmera')
+                .onChange((value) => {
+                    this.app.setActiveCamera(value);
+                });
+        } else {
+            console.warn("Nenhuma câmera disponível para adicionar ao GUI.");
+        }
     }
 }
 

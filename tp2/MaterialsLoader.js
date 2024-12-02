@@ -11,51 +11,78 @@ class MaterialsLoader {
     }
 
     /**
-     * Carrega as texturas a partir dos dados fornecidos.
-     * @param {Object} texturesData 
+     * Loads textures from the provided data.
      */
     loadTextures(texturesData) {
         if (!texturesData) {
-            console.log("Nenhuma textura fornecida.");
+            console.log("No textures provided.");
             return;
         }
-
+    
         for (const textureId in texturesData) {
             const textureInfo = texturesData[textureId];
             if (textureInfo.filepath) {
-                // Carregar a textura e armazená-la
-                this.textures[textureId] = this.textureLoader.load(textureInfo.filepath);
+                let texture;
+                if (textureInfo.isVideo) {
+                    const video = document.createElement('video');
+                    video.src = textureInfo.filepath;
+                    video.load();
+                    video.loop = true;
+                    video.muted = true;
+                    video.play();
+                    texture = new THREE.VideoTexture(video);
+                } else {
+                    texture = this.textureLoader.load(textureInfo.filepath);
+                }
+    
+                // Custom mipmaps
+                if (textureInfo.mipmaps) {
+                    texture.generateMipmaps = false;
+                    texture.mipmaps = [];
+                    textureInfo.mipmaps.forEach((mipmapPath, level) => {
+                        new THREE.TextureLoader().load(mipmapPath, (mipmapTexture) => {
+                            const canvas = document.createElement('canvas');
+                            const ctx = canvas.getContext('2d');
+                            canvas.width = mipmapTexture.image.width;
+                            canvas.height = mipmapTexture.image.height;
+                            ctx.drawImage(mipmapTexture.image, 0, 0);
+                            texture.mipmaps[level] = canvas;
+                            texture.needsUpdate = true;
+                        });
+                    });
+                } else {
+                    texture.generateMipmaps = true;
+                }
+    
+                this.textures[textureId] = texture;
             } else {
-                console.log(textureId + "não possui um caminho válido.");
+                console.log(`${textureId} invalid path`);
             }
         }
     }
-
+    
     /**
-     * Carrega os materiais a partir dos dados fornecidos.
-     * @param {Object} materialsData 
+     * Loads materials from the provided data.
      */
     loadMaterials(materialsData) {
         if (!materialsData) {
-            console.log("Nenhum material fornecido.");
+            console.log("No materials provided.");
             return;
         }
 
-        for (let materialId in materialsData) {
+        for (const materialId in materialsData) {
             const materialData = materialsData[materialId];
             this.materials[materialId.toLowerCase()] = this.createMaterial(materialData);
         }
     }
 
     /**
-     * Cria um material Three.js a partir dos dados fornecidos.
-     * @param {Object} materialData - Dados do material.
-     * @returns {THREE.Material} Instância de material Three.js.
-     */
+     * Creates a material from the provided data.
+    */
     createMaterial(materialData) {
         const materialOptions = {};
 
-        //Cor
+        // Color
         if (materialData.color) {
             materialOptions.color = new THREE.Color(
                 materialData.color.r,
@@ -64,7 +91,21 @@ class MaterialsLoader {
             );
         }
 
-        //Emissividade
+        // Specular
+        if (materialData.specular) {
+            materialOptions.specular = new THREE.Color(
+                materialData.specular.r,
+                materialData.specular.g,
+                materialData.specular.b
+            );
+        }
+
+        // Shininess
+        if (materialData.shininess !== undefined) {
+            materialOptions.shininess = materialData.shininess;
+        }
+
+        // Emissive
         if (materialData.emissive) {
             materialOptions.emissive = new THREE.Color(
                 materialData.emissive.r,
@@ -73,53 +114,66 @@ class MaterialsLoader {
             );
         }
 
-        //Metalness
-        if (materialData.metalness !== undefined) {
-            materialOptions.metalness = materialData.metalness; 
-        }
-        //Roughness
-        if (materialData.roughness !== undefined) {
-            materialOptions.roughness = materialData.roughness; 
-        }
-
-        //Opacidade
+        // Transparency and opacity
         if (materialData.transparent !== undefined) {
             materialOptions.transparent = materialData.transparent;
         }
-        //Transparência
         if (materialData.opacity !== undefined) {
             materialOptions.opacity = materialData.opacity;
         }
 
-        //Wireframe
+        // Wireframe
         if (materialData.wireframe !== undefined) {
             materialOptions.wireframe = materialData.wireframe;
         }
 
-        //DoubleSided
-        materialOptions.side = THREE.DoubleSide;
+        // Shading
+        if (materialData.shading !== undefined) {
+            materialOptions.flatShading = materialData.shading;
+        }
 
-       
+        // Texture
         if (materialData.textureref) {
             const texture = this.textures[materialData.textureref];
             if (texture) {
                 materialOptions.map = texture;
-
-                if (materialData.texlength_s || materialData.texlength_t) {
-                    texture.wrapS = THREE.RepeatWrapping;
-                    texture.wrapT = THREE.RepeatWrapping; 
-                    texture.repeat.set(
-                        /*materialData.texlength_s || */  1,
-                        /*materialData.texlength_t || */  1
-                    );
-                }
+                materialOptions.map.wrapS = THREE.RepeatWrapping;
+                materialOptions.map.wrapT = THREE.RepeatWrapping;
+                materialOptions.map.repeat.set(
+                    materialData.texlength_s || 1,
+                    materialData.texlength_t || 1
+                );
             } else {
-                console.log("Textura referenciada " + materialData.textureref + " não encontrada.");
+                console.log("Error: texture not found " + materialData.textureref);
             }
         }
 
-        // Criar o material
-        return new THREE.MeshStandardMaterial(materialOptions);
+        // Bump Map
+        if (materialData.bumpref) {
+            const bumpTexture = this.textures[materialData.bumpref];
+            if (bumpTexture) {
+                materialOptions.bumpMap = bumpTexture;
+                materialOptions.bumpScale = materialData.bumpscale || 1.0;
+            } else {
+                console.log("Error: bump map not found " + materialData.bumpref);
+            }
+        }
+
+        // Specular Map
+        if (materialData.specularref) {
+            const specularTexture = this.textures[materialData.specularref];
+            if (specularTexture) {
+                materialOptions.specularMap = specularTexture;
+            } else {
+                console.log("Error: specular map not found " + materialData.specularref);
+            }    
+        }
+
+        // Material side
+        materialOptions.side = materialData.twosided ? THREE.DoubleSide : THREE.FrontSide;
+
+        // Create the material
+        return new THREE.MeshPhongMaterial(materialOptions);
     }
 }
 

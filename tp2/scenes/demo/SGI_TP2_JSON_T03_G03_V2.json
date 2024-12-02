@@ -2,15 +2,49 @@
     "yasf": {
         "globals": {
             "background": {
-                "r": 0.0,
-                "g": 0.0,
-                "b": 0.0
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 1
             },
             "ambient": {
                 "r": 1,
-                "g": 1,
-                "b": 1,
-                "i": 0.2
+                "g": 0.5,
+                "b": 0.2,
+                "intensity": 0.7
+            },
+            "fog": {
+                "color": {
+                    "r": 0.8,
+                    "g": 0.8,
+                    "b": 0.8
+                },
+                "near": 1,
+                "far": 2000
+            },
+            "skybox": {
+                "size": {
+                    "x": 100,
+                    "y": 100,
+                    "z": 100
+                },
+                "center": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "intensity": 1,
+                "front": "./scenes/demo/textures/skybox/marslike01bk.png",
+                "back": "./scenes/demo/textures/skybox/marslike01ft.png",
+                "up": "./scenes/demo/textures/skybox/marslike01up.png",
+                "down": "./scenes/demo/textures/skybox/marslike01dn.png",
+                "left": "./scenes/demo/textures/skybox/marslike01lf.png",
+                "right": "./scenes/demo/textures/skybox/marslike01rt.png"
             }
         },
         "cameras": {
@@ -144,27 +178,21 @@
             }
         },
         "textures": {
-            "tabletexture": {
-                "filepath": "scenes/demo/textures/Fabric062_4K-PNG_Color.png"
-            },
             "floortexture": {
                 "filepath": "scenes/demo/textures/image.png"
             },
             "wallstexture": {
-                "filepath": "scenes/demo/textures/Wood_Wall_003_basecolor.jpg"
+                "filepath": "scenes/demo/textures/walls.png"
             },
-            "caketexture": {
+            "solarpanel_tex": {
                 "filepath": "scenes/demo/textures/solar_panel.png"
             },
-            "chairtexture": {
-                "filepath": "scenes/demo/textures/Plastic_Rough_001_basecolor.jpg"
-            },
-            "rugtexture": {
-                "filepath": "scenes/demo/textures/Rug_005_basecolor.jpg"
+            "dome_tex": {
+                "filepath": "scenes/demo/textures/Material_1724.jpg"
             }
         },
         "materials": {
-            "rugmaterial": {
+            "solarpanel_app": {
                 "color": {
                     "r": 1,
                     "g": 1,
@@ -183,98 +211,9 @@
                 },
                 "transparent": false,
                 "opacity": 1,
-                "textureref": "rugtexture",
+                "textureref": "solarpanel_tex",
                 "texlength_s": 3,
                 "texlength_t": 3
-            },
-            "chairmaterial": {
-                "color": {
-                    "r": 1,
-                    "g": 1,
-                    "b": 1
-                },
-                "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0
-                },
-                "shininess":0,
-                "emissive": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0
-                },
-                "transparent": false,
-                "opacity": 1,
-                "textureref": "chairtexture",
-                "texlength_s": 3,
-                "texlength_t": 3
-            },
-            "light_material": {
-                    "emissive": {
-                        "r": 1.0,
-                        "g": 1.0,
-                        "b": 1.0
-                    },
-                    "color": {
-                        "r": 0.0,
-                        "g": 0.0,
-                        "b": 0.0
-                    },
-                    "specular": {
-                        "r": 0.0,
-                        "g": 0.0,
-                        "b": 0.0
-                    },
-                    "shininess": 100.0,
-                    "transparent": false,
-                    "opacity": 1.0
-                },
-            "cakematerial": {
-                "color": {
-                    "r": 1,
-                    "g": 1,
-                    "b": 1
-                },
-                "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0
-                },
-                "shininess":0,
-                "emissive": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0
-                },
-                "transparent": false,
-                "opacity": 1,
-                "textureref": "caketexture",
-                "texlength_s": 3,
-                "texlength_t": 3
-            },
-            "tablematerial": {
-                "color": {
-                    "r": 1,
-                    "g": 1,
-                    "b": 1
-                },
-                "specular": {
-                    "r": 0.1,
-                    "g": 0.1,
-                    "b": 0.1
-                },
-                "shininess": 30,
-                "emissive": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0
-                },
-                "transparent": false,
-                "opacity": 1,
-                "textureref": "tabletexture",
-                "texlength_s": 1,
-                "texlength_t": 1
             },
             "floormaterial": {
                 "color": {
@@ -304,19 +243,43 @@
                     "b": 1
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
                 },
                 "emissive": {
                     "r": 0,
                     "g": 0,
                     "b": 0
                 },
-                "shininess": 10,
+                "shininess": 5,
                 "transparent": false,
                 "opacity": 1,
                 "textureref": "wallstexture",
+                "texlength_s": 1,
+                "texlength_t": 1,
+                "twosided": true
+            },
+            "domematerial": {
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "specular": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "shininess": 50,
+                "transparent": false,
+                "opacity": 1,
+                "textureref": "dome_tex",
                 "texlength_s": 5,
                 "texlength_t": 5,
                 "twosided": true
@@ -327,15 +290,36 @@
             "rootid": "scene",
             "scene": {
                 "type": "node",
+                "castshadow": true,
+                "receiveshadow": true,
                 "children": {
-                    "room": {
-                        "type": "noderef",
-                        "nodeId": "room"
+                    "directionallight1": {
+                        "type": "directionallight",
+                        "enabled": true,
+                        "color": {
+                            "r": 1,
+                            "g": 0.5,
+                            "b": 0.2,
+                            "a": 1
+                        },
+                        "intensity": 5,
+                        "castshadow": true,
+                        "shadowleft": -1000,
+                        "shadowright": 1000,
+                        "shadowtop": 1000,
+                        "shadowbottom": -1000,
+                        "shadowfar": 1000.0,
+                        "shadowmapsize": 2048,
+                        "position": {
+                            "x": 300,
+                            "y": 600,
+                            "z": 300
+                        }
                     },
-                    "station": {
-                        "type": "noderef",
-                        "nodeId": "station"
-                    }
+                    "nodesList": [
+                        "floor",
+                        "station"
+                    ]
                 }
             },
             "station" : {
@@ -353,57 +337,31 @@
                     }
                 ],
                 "children": {
-                    "observatories":{
-                        "type": "noderef",
-                        "nodeId": "observatories"
-                    },
-                    "connectors":{
-                        "type": "noderef",
-                        "nodeId": "connectors"
-                    },
-                    "houses":{
-                        "type": "noderef",
-                        "nodeId": "houses"
-                    }
+                    "nodesList": [
+                        "observatories",
+                        "connectors",
+                        "houses"
+                    ]
                 }
             },
             "houses": {
                 "type": "node",
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
                 "receiveshadows": true,
                 "castshadows": true,
                 "children": {
-                    "house1":{
-                        "type": "noderef",
-                        "nodeId": "house1"
-                    },
-                    "house2":{
-                        "type": "noderef",
-                        "nodeId": "house2"
-                    },
-                    "house3":{
-                        "type": "noderef",
-                        "nodeId": "house3"
-                    },
-                    "house4":{
-                        "type": "noderef",
-                        "nodeId": "house4"
-                    },
-                    "house5":{
-                        "type": "noderef",
-                        "nodeId": "house5"
-                    },
-                    "house6":{
-                        "type": "noderef",
-                        "nodeId": "house6"
-                    },
-                    "house7":{
-                        "type": "noderef",
-                        "nodeId": "house7"
-                    },
-                    "house8":{
-                        "type": "noderef",
-                        "nodeId": "house8"
-                    }
+                    "nodesList": [
+                        "house1",
+                        "house2",
+                        "house3",
+                        "house4",
+                        "house5",
+                        "house6",
+                        "house7",
+                        "house8"
+                    ]
                 }
             },
             "house1":{
@@ -428,14 +386,10 @@
                         }
                     }
                 ],
-                "materialref": {
-                    "materialId": "tablematerial"
-                },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house2":{
@@ -443,14 +397,10 @@
                 "receiveshadows": true,
                 "castshadows": true,
                 "children":{
-                    "house2segment1": {
-                        "type": "noderef",
-                        "nodeId": "house2segment1"
-                    },
-                    "house2segment2": {
-                        "type": "noderef",
-                        "nodeId": "house2segment2"
-                    }
+                    "nodesList":[
+                        "house2segment1",
+                        "house2segment2"
+                    ]
                 }
             },
             "house2segment1":{
@@ -484,7 +434,7 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
                     "cylinderPrim":{
@@ -529,7 +479,7 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
                     "cylinderPrim":{
@@ -566,13 +516,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house4":{
@@ -580,42 +529,17 @@
                 "receiveshadows": true,
                 "castshadows": true,
                 "children":{
-                    "house4segment1": {
-                        "type": "noderef",
-                        "nodeId": "house4segment1"
-                    },
-                    "house4segment2": {
-                        "type": "noderef",
-                        "nodeId": "house4segment2"
-                    },
-                    "house4segment3": {
-                        "type": "noderef",
-                        "nodeId": "house4segment3"
-                    },
-                    "house4segment4": {
-                        "type": "noderef",
-                        "nodeId": "house4segment4"
-                    },
-                    "house4segment5": {
-                        "type": "noderef",
-                        "nodeId": "house4segment5"
-                    },
-                    "house4window1": {
-                        "type": "noderef",
-                        "nodeId": "house4window1"
-                    },
-                    "house4window2": {
-                        "type": "noderef",
-                        "nodeId": "house4window2"
-                    },
-                    "house4window3": {
-                        "type": "noderef",
-                        "nodeId": "house4window3"
-                    },
-                    "house4window4": {
-                        "type": "noderef",
-                        "nodeId": "house4window4"
-                    }
+                    "nodesList":[
+                        "house4segment1",
+                        "house4segment2",
+                        "house4segment3",
+                        "house4segment4",
+                        "house4segment5",
+                        "house4window1",
+                        "house4window2",
+                        "house4window3",
+                        "house4window4"
+                    ]
                 }
             },
             "house4segment1":{
@@ -648,7 +572,7 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
                     "cylinderPrim":{
@@ -692,7 +616,7 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
                     "cylinderPrim":{
@@ -736,7 +660,7 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
                     "cylinderPrim":{
@@ -780,7 +704,7 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
                     "cylinderPrim":{
@@ -817,13 +741,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                   "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house4window1":{
@@ -856,13 +779,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "cakematerial"
+                    "materialId": "solarpanel_app"
                 },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house4window2":{
@@ -895,13 +817,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "cakematerial"
+                    "materialId": "solarpanel_app"
                 },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house4window3":{
@@ -934,13 +855,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "cakematerial"
+                    "materialId": "solarpanel_app"
                 },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house4window4":{
@@ -973,13 +893,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "cakematerial"
+                    "materialId": "solarpanel_app"
                 },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house5":{
@@ -1005,13 +924,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house6":{
@@ -1045,7 +963,7 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
                     "cylinderPrim":{
@@ -1082,13 +1000,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "house8":{
@@ -1114,13 +1031,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "connectors": {
@@ -1128,42 +1044,17 @@
                 "receiveshadows": true,
                 "castshadows": true,
                 "children": {
-                    "connector1":{
-                        "type": "noderef",
-                        "nodeId": "connector1"
-                    },
-                    "connector2":{
-                        "type": "noderef",
-                        "nodeId": "connector2"
-                    },
-                    "connector3":{
-                        "type": "noderef",
-                        "nodeId": "connector3"
-                    },
-                    "connector4":{
-                        "type": "noderef",
-                        "nodeId": "connector4"
-                    },
-                    "connector5":{
-                        "type": "noderef",
-                        "nodeId": "connector5"
-                    },
-                    "connector6":{
-                        "type": "noderef",
-                        "nodeId": "connector6"
-                    },
-                    "connector7":{
-                        "type": "noderef",
-                        "nodeId": "connector7"
-                    },
-                    "connector8":{
-                        "type": "noderef",
-                        "nodeId": "connector9"
-                    },
-                    "connector9":{
-                        "type": "noderef",
-                        "nodeId": "connector8"
-                    }
+                    "nodesList":[
+                        "connector1",
+                        "connector2",
+                        "connector3",
+                        "connector4",
+                        "connector5",
+                        "connector6",
+                        "connector7",
+                        "connector8",
+                        "connector9"
+                    ]
                 }
             },
             "connector1": {
@@ -1189,13 +1080,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector2": {
@@ -1221,13 +1111,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector3": {
@@ -1253,13 +1142,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector4": {
@@ -1285,13 +1173,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector5": {
@@ -1317,13 +1204,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector6": {
@@ -1349,13 +1235,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector7": {
@@ -1381,13 +1266,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector8": {
@@ -1413,13 +1297,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector9": {
@@ -1445,13 +1328,12 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
-                    "connector":{
-                        "type": "noderef",
-                        "nodeId": "connector"
-                    }
+                    "nodesList":[
+                        "connector"
+                    ]
                 }
             },
             "connector":{
@@ -1459,10 +1341,9 @@
                 "receiveshadows": true,
                 "castshadows": true,
                 "children": {
-                    "unitCube": {
-                        "type": "noderef",
-                        "nodeId": "unitCube"
-                    }
+                    "nodesList":[
+                        "unitCube"
+                    ]
                 }
             },
             "observatories": {
@@ -1470,18 +1351,11 @@
                 "receiveshadows": true,
                 "castshadows": true,
                 "children": {
-                    "observatory1":{
-                        "type": "noderef",
-                        "nodeId": "observatory1"
-                    },
-                    "observatory2":{
-                        "type": "noderef",
-                        "nodeId": "observatory2"
-                    },
-                    "observatory3":{
-                        "type": "noderef",
-                        "nodeId": "observatory3"
-                    }
+                    "nodesList":[
+                        "observatory1",
+                        "observatory2",
+                        "observatory3"
+                    ]
                 }
             },
             "observatory1": {
@@ -1489,17 +1363,13 @@
                 "receiveshadows": true,
                 "castshadows": true,
                 "children": {
-                    "observatory1base":{
-                        "type": "noderef",
-                        "nodeId": "observatory1base"
-                    },
-                    "observatory1glasstop":{
-                        "type": "noderef",
-                        "nodeId": "observatory1base"
-                    }
+                    "nodesList":[
+                        "observatorybase",
+                        "observatoryglasstop"
+                    ]
                 }
             },
-            "observatory1base": {
+            "observatorybase": {
                 "type": "node",
                 "receiveshadows": true,
                 "castshadows": true,
@@ -1514,7 +1384,7 @@
                     }
                 ],
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "wallsmaterial"
                 },
                 "children": {
                     "cylinderPrim":{
@@ -1528,168 +1398,90 @@
                         }
                 }
             },
-            "observatory1glasstop": {
+            "observatoryglasstop": {
                 "type": "node",
-                "receiveshadows": true,
-                "castshadows": true,
-                "children": {
-                    
-                }
-            },
-            "observatory2": {
-                "type": "node",
-                "receiveshadows": true,
-                "castshadows": true,
-                "children": {
-                    "observatory2base":{
-                        "type": "noderef",
-                        "nodeId": "observatory2base"
-                    },
-                    "observatory2glasstop":{
-                        "type": "noderef",
-                        "nodeId": "observatory2base"
-                    }
-                }
-            },
-            "observatory2base": {
-                "type": "node",
-                "receiveshadows": true,
-                "castshadows": true,
                 "transforms": [
                     {
                         "type": "translate",
                         "amount": {
-                            "x": 3.5,
-                            "y": 0.75,
-                            "z": 6.25
-                        }
-                    }
-                ],
-                "materialref": {
-                    "materialId": "tablematerial"
-                },
-                "children": {
-                    "cylinderPrim":{
-                            "type":"cylinder",
-                            "base" : 1.25,
-                            "top" : 1.25,
-                            "height" : 1,
-                            "slices" : 32,
-                            "stacks" : 32,
-                            "capsclose":true
-                        }
-                }
-            },
-            "observatory2glasstop": {
-                "type": "node",
-                "receiveshadows": true,
-                "castshadows": true,
-                "children": {
-                    
-                }
-            },
-            "observatory3": {
-                "type": "node",
-                "receiveshadows": true,
-                "castshadows": true,
-                "children": {
-                    "observatory3base":{
-                        "type": "noderef",
-                        "nodeId": "observatory3base"
-                    },
-                    "observatory3glasstop":{
-                        "type": "noderef",
-                        "nodeId": "observatory3base"
-                    }
-                }
-            },
-            "observatory3base": {
-                "type": "node",
-                "receiveshadows": true,
-                "castshadows": true,
-                "transforms": [
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 5,
-                            "y": 0.75,
+                            "x": 0,
+                            "y": 1.5,
                             "z": 0
                         }
                     }
                 ],
+                "receiveshadows": true,
+                "castshadows": true,
                 "materialref": {
-                    "materialId": "tablematerial"
+                    "materialId": "domematerial"
                 },
                 "children": {
-                    "cylinderPrim":{
-                            "type":"cylinder",
-                            "base" : 0.75,
-                            "top" : 0.75,
-                            "height" : 1,
-                            "slices" : 32,
-                            "stacks" : 32,
-                            "capsclose":true
-                        }
+                    "shperePrim": {
+                        "type": "sphere",
+                        "radius": 2,
+                        "slices": 32,
+                        "stacks": 32,
+                        "thetastart": 0,
+                        "thetalength": 90
+                    }
                 }
             },
-            "observatory3glasstop": {
+            "observatory2": {
                 "type": "node",
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                        }
+                    },
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3.1,
+                            "y": 0.25,
+                            "z": 6.25
+                        }
+                    }
+                ],
                 "receiveshadows": true,
                 "castshadows": true,
                 "children": {
-                    
+                    "nodesList":[
+                        "observatorybase",
+                        "observatoryglasstop"
+                    ]                    
                 }
             },
-            "room": {
+            "observatory3": {
                 "type": "node",
-                "children": {
-                    "floor": {
-                        "type": "noderef",
-                        "nodeId": "floor"
-                    },
-                    "spot_light": {
-                        "type": "spotlight",
-                        "enabled": true,
-                        "color": {
-                            "r": 1,
-                            "g": 1,
-                            "b": 1
-                        },
-                        "target": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }, 		
-                        "angle": 35.0,
-                        "intensity": 15.0,
-                        "distance": 15,
-                        "decay": 1.0,
-                        "penumbra": 1.0,
-                        "castshadow": true,
-                        "position": {
-                            "x": 0.0,
-                            "y": 11,
-                            "z": 0.0
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
                         }
                     },
-                    "point_light": {
-                        "type": "pointlight",
-                        "enabled": true,
-                        "color": {
-                            "r": 1.0,
-                            "g": 1.0,
-                            "b": 1.0
-                        },
-                        "intensity": 15.0,
-                        "distance": 100,
-                        "decay": 1.0,
-                        "castshadow": true,
-                        "position": {
-                            "x": 3,
-                            "y": 11.5,
-                            "z": -3
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 5.4,
+                            "y": 0.25,
+                            "z": 0
                         }
                     }
+                ],
+                "receiveshadows": true,
+                "castshadows": true,
+                "children": {
+                    "nodesList":[
+                        "observatorybase",
+                        "observatoryglasstop"
+                    ]
                 }
             },
             "floor": {
@@ -1720,12 +1512,12 @@
                     "rectanglePrim": {
                         "type": "rectangle",
                         "xy1": {
-                            "x": -10,
-                            "y": -10
+                            "x": -100,
+                            "y": -100
                         },
                         "xy2": {
-                            "x": 10,
-                            "y": 10
+                            "x": 100,
+                            "y": 100
                         }
                     }
                 }
@@ -1733,30 +1525,14 @@
             "unitCube": {
                 "type": "node",
                 "children": {
-                    "rectangle1": {
-                        "type": "noderef",
-                        "nodeId": "rectangle1"
-                    },
-                    "rectangle2": {
-                        "type": "noderef",
-                        "nodeId": "rectangle2"
-                    },
-                    "rectangle3": {
-                        "type": "noderef",
-                        "nodeId": "rectangle3"
-                    },
-                    "rectangle4": {
-                        "type": "noderef",
-                        "nodeId": "rectangle4"
-                    },
-                    "rectangle5": {
-                        "type": "noderef",
-                        "nodeId": "rectangle5"
-                    },
-                    "rectangle6": {
-                        "type": "noderef",
-                        "nodeId": "rectangle6"
-                    }
+                    "nodesList":[
+                        "rectangle1",
+                        "rectangle2",
+                        "rectangle3",
+                        "rectangle4",
+                        "rectangle5",
+                        "rectangle6"
+                    ]
                 }
             },
             "rectangle1": {
@@ -1780,10 +1556,9 @@
                     }
                 ],
                 "children": {
-                    "rectangle":{
-                        "type":"noderef",
-                        "nodeId":"rectangle"
-                    }
+                    "nodesList":[
+                        "rectangle"
+                    ]
                 }
             },
             "rectangle2": {
@@ -1799,10 +1574,9 @@
                     }
                 ],
                 "children": {
-                    "rectangle":{
-                        "type":"noderef",
-                        "nodeId":"rectangle"
-                    }
+                    "nodesList":[
+                        "rectangle"
+                    ]
                 }
             },
             "rectangle3": {
@@ -1826,10 +1600,9 @@
                     }
                 ],
                 "children": {
-                    "rectangle":{
-                        "type":"noderef",
-                        "nodeId":"rectangle"
-                    }
+                    "nodesList":[
+                        "rectangle"
+                    ]
                 }
             },
             "rectangle4": {
@@ -1853,10 +1626,9 @@
                     }
                 ],
                 "children": {
-                    "rectangle":{
-                        "type":"noderef",
-                        "nodeId":"rectangle"
-                    }
+                    "nodesList":[
+                        "rectangle"
+                    ]
                 }
             },
             "rectangle5": {
@@ -1880,10 +1652,9 @@
                     }
                 ],
                 "children": {
-                    "rectangle":{
-                        "type":"noderef",
-                        "nodeId":"rectangle"
-                    }
+                    "nodesList":[
+                        "rectangle"
+                    ]
                 }
             },
             "rectangle6": {
@@ -1907,10 +1678,9 @@
                     }
                 ],
                 "children": {
-                    "rectangle":{
-                        "type":"noderef",
-                        "nodeId":"rectangle"
-                    }
+                    "nodesList":[
+                        "rectangle"
+                    ]
                 }
             },
             "rectangle":{
