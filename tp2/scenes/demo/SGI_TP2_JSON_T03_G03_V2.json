@@ -423,7 +423,82 @@
                     ]
                     ,
                     "lodsList": [
-                        "flag_lod"
+                        "flag_lod",
+                        "pins_lod",
+                        "polygon_lod"
+                    ]
+                }
+            },
+            "polygon_lod": {
+                "type": "lod",
+                "lodNodes": [{
+                    "nodeId": "polygon",
+                    "mindist": 0
+                },
+                {
+                    "nodeId": "empty_lod",
+                    "mindist": 60
+                }]
+            },
+            "polygon": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -2.5,
+                            "y": 1.3,
+                            "z": -3
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,  
+                            "y": 180,
+                            "z": 0  
+                        }
+                    }
+                ],
+                "children": {
+                    "polygonPrim": {
+                        "type": "polygon",
+                        "radius": 0.5,
+                        "slices": 10,
+                        "stacks": 3,
+                        "color_c": {
+                            "r": 1.0,
+                            "g": 1.0,
+                            "b": 0.2
+                        },
+                        "color_p": {
+                            "r": 0.2,
+                            "g": 1.0,
+                            "b": 0.2
+                        }
+                    }
+                }
+            },
+            "pins_lod": {
+                "type": "lod",
+                "lodNodes": [{
+                    "nodeId": "pins",
+                    "mindist": 0
+                },
+                {
+                    "nodeId": "empty_lod",
+                    "mindist": 60
+                }]
+            },
+            "pins": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "receiveshadows": true,
+                "castshadows": true,
+                "children": {
+                    "lodsList": [
                     ]
                 }
             },
@@ -533,20 +608,286 @@
                 "castshadows": true,
                 "children": {
                     "nodesList": [
-                        "house1",
                         "house2",
-                        "house3",
                         "house5",
-                        "house7",
                         "house8"
                     ],
                     "lodsList": [
+                        "house1_lod",
+                        "house3_lod",
                         "house4_lod",
-                        "house6_lod"
+                        "house6_lod",
+                        "house7_lod"
                     ]
                 }
             },
             "house1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "children":{
+                    "nodesList":[
+                        "house1segment1",
+                        "house1window1",
+                        "house1window2",
+                        "house1window3",
+                        "house1window4",
+                        "house1window5",
+                        "house1window6",
+                        "house1window7",
+                        "house1window8"
+                    ]
+                }
+            },
+            "house1window1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.75,
+                            "y": 1.5,
+                            "z": -1.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.6,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1window2":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.75,
+                            "y": 1.5,
+                            "z": -0.75
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.6,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1window3":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.75,
+                            "y": 1.5,
+                            "z": -0.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.6,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1window4":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.75,
+                            "y": 1.5,
+                            "z": 0.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.6,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1window5":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.75,
+                            "y": 1.5,
+                            "z": 0.75
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.6,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1window6":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.75,
+                            "y": 1.5,
+                            "z": 1.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.6,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1window7":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.15,
+                            "y": 1.5,
+                            "z": -0.5
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.2,
+                            "y": 0.1,
+                            "z": 1.5
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1window8":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.35,
+                            "y": 1.5,
+                            "z": -0.5
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.2,
+                            "y": 0.1,
+                            "z": 1.5
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1segment1":{
                 "type": "node",
                 "receiveshadows": true,
                 "castshadows": true,
@@ -573,6 +914,45 @@
                         "unitCube"
                     ]
                 }
+            },
+            "house1_far":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.75,
+                            "y": 1,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 1,
+                            "z": 3
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house1_lod": {
+                "type": "lod",
+                "lodNodes": [{
+                    "nodeId": "house1",
+                    "mindist": 0
+                },
+                {
+                    "nodeId": "house1_far",
+                    "mindist": 60
+                }]
             },
             "house2":{
                 "type": "node",
@@ -719,6 +1099,112 @@
                 "type": "node",
                 "receiveshadows": true,
                 "castshadows": true,
+                "children":{
+                    "nodesList":[
+                        "house3segment1",
+                        "house3window1",
+                        "house3window2",
+                        "house3window3"
+                    ]
+                }
+            },
+            "house3window1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.5,
+                            "y": 1.25,
+                            "z": 3
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.85,
+                            "y": 0.1,
+                            "z": 0.85
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house3window2":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.5,
+                            "y": 1.25,
+                            "z": 2.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.7,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house3window3":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.5,
+                            "y": 1.25,
+                            "z": 3.75
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.7,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house3segment1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
                 "transforms": [
                     {
                         "type": "translate",
@@ -745,6 +1231,48 @@
                         "unitCube"
                     ]
                 }
+            },
+            "house3_far":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.5,
+                            "y": 0.75,
+                            "z": 3
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 2
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house3_lod": {
+                "type": "lod",
+                "lodNodes": [{
+                    "nodeId": "house3",
+                    "mindist": 0
+                },
+                {
+                    "nodeId": "house3_far",
+                    "mindist": 60
+                }]
             },
             "house4":{
                 "type": "node",
@@ -1680,6 +2208,112 @@
                 "type": "node",
                 "receiveshadows": true,
                 "castshadows": true,
+                "children":{
+                    "nodesList":[
+                        "house7segment1",
+                        "house7window1",
+                        "house7window2",
+                        "house7window3"
+                    ]
+                }
+            },
+            "house7window1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.50,
+                            "y": 1.25,
+                            "z": 6.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.2,
+                            "y": 0.1,
+                            "z": 0.85
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house7window2":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.15,
+                            "y": 1.25,
+                            "z": 6.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.2,
+                            "y": 0.1,
+                            "z": 0.85
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house7window3":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -2.80,
+                            "y": 1.25,
+                            "z": 6.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.2,
+                            "y": 0.1,
+                            "z": 0.85
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house7segment1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
                 "transforms": [
                     {
                         "type": "translate",
@@ -1706,6 +2340,48 @@
                         "unitCube"
                     ]
                 }
+            },
+            "house7_far":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.50,
+                            "y": 0.75,
+                            "z": 6.25
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2,
+                            "y": 1,
+                            "z": 1.25
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house7_lod": {
+                "type": "lod",
+                "lodNodes": [{
+                    "nodeId": "house7",
+                    "mindist": 0
+                },
+                {
+                    "nodeId": "house7_far",
+                    "mindist": 60
+                }]
             },
             "house8":{
                 "type": "node",
