@@ -179,7 +179,7 @@
         },
         "textures": {
             "floortexture": {
-                "filepath": "scenes/demo/textures/image.png"
+                "filepath": "scenes/demo/textures/mars_ground.png"
             },
             "wallstexture": {
                 "filepath": "scenes/demo/textures/walls.png"
@@ -188,7 +188,28 @@
                 "filepath": "scenes/demo/textures/solar_panel.png"
             },
             "dome_tex": {
-                "filepath": "scenes/demo/textures/Material_1724.jpg"
+                "filepath": "scenes/demo/textures/mipmapObservatory/glass1024.jpg",
+                "isVideo" : false,
+                "mipmap0" : "scenes/demo/textures/mipmapObservatory/glass1024.jpg",
+                "mipmap1" : "scenes/demo/textures/mipmapObservatory/glass512.jpg",
+                "mipmap2" : "scenes/demo/textures/mipmapObservatory/glass256.jpg",
+                "mipmap3" : "scenes/demo/textures/mipmapObservatory/glass8128jpg",
+                "mipmap4" : "scenes/demo/textures/mipmapObservatory/glass64.jpg",
+                "mipmap5" : "scenes/demo/textures/mipmapObservatory/glass32.jpg",
+                "mipmap6" : "scenes/demo/textures/mipmapObservatory/glass16.jpg",
+                "mipmap7" : "scenes/demo/textures/mipmapObservatory/glass8.jpg"
+            },
+            "dome_normalTex": {
+                "filepath": "scenes/demo/textures/mipmapObservatory/glass_bump_map.jpg",
+                "isVideo": false 
+            },
+            "door_tex": {
+                "filepath": "scenes/demo/textures/Wood_Wall_003_basecolor.jpg",
+                "isVideo" : false
+            },
+            "video_bandeira": {
+                "filepath": "scenes/demo/textures/video/portugal_flag.mp4",
+                "isVideo" : true
             }
         },
         "materials": {
@@ -199,11 +220,11 @@
                     "b": 1
                 },
                 "specular": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0
+                    "r": 0.5,
+                    "g": 0.5,
+                    "b": 0.5
                 },
-                "shininess":0,
+                "shininess": 50,
                 "emissive": {
                     "r": 0.0,
                     "g": 0.0,
@@ -212,8 +233,8 @@
                 "transparent": false,
                 "opacity": 1,
                 "textureref": "solarpanel_tex",
-                "texlength_s": 3,
-                "texlength_t": 3
+                "texlength_s": 1,
+                "texlength_t": 1
             },
             "floormaterial": {
                 "color": {
@@ -222,9 +243,9 @@
                     "b": 1
                 },
                 "specular": {
-                    "r": 1,
-                    "g": 1,
-                    "b": 1
+                    "r": 0.25,
+                    "g": 0.25,
+                    "b": 0.25
                 },
                 "shininess": 10,
                 "emissive": {
@@ -243,16 +264,16 @@
                     "b": 1
                 },
                 "specular": {
-                    "r": 1,
-                    "g": 1,
-                    "b": 1
+                    "r": 0.2,
+                    "g": 0.2,
+                    "b": 0.2
                 },
                 "emissive": {
                     "r": 0,
                     "g": 0,
                     "b": 0
                 },
-                "shininess": 5,
+                "shininess": 10,
                 "transparent": false,
                 "opacity": 1,
                 "textureref": "wallstexture",
@@ -280,9 +301,59 @@
                 "transparent": false,
                 "opacity": 1,
                 "textureref": "dome_tex",
-                "texlength_s": 5,
-                "texlength_t": 5,
+                "bumpref": "dome_normalTex",
+                "bumpscale": 0.005,
+                "texlength_s": 3,
+                "texlength_t": 3,
                 "twosided": true
+            },
+            "doormaterial": {
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "specular": {
+                    "r": 0.2,
+                    "g": 0.2,
+                    "b": 0.2
+                },
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "shininess": 10,
+                "transparent": false,
+                "opacity": 1,
+                "textureref": "door_tex",
+                "texlength_s": 1,
+                "texlength_t": 1,
+                "twosided": true
+            },
+            "videomaterial": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "textureref": "video_bandeira",
+                "texlength_s": 1,
+                "texlength_t": 1,
+                "twosided": "true"
             }
             
         },
@@ -302,13 +373,13 @@
                             "b": 0.2,
                             "a": 1
                         },
-                        "intensity": 5,
+                        "intensity": 7.5,
                         "castshadow": true,
-                        "shadowleft": -1000,
-                        "shadowright": 1000,
-                        "shadowtop": 1000,
-                        "shadowbottom": -1000,
-                        "shadowfar": 1000.0,
+                        "shadowleft": -100,
+                        "shadowright": 100,
+                        "shadowtop": 100,
+                        "shadowbottom": -100,
+                        "shadowfar": 100.0,
                         "shadowmapsize": 2048,
                         "position": {
                             "x": 300,
@@ -331,8 +402,16 @@
                         "type": "translate",
                         "amount": {
                             "x": 0,
-                            "y": -0.5,
+                            "y": -0.75,
                             "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
                         }
                     }
                 ],
@@ -341,6 +420,107 @@
                         "observatories",
                         "connectors",
                         "houses"
+                    ]
+                    ,
+                    "lodsList": [
+                        "flag_lod"
+                    ]
+                }
+            },
+            "flag_lod": {
+                "type": "lod",
+                "lodNodes": [{
+                    "nodeId": "flag",
+                    "mindist": 0
+                },
+                {
+                    "nodeId": "empty_lod",
+                    "mindist": 60
+                }]
+            },
+            "flag" :{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "children": {
+                    "nodesList": [
+                        "pole",
+                        "fabric"
+                    ]
+                }
+            },
+            "pole":{
+                "type": "node",
+                "castshadow": true,
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4,
+                            "y": 3,
+                            "z": 4
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1,
+                            "y": 5,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "base": 0.05,
+                        "top": 0.05,
+                        "height": 1,
+                        "slices": 16,
+                        "stacks": 16,
+                        "capsclose":true
+                    }
+                }
+            },
+            "fabric":{
+                "type": "node",
+                "castshadow": true,
+                "materialref": {
+                    "materialId": "videomaterial"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4,
+                            "y": 5.25,
+                            "z": 3.5
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1,
+                            "y": 0.5,
+                            "z": 0.001
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
+                    }
+                    
+                ],
+                "children": {
+                    "nodesList":[
+                        "unitCube"
                     ]
                 }
             },
@@ -356,11 +536,13 @@
                         "house1",
                         "house2",
                         "house3",
-                        "house4",
                         "house5",
-                        "house6",
                         "house7",
                         "house8"
+                    ],
+                    "lodsList": [
+                        "house4_lod",
+                        "house6_lod"
                     ]
                 }
             },
@@ -399,7 +581,8 @@
                 "children":{
                     "nodesList":[
                         "house2segment1",
-                        "house2segment2"
+                        "house2segment2",
+                        "house2door"
                     ]
                 }
             },
@@ -493,6 +676,45 @@
                         }
                 }
             },
+            "house2door":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0.75,
+                            "z": -4.51
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.5,
+                            "y": 0.75,
+                            "z": 0.5
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "doormaterial"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
             "house3":{
                 "type": "node",
                 "receiveshadows": true,
@@ -539,6 +761,27 @@
                         "house4window2",
                         "house4window3",
                         "house4window4"
+                    ]
+                }
+            },
+            "house4_lod": {
+                "type": "lod",
+                "lodNodes": [{
+                    "nodeId": "house4",
+                    "mindist": 0
+                },
+                {
+                    "nodeId": "house4_far",
+                    "mindist": 60
+                }]
+            },
+            "house4_far":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "children":{
+                    "nodesList":[
+                        "house4segment1"
                     ]
                 }
             },
@@ -936,6 +1179,26 @@
                 "type": "node",
                 "receiveshadows": true,
                 "castshadows": true,
+                "children":{
+                    "nodesList":[
+                        "house6segment1",
+                        "house6window1",
+                        "house6window2",
+                        "house6window3",
+                        "house6window4",
+                        "house6window5",
+                        "house6window6",
+                        "house6window7",
+                        "house6window8",
+                        "house6window9",
+                        "house6window10"
+                    ]
+                }
+            },
+            "house6segment1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
                 "transforms": [
                     {
                         "type": "translate",
@@ -976,6 +1239,442 @@
                             "capsclose":true
                         }
                 }
+            },
+            "house6window1":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.8,
+                            "y": 1.6,
+                            "z": 5.75
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.5,
+                            "y": 0.1,
+                            "z": 0.6
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window2":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.8,
+                            "y": 1.6,
+                            "z": 6.4
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.3,
+                            "y": 0.1,
+                            "z": 0.6
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window3":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.8,
+                            "y": 1.6,
+                            "z": 5.1
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.3,
+                            "y": 0.1,
+                            "z": 0.6
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window4":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.8,
+                            "y": 1.6,
+                            "z": 4.6
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.7,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window5":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.8,
+                            "y": 1.6,
+                            "z": 6.9
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.7,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window6":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -0.8,
+                            "y": 1.6,
+                            "z": 5.75
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.5,
+                            "y": 0.1,
+                            "z": 0.6
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window7":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -0.8,
+                            "y": 1.6,
+                            "z": 6.4
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.3,
+                            "y": 0.1,
+                            "z": 0.6
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window8":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -0.8,
+                            "y": 1.6,
+                            "z": 5.1
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.3,
+                            "y": 0.1,
+                            "z": 0.6
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window9":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -0.8,
+                            "y": 1.6,
+                            "z": 4.6
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.7,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6window10":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -0.8,
+                            "y": 1.6,
+                            "z": 6.9
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.7,
+                            "y": 0.1,
+                            "z": 0.3
+                        }
+                    },{
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 44
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "solarpanel_app"
+                },
+                "children": {
+                    "nodesList":[
+                        "unitCube"
+                    ]
+                }
+            },
+            "house6_far":{
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0.75,
+                            "z": 5.75
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 22.5,
+                            "z": 0
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "children": {
+                    "cylinderPrim":{
+                            "type":"cylinder",
+                            "base" : 1.25,
+                            "top" : 1.25,
+                            "height" : 3,
+                            "slices" : 8,
+                            "stacks" : 32,
+                            "capsclose":true
+                        }
+                }
+            },
+            "house6_lod": {
+                "type": "lod",
+                "lodNodes": [{
+                    "nodeId": "house6",
+                    "mindist": 0
+                },
+                {
+                    "nodeId": "house6_far",
+                    "mindist": 60
+                }]
             },
             "house7":{
                 "type": "node",
@@ -1418,7 +2117,7 @@
                 "children": {
                     "shperePrim": {
                         "type": "sphere",
-                        "radius": 2,
+                        "radius": 1.8,
                         "slices": 32,
                         "stacks": 32,
                         "thetastart": 0,
@@ -1512,12 +2211,12 @@
                     "rectanglePrim": {
                         "type": "rectangle",
                         "xy1": {
-                            "x": -100,
-                            "y": -100
+                            "x": -50,
+                            "y": -50
                         },
                         "xy2": {
-                            "x": 100,
-                            "y": 100
+                            "x": 50,
+                            "y": 50
                         }
                     }
                 }
@@ -1690,6 +2389,22 @@
                         "type":"rectangle",
                         "xy1": {"x": -0.5, "y": -0.5},
                         "xy2": {"x": 0.5, "y": 0.5}
+                    }
+                }
+            },
+            "empty_lod": {
+                "type": "node",
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "xy2": {
+                            "x": 0,
+                            "y": 0
+                        }
                     }
                 }
             }
