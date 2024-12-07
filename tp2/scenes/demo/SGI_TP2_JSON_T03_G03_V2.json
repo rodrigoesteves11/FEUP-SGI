@@ -424,7 +424,7 @@
                     ,
                     "lodsList": [
                         "flag_lod",
-                        "pins_lod",
+                        "lamps_lod",
                         "polygon_lod"
                     ]
                 }
@@ -479,28 +479,337 @@
                     }
                 }
             },
-            "pins_lod": {
+            "lamps": {
+                "type": "node",
+                "receiveshadows": true,
+                "castshadows": true,
+                "children": {
+                    "nodesList": [
+                        "lamp1",
+                        "lamp2",
+                        "lamp3",
+                        "lamp4",
+                        "lamp5",
+                        "lamp6",
+                        "lamp7",
+                        "lamp8",
+                        "lamp9",
+                        "lamp10",
+                        "lamp11",
+                        "lamp12"
+                    ]
+                }
+            },
+            "lamp1": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -6,
+                            "y": 0,
+                            "z": 6
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp2": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4,
+                            "y": 0,
+                            "z": 8
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp3": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 9
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp4": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 5,
+                            "y": 0,
+                            "z": 9
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp5": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 5,
+                            "y": 0,
+                            "z": 4
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp6": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3,
+                            "y": 0,
+                            "z": 4
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp7": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 7,
+                            "y": 0,
+                            "z": 2
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp8": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 6,
+                            "y": 0,
+                            "z": -2
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp9": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3,
+                            "y": 0,
+                            "z": -5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp10": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1,
+                            "y": 0,
+                            "z": -6
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp11": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -6,
+                            "y": 0,
+                            "z": -4
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp12": {
+                "type": "node",
+                "castshadow": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -8,
+                            "y": 0,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "lamp"
+                    ]
+                }
+            },
+            "lamp": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "support",
+                        "bulb"
+                    ]
+                }
+            },
+            "support":{
+                "type": "node",
+                "castshadow": true,
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0.5,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "base": 0.025,
+                        "top": 0.025,
+                        "height": 1,
+                        "slices": 16,
+                        "stacks": 16,
+                        "capsclose":true
+                    }
+                }
+            },
+            "bulb":{
+                "type": "node",
+                "castshadow": true,
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 1.05,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -180
+                        }
+                    }
+                ],
+                "children": {
+                    "shperePrim": {
+                        "type": "sphere",
+                        "radius": 0.1,
+                        "slices": 32,
+                        "stacks": 32,
+                        "thetastart": 0,
+                        "thetalength": 180
+                    }
+                }
+            },
+            "lamps_lod": {
                 "type": "lod",
                 "lodNodes": [{
-                    "nodeId": "pins",
+                    "nodeId": "lamps",
                     "mindist": 0
                 },
                 {
                     "nodeId": "empty_lod",
                     "mindist": 60
                 }]
-            },
-            "pins": {
-                "type": "node",
-                "materialref": {
-                    "materialId": "wallsmaterial"
-                },
-                "receiveshadows": true,
-                "castshadows": true,
-                "children": {
-                    "lodsList": [
-                    ]
-                }
             },
             "flag_lod": {
                 "type": "lod",
