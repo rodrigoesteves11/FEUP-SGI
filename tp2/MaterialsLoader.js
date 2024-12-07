@@ -15,51 +15,63 @@ class MaterialsLoader {
      */
     loadTextures(texturesData) {
         if (!texturesData) {
-            console.log("No textures provided.");
+            console.warn("Nenhuma textura fornecida.");
             return;
         }
     
-        for (const textureId in texturesData) {
-            const textureInfo = texturesData[textureId];
-            if (textureInfo.filepath) {
-                let texture;
-                if (textureInfo.isVideo) {
-                    const video = document.createElement('video');
-                    video.src = textureInfo.filepath;
-                    video.load();
-                    video.loop = true;
-                    video.muted = true;
-                    video.play();
-                    texture = new THREE.VideoTexture(video);
-                } else {
-                    texture = this.textureLoader.load(textureInfo.filepath);
-                }
+        Object.entries(texturesData).forEach(([textureId, textureInfo]) => {
+            const { filepath, isVideo, ...mipmaps } = textureInfo;
     
-                // Custom mipmaps
-                if (textureInfo.mipmaps) {
-                    texture.generateMipmaps = false;
-                    texture.mipmaps = [];
-                    textureInfo.mipmaps.forEach((mipmapPath, level) => {
-                        new THREE.TextureLoader().load(mipmapPath, (mipmapTexture) => {
-                            const canvas = document.createElement('canvas');
-                            const ctx = canvas.getContext('2d');
-                            canvas.width = mipmapTexture.image.width;
-                            canvas.height = mipmapTexture.image.height;
-                            ctx.drawImage(mipmapTexture.image, 0, 0);
-                            texture.mipmaps[level] = canvas;
-                            texture.needsUpdate = true;
-                        });
-                    });
-                } else {
-                    texture.generateMipmaps = true;
-                }
-    
-                this.textures[textureId] = texture;
-            } else {
-                console.log(`${textureId} invalid path`);
+            if (!filepath) {
+                console.warn(`A textura "${textureId}" possui um caminho inválido.`);
+                return;
             }
-        }
+    
+            let texture;
+    
+            if (isVideo) {
+                const video = document.createElement('video');
+                Object.assign(video, {
+                    src: filepath,
+                    loop: true,
+                    muted: true,
+                    autoplay: true
+                });
+                video.play();
+                texture = new THREE.VideoTexture(video);
+            } else {
+                texture = this.textureLoader.load(filepath);
+            }
+    
+            const mipmapKeys = Object.keys(mipmaps)
+                .filter(key => key.startsWith('mipmap'))
+                .sort((a, b) => parseInt(a.replace('mipmap', ''), 10) - parseInt(b.replace('mipmap', ''), 10));
+    
+            if (mipmapKeys.length) {
+                texture.generateMipmaps = false;
+                texture.mipmaps = [];
+    
+                mipmapKeys.forEach((key, level) => {
+                    this.textureLoader.load(mipmaps[key], mipmapTexture => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = mipmapTexture.image.width;
+                        canvas.height = mipmapTexture.image.height;
+                        ctx.drawImage(mipmapTexture.image, 0, 0);
+                        texture.mipmaps[level] = canvas;
+                        texture.needsUpdate = true;
+                    }, undefined, err => {
+                        console.error(`Erro ao carregar o mipmap "${key}" de "${mipmaps[key]}":`, err);
+                    });
+                });
+            } else {
+                texture.generateMipmaps = true;
+            }
+    
+            this.textures[textureId] = texture;
+        });
     }
+    
     
     /**
      * Loads materials from the provided data.

@@ -39,12 +39,12 @@
                     "b": 0
                 },
                 "intensity": 1,
-                "front": "./scenes/demo/textures/skybox/marslike01bk.png",
-                "back": "./scenes/demo/textures/skybox/marslike01ft.png",
+                "front": "./scenes/demo/textures/skybox/marslike01ft.png",
+                "back": "./scenes/demo/textures/skybox/marslike01bk.png",
                 "up": "./scenes/demo/textures/skybox/marslike01up.png",
                 "down": "./scenes/demo/textures/skybox/marslike01dn.png",
-                "left": "./scenes/demo/textures/skybox/marslike01lf.png",
-                "right": "./scenes/demo/textures/skybox/marslike01rt.png"
+                "left": "./scenes/demo/textures/skybox/marslike01rt.png",
+                "right": "./scenes/demo/textures/skybox/marslike01lf.png"
             }
         },
         "cameras": {
@@ -193,7 +193,7 @@
                 "mipmap0" : "scenes/demo/textures/mipmapObservatory/glass1024.jpg",
                 "mipmap1" : "scenes/demo/textures/mipmapObservatory/glass512.jpg",
                 "mipmap2" : "scenes/demo/textures/mipmapObservatory/glass256.jpg",
-                "mipmap3" : "scenes/demo/textures/mipmapObservatory/glass8128jpg",
+                "mipmap3" : "scenes/demo/textures/mipmapObservatory/glass128.jpg",
                 "mipmap4" : "scenes/demo/textures/mipmapObservatory/glass64.jpg",
                 "mipmap5" : "scenes/demo/textures/mipmapObservatory/glass32.jpg",
                 "mipmap6" : "scenes/demo/textures/mipmapObservatory/glass16.jpg",
@@ -204,7 +204,7 @@
                 "isVideo": false 
             },
             "door_tex": {
-                "filepath": "scenes/demo/textures/Wood_Wall_003_basecolor.jpg",
+                "filepath": "scenes/demo/textures/Sci-fi_Door_001_basecolor.jpg",
                 "isVideo" : false
             },
             "video_bandeira": {
@@ -467,14 +467,14 @@
                         "slices": 10,
                         "stacks": 3,
                         "color_c": {
-                            "r": 1.0,
-                            "g": 1.0,
-                            "b": 0.2
+                            "r": 0.75,
+                            "g": 0.0,
+                            "b": 1.0
                         },
                         "color_p": {
-                            "r": 0.2,
-                            "g": 1.0,
-                            "b": 0.2
+                            "r": 1.0,
+                            "g": 0.0,
+                            "b": 0.0
                         }
                     }
                 }

@@ -68,9 +68,7 @@ class MyApp  {
     initCameras() {
         const aspect = window.innerWidth / window.innerHeight;
 
-        // Create a basic perspective camera
         const perspective1 = new THREE.PerspectiveCamera( 75, aspect, 0.1, 1000 )
-        perspective1.position.set(10,10,3)
         this.cameras['Perspective'] = perspective1
 
     }
@@ -91,44 +89,29 @@ class MyApp  {
      * it updates the active camera and the controls
      */
     updateCameraIfRequired() {
-    // Câmera mudou?
-    if (this.lastCameraName !== this.activeCameraName) {
-        this.lastCameraName = this.activeCameraName;
-        this.activeCamera = this.cameras[this.activeCameraName];
 
-        // Verificar se a câmera ativa existe
-        if (!this.activeCamera) {
-            console.error(`Câmera '${this.activeCameraName}' não encontrada.`);
-            return;
-        }
+        // camera changed?
+        if (this.lastCameraName !== this.activeCameraName) {
+            this.lastCameraName = this.activeCameraName;
+            this.activeCamera = this.cameras[this.activeCameraName]
+            document.getElementById("camera").innerHTML = this.activeCameraName
+           
+            // call on resize to update the camera aspect ratio
+            // among other things
+            this.onResize()
 
-        document.getElementById("camera").innerHTML = this.activeCameraName;
-
-        // Atualiza a projeção da câmera
-        if (this.activeCamera.isPerspectiveCamera) {
-            this.activeCamera.aspect = window.innerWidth / window.innerHeight;
-            this.activeCamera.updateProjectionMatrix();
-        } else if (this.activeCamera.isOrthographicCamera) {
-            const aspect = window.innerWidth / window.innerHeight;
-            const frustumHeight = this.activeCamera.top - this.activeCamera.bottom;
-            const frustumWidth = frustumHeight * aspect;
-            this.activeCamera.left = -frustumWidth / 2;
-            this.activeCamera.right = frustumWidth / 2;
-            this.activeCamera.updateProjectionMatrix();
-        }
-
-        // Atualiza os controles
-        if (this.controls === null) {
-            // Orbit controls allow the camera to orbit around a target.
-            this.controls = new OrbitControls(this.activeCamera, this.renderer.domElement);
-            this.controls.enableZoom = true;
-            this.controls.update();
-        } else {
-            this.controls.object = this.activeCamera;
-            this.controls.update();
+            // are the controls yet?
+            if (this.controls === null) {
+                // Orbit controls allow the camera to orbit around a target.
+                this.controls = new OrbitControls( this.activeCamera, this.renderer.domElement );
+                this.controls.enableZoom = true;
+                this.controls.update();
+            }
+            else {
+                this.controls.object = this.activeCamera
+            }
         }
     }
-}
 
     
 

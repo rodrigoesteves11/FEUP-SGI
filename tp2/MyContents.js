@@ -4,6 +4,7 @@ import { MyFileReader } from './parser/MyFileReader.js';
 import { GraphLoader } from './GraphLoader.js';
 import { ObjectCreator } from './ObjectCreator.js';
 import { MaterialsLoader } from './MaterialsLoader.js';
+import { MyGuiInterface } from './MyGuiInterface.js';
 
 class MyContents {
     constructor(app) {
@@ -12,6 +13,8 @@ class MyContents {
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
         this.reader.open("scenes/demo/SGI_TP2_JSON_T03_G03_V2.json");
         //this.reader.open("scenes/dressrosacolosseum/dressrosacolosseum.json");
+
+        this.objectCreator = null;
     }
 
     init() {
@@ -32,15 +35,17 @@ class MyContents {
             this.loadGlobals(yasf.globals);
             this.loadCameras(yasf.cameras);
 
-            
             const graphLoader = new GraphLoader(this.app);
             graphLoader.read(yasf.graph);
 
             const materialsLoader = new MaterialsLoader(yasf.materials, yasf.textures);
             //console.log(materialsLoader);
-            const objectCreator = new ObjectCreator(this.app, graphLoader, materialsLoader);
-            objectCreator.createObjects();
-            console.log(objectCreator);
+            this.objectCreator = new ObjectCreator(this.app, graphLoader, materialsLoader);
+            this.objectCreator.createObjects();
+
+            console.log(materialsLoader);
+            
+            this.createGuiInterface();
             console.info("Scene successfully built.");
         } else {
             console.error("Estrutura inválida ou dados ausentes no arquivo carregado.");
@@ -140,26 +145,32 @@ class MyContents {
                     cameraData.far
                 );
             }
+         
+            camera.position.set(cameraData.location.x, cameraData.location.y, cameraData.location.z);
+            camera.lookAt(new THREE.Vector3(cameraData.target.x, cameraData.target.y, cameraData.target.z));
 
-            if (camera) {
-                camera.position.set(cameraData.location.x, cameraData.location.y, cameraData.location.z);
-                camera.lookAt(new THREE.Vector3(cameraData.target.x, cameraData.target.y, cameraData.target.z));
+            this.app.cameras[cameraId] = camera;
 
-                this.app.cameras[cameraId] = camera;
-            }
         });
 
-        if (initialCamera && this.app.cameras[initialCamera]) {
-            this.app.setActiveCamera(initialCamera);
-        } else {
-            console.warn("Câmera inicial não encontrada ou não definida.");
-        }
+        this.app.setActiveCamera(initialCamera);
 
-        if (this.app.gui && this.app.gui.updateCameraList) {
-            this.app.gui.updateCameraList();
-        }
+        delete this.app.cameras["Perspective"];
     }
-    
+
+    createGuiInterface() {
+        let gui = new MyGuiInterface(this.app);
+        gui.setContents(this);
+        this.app.setGui(gui);
+        gui.init();
+    }
+
+    updatePolygonWireframe(wireframe) {
+        this.objectCreator.polygons.forEach(polygon => {
+            console.log(polygon);
+            polygon.material.wireframe = wireframe;
+        });
+    }
     
 
     update() {}

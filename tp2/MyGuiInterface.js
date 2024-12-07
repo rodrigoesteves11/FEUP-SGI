@@ -14,12 +14,6 @@ class MyGuiInterface {
         this.app.gui = this; 
         this.datgui = new GUI();
         this.contents = null;
-
-        this.guiParams = {
-            camera: null
-        };
-
-        this.cameraController = null;
     }
 
     setContents(contents) {
@@ -28,26 +22,17 @@ class MyGuiInterface {
 
 
     init() {
+        const cameraFolder = this.datgui.addFolder('Camera');
+        cameraFolder.add(this.app, 'activeCameraName', Object.keys(this.app.cameras)).name("Active Camera");
+        cameraFolder.open()
+
+        const polygonFolder = this.datgui.addFolder('Polygons');
+        polygonFolder.add(this.app.contents.objectCreator, 'wireframe').name('Wireframe Mode').onChange((value) => {
+                this.contents.updatePolygonWireframe(value);
+            });
+        polygonFolder.open();
     }
 
-    /**
-     * Updates the camera list in the GUI.
-     */
-    updateCameraList() {
-        const cameraNames = Object.keys(this.app.cameras);
-
-        if (cameraNames.length > 0) {
-            this.guiParams.camera = this.app.activeCameraName;
-
-            this.cameraController = this.datgui.add(this.guiParams, 'camera', cameraNames)
-                .name('Câmera')
-                .onChange((value) => {
-                    this.app.setActiveCamera(value);
-                });
-        } else {
-            console.warn("Nenhuma câmera disponível para adicionar ao GUI.");
-        }
-    }
 }
 
 export { MyGuiInterface };

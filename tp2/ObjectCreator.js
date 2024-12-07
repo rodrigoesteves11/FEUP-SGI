@@ -5,6 +5,8 @@ class ObjectCreator {
     this.app = app;
     this.graphLoader = graphLoader;
     this.materialsLoader = materialsLoader;
+    this.polygons = [];
+    this.wireframe = false;
   }
 
   /**
@@ -564,6 +566,8 @@ class ObjectCreator {
     const mesh = new THREE.Mesh(geometry, meshMaterial);
     mesh.castShadow = castShadow;
     mesh.receiveShadow = receiveShadow;
+
+    this.polygons.push(mesh);
 
     return mesh;
   }
