@@ -42,7 +42,6 @@ class MyContents {
             //console.log(materialsLoader);
             this.objectCreator = new ObjectCreator(this.app, graphLoader, materialsLoader);
             this.objectCreator.createObjects();
-
             console.log(materialsLoader);
             
             this.createGuiInterface();
@@ -136,9 +135,10 @@ class MyContents {
                     cameraData.far
                 );
             } else if (cameraData.type === "orthogonal") {
+                let aspect = window.innerWidth / window.innerHeight;
                 camera = new THREE.OrthographicCamera(
-                    cameraData.left,
-                    cameraData.right,
+                    cameraData.left * aspect,
+                    cameraData.right * aspect,
                     cameraData.top,
                     cameraData.bottom,
                     cameraData.near,
