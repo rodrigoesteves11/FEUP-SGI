@@ -1,0 +1,600 @@
+{
+    "yasf": {
+        "globals": {
+            "background": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+            },
+            "ambient": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "intensity": 0
+            },
+            "fog": {
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "near": 1,
+                "far": 2000
+            },
+            "skybox": {
+                "size": {
+                    "x": 200,
+                    "y": 200,
+                    "z": 200
+                },
+                "center": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "intensity": 1,
+                "front": "./scenes/demo/textures/skybox/bluecloud_ft.jpg",
+                "back": "./scenes/demo/textures/skybox/bluecloud_bk.jpg",
+                "up": "./scenes/demo/textures/skybox/bluecloud_up.jpg",
+                "down": "./scenes/demo/textures/skybox/bluecloud_dn.jpg",
+                "left": "./scenes/demo/textures/skybox/bluecloud_rt.jpg",
+                "right": "./scenes/demo/textures/skybox/bluecloud_lf.jpg"
+            }
+        },
+        "cameras": {
+            "initial": "Perspective1",
+            "Perspective1": {
+                "type": "perspective",
+                "angle": 69,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": 5,
+                    "y": 5,
+                    "z": 5
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "Perspective2": {
+                "type": "perspective",
+                "angle": 80,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": -5,
+                    "y": 5,
+                    "z": 5
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "Left": {
+                "type": "orthogonal",
+                "near": -5,
+                "far": 80,
+                "location": {
+                    "x": -5,
+                    "y": 0,
+                    "z": 0
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "left": -10,
+                "right": 10,
+                "bottom": -10,
+                "top": 10
+            },
+            "Right": {
+                "type": "orthogonal",
+                "near": -5,
+                "far": 80,
+                "location": {
+                    "x": 5,
+                    "y": 0,
+                    "z": 0
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "left": -10,
+                "right": 10,
+                "bottom": -10,
+                "top": 10
+            },
+            "Top": {
+                "type": "orthogonal",
+                "near": -10,
+                "far": 160,
+                "location": {
+                    "x": 0,
+                    "y": 5,
+                    "z": 0
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "left": -10,
+                "right": 10,
+                "bottom": -10,
+                "top": 10
+            },
+            "Front": {
+                "type": "orthogonal",
+                "near": -5,
+                "far": 80,
+                "location": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 5
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "left": -10,
+                "right": 10,
+                "bottom": -10,
+                "top": 10
+            },
+            "Back": {
+                "type": "orthogonal",
+                "near": -5,
+                "far": 80,
+                "location": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -5
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "left": -10,
+                "right": 10,
+                "bottom": -10,
+                "top": 10
+            }
+        },
+        "textures": {
+            "floortexture": {
+                "filepath": "scenes/demo/textures/mars_ground.png"
+            },
+            "wallstexture": {
+                "filepath": "scenes/demo/textures/walls.png"
+            },
+            "solarpanel_tex": {
+                "filepath": "scenes/demo/textures/solar_panel.png"
+            },
+            "dome_tex": {
+                "filepath": "scenes/demo/textures/mipmapObservatory/glass1024.jpg",
+                "isVideo" : false,
+                "mipmap0" : "scenes/demo/textures/mipmapObservatory/glass1024.jpg",
+                "mipmap1" : "scenes/demo/textures/mipmapObservatory/glass512.jpg",
+                "mipmap2" : "scenes/demo/textures/mipmapObservatory/glass256.jpg",
+                "mipmap3" : "scenes/demo/textures/mipmapObservatory/glass128.jpg",
+                "mipmap4" : "scenes/demo/textures/mipmapObservatory/glass64.jpg",
+                "mipmap5" : "scenes/demo/textures/mipmapObservatory/glass32.jpg",
+                "mipmap6" : "scenes/demo/textures/mipmapObservatory/glass16.jpg",
+                "mipmap7" : "scenes/demo/textures/mipmapObservatory/glass8.jpg"
+            },
+            "dome_normalTex": {
+                "filepath": "scenes/demo/textures/mipmapObservatory/glass_bump_map.jpg",
+                "isVideo": false 
+            },
+            "door_tex": {
+                "filepath": "scenes/demo/textures/Sci-fi_Door_001_basecolor.jpg",
+                "isVideo" : false
+            },
+            "video_bandeira": {
+                "filepath": "scenes/demo/textures/video/portugal_flag.mp4",
+                "isVideo" : true
+            },
+            "billboard_tex": {
+                "filepath": "scenes/demo/textures/Wallpaper_ArtDeco_002_basecolor.jpg",
+                "isVideo" : false
+            }
+        },
+        "materials": {
+            "solarpanel_app": {
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "specular": {
+                    "r": 0.5,
+                    "g": 0.5,
+                    "b": 0.5
+                },
+                "shininess": 50,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1,
+                "textureref": "solarpanel_tex",
+                "texlength_s": 1,
+                "texlength_t": 1
+            },
+            "floormaterial": {
+                "color": {
+                    "r": 0.92,
+                    "g": 0.92,
+                    "b": 0.92
+                },
+                "specular": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "shininess": 0,
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "doubleSided": true,
+                "transparent": false,
+                "opacity": 1
+            },
+            "wallsmaterial": {
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "specular": {
+                    "r": 0.2,
+                    "g": 0.2,
+                    "b": 0.2
+                },
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "shininess": 10,
+                "transparent": false,
+                "opacity": 1,
+                "textureref": "wallstexture",
+                "texlength_s": 1,
+                "texlength_t": 1,
+                "twosided": true
+            },
+            "domematerial": {
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "specular": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "shininess": 50,
+                "transparent": false,
+                "opacity": 1,
+                "textureref": "dome_tex",
+                "bumpref": "dome_normalTex",
+                "bumpscale": 0.005,
+                "texlength_s": 3,
+                "texlength_t": 3,
+                "twosided": true
+            },
+            "doormaterial": {
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "specular": {
+                    "r": 0.2,
+                    "g": 0.2,
+                    "b": 0.2
+                },
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "shininess": 10,
+                "transparent": false,
+                "opacity": 1,
+                "textureref": "door_tex",
+                "texlength_s": 1,
+                "texlength_t": 1,
+                "twosided": true
+            },
+            "videomaterial": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "textureref": "video_bandeira",
+                "texlength_s": 1,
+                "texlength_t": 1,
+                "twosided": "true"
+            },
+            "billboardmaterial":{
+                "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "texlength_s": 1,
+                "texlength_t": 1,
+                "textureref": "billboard_tex",
+                "twosided": "true"
+            }
+
+            
+        },
+        "graph": {
+            "rootid": "scene",
+            "scene": {
+                "type": "node",
+                "castshadow": true,
+                "receiveshadow": true,
+                "children": {
+                    "directionallight1": {
+                        "type": "directionallight",
+                        "enabled": false,
+                        "color": {
+                            "r": 1,
+                            "g": 1,
+                            "b": 1,
+                            "a": 1
+                        },
+                        "intensity": 0,
+                        "castshadow": true,
+                        "shadowleft": -100,
+                        "shadowright": 100,
+                        "shadowtop": 100,
+                        "shadowbottom": -100,
+                        "shadowfar": 100.0,
+                        "shadowmapsize": 2048,
+                        "position": {
+                            "x": 300,
+                            "y": 600,
+                            "z": 300
+                        }
+                    },
+                    "nodesList": [
+                        "floor",
+                        "billboards"
+                    ]
+                }
+            },
+            "floor": {
+                "type": "node",
+                "receiveshadows": true,
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": -90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "floormaterial"
+                },
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": -100,
+                            "y": -100
+                        },
+                        "xy2": {
+                            "x": 100,
+                            "y": 100
+                        }
+                    }
+                }
+            },
+            "billboards": {
+                "type": "node",
+                "castshadow": true,
+                "receiveshadows": true,
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -60,
+                            "y": 5,
+                            "z": 0
+                        }
+                    }
+                ],
+                "materialref": {
+                    "materialId": "billboardmaterial"
+                },
+                "children": {
+                    "nodesList": [
+                        "billboard1",
+                        "billboard2",
+                        "billboard3"
+                    ]
+                }
+            },
+            "billboard1": {
+                "type": "node",
+                "receiveshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 5,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "billboard"
+                    ]
+                }
+            },
+            "billboard2": {
+                "type": "node",
+                "receiveshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1,
+                            "y": 0,
+                            "z": 11
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": -45,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "billboard"
+                    ]
+                }
+            },
+            "billboard3": {
+                "type": "node",
+                "receiveshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1,
+                            "y": 0,
+                            "z": -11
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 45,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "billboard"
+                    ]
+                }
+            },
+            "billboard": {
+                "type": "node",
+                "receiveshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "boxGeometry": {
+                        "type": "box",
+                        "xyz1": {
+                            "x": 1,
+                            "y": 5,
+                            "z": 5
+                        },
+                        "xyz2": {
+                            "x": -1,
+                            "y": -5,
+                            "z": -5
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
