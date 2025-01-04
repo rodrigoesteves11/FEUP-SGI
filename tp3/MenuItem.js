@@ -14,7 +14,7 @@ class MenuItem extends THREE.Object3D {
     const padding = 0.5;
     this.menuId = text.toUpperCase();
 
-    this.textObject = new TextMesh(text, this.defaultTextColor, this.size);
+    this.textObject = new TextMesh(this.text, this.defaultTextColor, this.size);
     const textWidth = this.textObject.getTextWidth();
     const textHeight = this.textObject.getTextHeight();
 
@@ -27,7 +27,7 @@ class MenuItem extends THREE.Object3D {
 
     const centerOffset = -textWidth / 2;
     this.textObject.position.set(centerOffset + padding / 2, 0, 0);
-    this.boxMesh.position.set(0, 0, -boxDepth / 2 - 0.02);
+    this.boxMesh.position.set(0, 0, -boxDepth / 2 - 0.04);
 
     this.add(this.boxMesh);
     this.add(this.textObject);
@@ -40,14 +40,14 @@ class MenuItem extends THREE.Object3D {
 
   setHover() {
     if (!this.isHovered) {
-      this.textObject.material.color.set(this.hoverTextColor);
+      this.textObject.changeColor(this.hoverTextColor);
       this.isHovered = true;
     }
   }
 
   unsetHover() {
     if (this.isHovered) {
-      this.textObject.material.color.set(this.defaultTextColor);
+      this.textObject.changeColor(this.defaultTextColor);
       this.isHovered = false;
     }
   }

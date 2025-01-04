@@ -56,7 +56,7 @@ class TextMesh extends THREE.Object3D {
       mesh.rotation.x = Math.PI;
       this.add(mesh);
   
-      xOffset += this.size - (this.size / 2 - 0.2); 
+      xOffset += this.size - (this.size / 2 - 0.1); 
     }
 
     this.textWidth = xOffset;
@@ -69,6 +69,15 @@ class TextMesh extends THREE.Object3D {
 
   getTextHeight() {
     return this.textHeight;
+  }
+
+  changeColor(newColor) {
+    this.color = newColor;
+    this.children.forEach((child) => {
+      if (child.material) {
+        child.material.color.set(newColor);
+      }
+    });
   }
 }
 

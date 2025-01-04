@@ -14,8 +14,13 @@ class MyInitialMenu {
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
 
-    this.currentHoveredItem = null;
+    // Armazena especificamente os seletores
+    this.playerSelector = null;
+    this.botSelector = null;
 
+
+    //Callbacks
+    this.onModelSelected = () => {};
 
     //Events
     this.handlePointer = this.handlePointer.bind(this);
@@ -45,8 +50,31 @@ class MyInitialMenu {
       this.menuItems.push(menuItem);
       this.menuGroup.add(menuItem); 
     });
-  
 
+    
+    this.playerSelector = new ModelSelectorItem(
+      this.models,              
+      'PLAYER',                 
+      0xffffff,                 
+      0xebc88f,                 
+      0.5,                      
+      new THREE.Vector3(-2.5, -2, 0)  
+    );
+
+    this.botSelector = new ModelSelectorItem(
+      this.models,
+      'BOT',
+      0xffffff,
+      0xebc88f,
+      0.5,
+      new THREE.Vector3(2.5, -2, 0)
+    );
+
+    this.menuItems.push(this.playerSelector);
+    this.menuItems.push(this.botSelector);
+    this.menuGroup.add(this.playerSelector);
+    this.menuGroup.add(this.botSelector);
+    
     // // Adiciona os seletores de modelo
     // const playerSelector = new ModelSelectorItem('PLAYER', font, {
     //   position: new THREE.Vector3(-3, -1, -0.5),
@@ -87,18 +115,15 @@ class MyInitialMenu {
   }
 
   handlePointer(event) {
-    const canvas = event.target; // Certifique-se de usar o canvas correto
+    const canvas = event.target; 
     const rect = canvas.getBoundingClientRect();
 
-    // Coordenadas normalizadas do mouse
     const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     this.mouse.set(x, y);
 
-    // Configurar o Raycaster
     this.raycaster.setFromCamera(this.mouse, this.camera);
 
-    // Intersecta com todos os objetos no grupo
     const intersects = this.raycaster.intersectObjects(this.menuGroup.children, true);
 
     if (intersects.length > 0) {
@@ -106,36 +131,58 @@ class MyInitialMenu {
   
       if (targetObject?.userData?.menuId) {
         console.log(`Clicked on: ${targetObject.userData.menuId}`);
-        // this.onMenuItemSelected(targetObject.userData.menuId);
+        if (['BOT', 'PLAYER'].includes(targetObject.userData.menuId)) {
+          targetObject.cycleModel();
+        }
+        if(['SELECT NAME'].includes(targetObject.userData.menuId)){
+          this.onMenuItemSelected('SELECT NAME');
+        }
+        if(['START GAME'].includes(targetObject.userData.menuId)){
+          this.onMenuItemSelected('START GAME');
+        }
       }
     }
   }
 
   
-
   handlePointerMove(event) {
     const canvas = event.target;
     const rect = canvas.getBoundingClientRect();
 
-    // Calcula as coordenadas normalizadas do mouse
     const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     this.mouse.set(x, y);
 
-    // Configura o raycaster
     this.raycaster.setFromCamera(this.mouse, this.camera);
 
-    // Intersecta com os itens do menu
     const intersects = this.raycaster.intersectObjects(this.menuGroup.children, true);
 
-    let hoveredMenuId = null;
-
     if (intersects.length > 0) {
-      const intersectedObject = intersects[0].object;
-      
+      const targetObject = this.findDirectChild(intersects[0].object);
+  
+      if (targetObject?.userData?.menuId) {
+        if(this.currentHoveredItem !== targetObject){
+          if (this.currentHoveredItem) {
+            this.currentHoveredItem.unsetHover();
+          }
+          targetObject.setHover();
+          this.currentHoveredItem = targetObject;
+        }
+      } 
+    }else {
+      if (this.currentHoveredItem) {
+        this.currentHoveredItem.unsetHover();
+        this.currentHoveredItem = null;
+      }
     }
-    //TODO
-   
+  }
+
+  getPlayerModelUrl() {
+    return this.playerSelector?.getCurrentModelUrl();
+  }
+
+  getBotModelUrl() {
+    return this.botSelector?.getCurrentModelUrl();
   }
 
   /**
@@ -154,7 +201,6 @@ class MyInitialMenu {
     this.scene.remove(this.menuGroup);
   }
 
-  // Função para encontrar o filho direto do grupo
   findDirectChild(object) {
     while (object && object.parent !== this.menuGroup) {
       object = object.parent;

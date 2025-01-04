@@ -39,7 +39,7 @@ class MyApp {
     document.body.appendChild(this.stats.dom);
 
     this.initCameras();
-    this.setActiveCamera('Perspective');
+    this.setActiveCamera('Menu');
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -67,9 +67,10 @@ class MyApp {
   initCameras() {
     const aspect = window.innerWidth / window.innerHeight;
 
-    const perspective1 = new THREE.PerspectiveCamera(75, aspect, 0.1, 1000);
-    perspective1.position.set(-60, 5, 0); 
-    this.cameras['Perspective'] = perspective1;
+    const perspective1 = new THREE.PerspectiveCamera(69, aspect, 0.1, 1000);
+    perspective1.position.set(-73, 5, 0); 
+    this.cameras['Menu'] = perspective1;
+    this.cameras['Menu'].lookAt(0, 5, 0);
 
   }
 
@@ -102,8 +103,8 @@ class MyApp {
         // are the controls yet?
         if (this.controls === null) {
             // Orbit controls allow the camera to orbit around a target.
-            this.controls = new OrbitControls( this.activeCamera, this.renderer.domElement );
-            this.controls.enableZoom = true;
+            // this.controls = new OrbitControls( this.activeCamera, this.renderer.domElement );
+            // this.controls.enableZoom = true;
         }
         else {
             this.controls.object = this.activeCamera
