@@ -4,6 +4,21 @@
   <meta charset="UTF-8" />
   <title>SGI Hello world TP1</title>
 
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #mini_map {
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      width: 300px;
+      height: 300px;
+      box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+
   <link rel="shortcut icon" href="image/favicon/image.png" />
   <link rel="stylesheet" href="styles.css">
 
@@ -20,6 +35,7 @@
 </head>
 
 <body>
+  <div id="mini_map"></div>
   <div id="canvas"></div>
   <div id="camera"></div>
   <script type="module" src="main.js"></script>

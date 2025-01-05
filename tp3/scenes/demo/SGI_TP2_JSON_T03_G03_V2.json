@@ -418,7 +418,8 @@
                     },
                     "nodesList": [
                         "floor",
-                        "billboards"
+                        "billboards",
+                        "finish"
                     ]
                 }
             },
@@ -591,6 +592,123 @@
                             "x": -1,
                             "y": -5,
                             "z": -5
+                        }
+                    }
+                }
+            },
+            "finish": {
+                "type": "node",
+                "receiveshadows": true,
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "support1",
+                        "support2",
+                        "flag"
+                    ]
+                }
+            },
+            "support1":{
+                "type": "node",
+                "castshadow": true,
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 33,
+                            "y": 10.3,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "base": 0.5,
+                        "top": 0.5,
+                        "height": 20,
+                        "slices": 16,
+                        "stacks": 16,
+                        "capsclose":true
+                    }
+                }
+            },
+            "support2":{
+                "type": "node",
+                "castshadow": true,
+                "materialref": {
+                    "materialId": "wallsmaterial"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 61,
+                            "y": 10.3,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "base": 0.5,
+                        "top": 0.5,
+                        "height": 20,
+                        "slices": 16,
+                        "stacks": 16,
+                        "capsclose":true
+                    }
+                }
+            },
+            "flag":{
+                "type": "node",
+                "receiveshadows": true,
+                "materialref": {
+                    "materialId": "videomaterial"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 47,
+                            "y": 17,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 29,
+                            "y": 5,
+                            "z": 0.01
+                        }
+                    }
+                ],
+                "children": {
+                    "boxGeometry": {
+                        "type": "box",
+                        "xyz1": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                        },
+                        "xyz2": {
+                            "x": -0.5,
+                            "y": -0.5,
+                            "z": -0.5
                         }
                     }
                 }

@@ -22,6 +22,9 @@ class MyApp {
     this.axis = null;
     this.contents = null;
 
+    this.miniMap = null;
+    this.miniMapRenderer = null;
+
     this.gameManager = null;
 
     this.lastFrameTime = null;
@@ -37,6 +40,12 @@ class MyApp {
     this.stats = new Stats();
     this.stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
     document.body.appendChild(this.stats.dom);
+
+    this.miniMap = document.getElementById('mini_map');
+    this.miniMapRenderer = new THREE.WebGLRenderer();
+    this.miniMapRenderer.setSize(this.miniMap.offsetWidth, this.miniMap.offsetHeight);
+    this.miniMapRenderer.setSize(this.miniMap.offsetWidth, this.miniMap.offsetHeight);
+    this.miniMap.appendChild(this.miniMapRenderer.domElement);
 
     this.initCameras();
     this.setActiveCamera('Menu');
@@ -72,6 +81,16 @@ class MyApp {
     this.cameras['Menu'] = perspective1;
     this.cameras['Menu'].lookAt(0, 5, 0);
 
+    const miniMapCamera = new THREE.PerspectiveCamera(
+      90,
+      this.miniMap.offsetWidth / this.miniMap.offsetHeight,
+      0.1,
+      100
+    );
+    
+    miniMapCamera.position.set(0, 99, 0);
+    miniMapCamera.lookAt(0, 0, 0);
+    this.cameras['Minimap'] = miniMapCamera;
   }
 
   /**
@@ -155,24 +174,31 @@ class MyApp {
     if (this.lastFrameTime === null) {
       this.lastFrameTime = timestamp;
     }
-
+  
     const deltaMs = timestamp - this.lastFrameTime;
     this.lastFrameTime = timestamp;
     const deltaTime = deltaMs * 0.001;
-
+  
     this.stats.begin();
-
+  
+    // Update the active camera if necessary
     this.updateCameraIfRequired();
     this.lastCameraName = this.activeCameraName;
-
+  
+    // Update game logic
     this.gameManager.update(deltaTime);
-
-    // Renderiza a cena
+  
+    // Render the main scene with the active camera
     this.renderer.render(this.scene, this.activeCamera);
-
+  
+    // Render the minimap scene with the minimap camera
+    if (this.miniMapRenderer && this.cameras['Minimap']) {
+      this.miniMapRenderer.render(this.scene, this.cameras['Minimap']);
+    }
+  
     this.stats.end();
-
-    // Solicita o próximo frame
+  
+    // Request the next frame
     requestAnimationFrame((t) => this.render(t));
   }
 }

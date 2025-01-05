@@ -1,6 +1,7 @@
 // GameManager.js
 import { GAME_STATES } from './GameStates.js';
 import { MyInitialMenu } from './MyInitialMenu.js';
+import { MyTrack } from './MyTrack.js';
 import MyModelLoader from './MyModelLoader.js';
 
 class GameManager {
@@ -29,6 +30,10 @@ class GameManager {
     this.autonomousBalloon = {
       choosenBalloon: null,
     }
+
+    // Inicializa o menu inicial
+    this.track = new MyTrack(this.app.scene);
+   
   }
 
   /**
@@ -37,6 +42,7 @@ class GameManager {
   async init() {
     await this.modelLoader.loadModels();
     this.initialMenu.init();
+    this.track.init();
   }
 
   /**
