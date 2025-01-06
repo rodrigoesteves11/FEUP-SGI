@@ -42,7 +42,7 @@ class MyApp {
     document.body.appendChild(this.stats.dom);
 
     this.miniMap = document.getElementById('mini_map');
-    this.miniMapRenderer = new THREE.WebGLRenderer();
+    this.miniMapRenderer = new THREE.WebGLRenderer({ antialias: true });
     this.miniMapRenderer.setSize(this.miniMap.offsetWidth, this.miniMap.offsetHeight);
     this.miniMapRenderer.setSize(this.miniMap.offsetWidth, this.miniMap.offsetHeight);
     this.miniMap.appendChild(this.miniMapRenderer.domElement);
@@ -79,7 +79,6 @@ class MyApp {
     const perspective1 = new THREE.PerspectiveCamera(69, aspect, 0.1, 1000);
     perspective1.position.set(-73, 5, 0); 
     this.cameras['Menu'] = perspective1;
-    this.cameras['Menu'].lookAt(0, 5, 0);
 
     const miniMapCamera = new THREE.PerspectiveCamera(
       90,

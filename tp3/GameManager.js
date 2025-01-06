@@ -1,8 +1,12 @@
 // GameManager.js
+import * as THREE from 'three';
 import { GAME_STATES } from './GameStates.js';
 import { MyInitialMenu } from './MyInitialMenu.js';
 import { MyTrack } from './MyTrack.js';
 import MyModelLoader from './MyModelLoader.js';
+import MyBalloon  from './MyBalloon.js';
+import ThirdPersonBalloonCamera from './ThirdPersonBalloonCamera.js';
+import FirstPersonBalloonCamera from './FirstPersonBalloonCamera.js'; 
 
 class GameManager {
   /**
@@ -12,7 +16,7 @@ class GameManager {
     this.app = app;
     this.gameState = GAME_STATES.INITIAL;
 
-    //Load Balloon Models
+    // Load Balloon Models
     this.modelLoader = new MyModelLoader();
 
     // Inicializa o menu inicial
@@ -25,15 +29,17 @@ class GameManager {
       timestamp: 0,
       vouchers: 0,
       choosenBalloon: null,
+      laps: 0,
     }
 
     this.autonomousBalloon = {
       choosenBalloon: null,
+      laps: 0,
     }
 
     // Inicializa o menu inicial
     this.track = new MyTrack(this.app.scene);
-   
+
   }
 
   /**
@@ -87,7 +93,7 @@ class GameManager {
   
     const nameInput = document.createElement('input');
     nameInput.type = 'text';
-    nameInput.placeholder = '';
+    nameInput.placeholder = 'Digite seu nome';
     nameInput.style.fontSize = '16px';
     nameInput.style.padding = '8px';
     nameInput.style.borderRadius = '4px';
@@ -95,16 +101,13 @@ class GameManager {
     nameInput.style.outline = 'none';
   
     nameInput.focus();
+    nameInput.setAttribute('autofocus', 'autofocus');
   
     const confirmName = () => {
       const nome = nameInput.value.trim();
-      if (nome) {
+      if(nome){
         this.player.name = nome;
-        console.log("Nome do jogador definido para: " + this.player.name);
-      } else {
-        console.log("Nenhum nome foi definido");
       }
-  
       document.body.removeChild(overlayDiv);
   
       this.initialMenu.addEventListeners();
@@ -120,28 +123,68 @@ class GameManager {
     overlayDiv.appendChild(containerDiv);
     document.body.appendChild(overlayDiv);
   }
-  
-  
-  
 
-  startGame() {
+  async startGame() {
     
     this.player.choosenBalloon = this.initialMenu.getPlayerModelUrl();
     this.autonomousBalloon.choosenBalloon = this.initialMenu.getBotModelUrl();
     
     if (!this.player.name || this.player.name.trim() === "") {
-      // Você pode usar alert, modal, console log etc.
-      alert("Por favor, selecione o seu nome antes de iniciar o jogo!");
+      alert("Please select a name before starting the game.");
       return;
     }
     
-    console.log("Iniciando o jogo...");
-    // Remove o menu inicial da cena
-    //this.initialMenu.removeMenu();
+    console.log("Starting game...");
+  
+    this.initialMenu.removeEventListeners();
 
-    // Muda o estado do jogo
-    //this.gameState = GAME_STATES.RUNNING;
+    const thirdPersonCamera = new THREE.PerspectiveCamera(
+      75, 
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    thirdPersonCamera.position.set(0, 10, -10);
+    thirdPersonCamera.lookAt(0, 3, -10);
 
+    this.balloon = new MyBalloon(this.app.scene, this.modelLoader, this.player.choosenBalloon);
+
+    this.thirdPersonCam = new ThirdPersonBalloonCamera({
+      camera: thirdPersonCamera,
+      target: this.balloon
+    });
+
+    const firstPersonCamera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    
+    this.firstPersonCam = new FirstPersonBalloonCamera({
+      camera: firstPersonCamera,
+      target: this.balloon
+    });
+
+
+    this.app.cameras['ThirdPersonCamera'] = thirdPersonCamera;
+    this.app.cameras['FirstPersonCamera'] = firstPersonCamera;
+
+    this.app.setActiveCamera('ThirdPersonCamera');
+
+    this.activeCamera = 'ThirdPersonCamera';
+
+    this.cameras = {
+      'ThirdPersonCamera': this.thirdPersonCam,
+      'FirstPersonCamera': this.firstPersonCam
+    };
+
+    
+
+    this.gameState = GAME_STATES.RUNNING;
+    this.balloon.removeKeyboard();
+    await this.countdownStart();
+    this.balloon.initKeyboard();
     /*
     
     Inicializar o jogo aqui.
@@ -149,24 +192,133 @@ class GameManager {
     Fazer Contagem 3,2,1
     Iniciar Contador de tempo
     3 voltas ?
-
     
+
     */
+
+    this.initGameKeyListeners();
   }
 
   /**
-   * Atualiza o GameManager a cada frame.
-   * @param {Number} deltaTime - Tempo decorrido desde o último frame (em segundos).
+   * Inicializa os listeners de teclado para o estado do jogo.
    */
+  initGameKeyListeners() {
+    this.gameKeyDownHandler = (event) => {
+      switch (event.code) {
+        case 'KeyV':
+          this.toggleCamera();
+          break;
+        case 'Escape':
+          this.exitGame();
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', this.gameKeyDownHandler);
+  }
+  
+  toggleCamera() {
+    if (this.activeCamera === 'ThirdPersonCamera') {
+      this.app.setActiveCamera('FirstPersonCamera');
+      this.activeCamera = 'FirstPersonCamera';
+    } else {
+      this.app.setActiveCamera('ThirdPersonCamera');
+      this.activeCamera = 'ThirdPersonCamera';
+    }
+  }
+
+  /**
+   * Sai do jogo e retorna ao estado inicial.
+   */
+  exitGame() {
+    console.log("Exiting game...");
+
+    delete this.app.cameras['ThirdPersonCamera'];
+    delete this.app.cameras['FirstPersonCamera'];
+
+    this.app.setActiveCamera('Menu'); 
+
+    
+    document.removeEventListener('keydown', this.gameKeyDownHandler);
+
+    if (this.balloon) {
+      this.balloon.dispose(); 
+      this.balloon = null;
+    }
+
+    this.initialMenu.addEventListeners();
+
+    this.gameState = GAME_STATES.INITIAL;
+  }
+
+  countdownStart() {
+    return new Promise((resolve) => {
+      const countdownDiv = document.createElement('div');
+      countdownDiv.id = 'countdownOverlay';
+      countdownDiv.style.position = 'absolute';
+      countdownDiv.style.top = '0';
+      countdownDiv.style.left = '0';
+      countdownDiv.style.width = '100%';
+      countdownDiv.style.height = '100%';
+      countdownDiv.style.display = 'flex';
+      countdownDiv.style.alignItems = 'center';
+      countdownDiv.style.justifyContent = 'center';
+      countdownDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+      countdownDiv.style.zIndex = '1000'; 
+  
+      const countdownImage = document.createElement('img');
+      countdownImage.id = 'countdownImage';
+      countdownImage.src = ''; 
+      countdownImage.style.width = '200px'; 
+  
+      countdownDiv.appendChild(countdownImage);
+      document.body.appendChild(countdownDiv);
+  
+      const countdownSequence = ['3.png', '2.png', '1.png', 'go.png'];
+      let current = 0;
+  
+      if (countdownSequence.length > 0) {
+        countdownImage.src = `image/${countdownSequence[current]}`;
+        current++;
+      }
+  
+      const interval = setInterval(() => {
+        if (current < countdownSequence.length) {
+          countdownImage.src = `image/${countdownSequence[current]}`;
+          current++;
+        } else {
+          clearInterval(interval);
+          document.body.removeChild(countdownDiv);
+          resolve();
+        }
+      }, 1000);
+    });
+  }
+  
+
+
+
+
   update(deltaTime) {
     if (this.gameState === GAME_STATES.INITIAL) {
       this.initialMenu.update(deltaTime);
     } else if (this.gameState === GAME_STATES.RUNNING) {
-      //TODO
-    } else if (this.gameState === GAME_STATES.INITIAL) {
-        this.initialMenu.update(deltaTime);
+      if (this.balloon && this.thirdPersonCam && this.firstPersonCam) {
+        this.thirdPersonCam.update(deltaTime); 
+        this.firstPersonCam.update(deltaTime);
+        this.balloon.update(deltaTime);
+      }
+
+      if (this.activeCamera && this.cameras[this.activeCamera]) {
+        this.cameras[this.activeCamera].update(deltaTime);
+      }
+      
     }
   }
+
+    
 }
 
 export { GameManager };

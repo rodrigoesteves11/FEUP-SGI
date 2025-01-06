@@ -6,6 +6,7 @@ class MyModelLoader {
         this.modelUrls = [
             'models/blue.glb',
             'models/pink.glb',
+            'models/red.glb'
         ];
         this.loadedModels = new Map();
 
