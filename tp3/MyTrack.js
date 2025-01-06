@@ -16,15 +16,16 @@ class MyTrack extends THREE.Group
         this.closedCurve = false;
     
         this.path = new THREE.CatmullRomCurve3([
-          new THREE.Vector3(-7, 0, 0),
-          new THREE.Vector3(-4, 0, 76),
-          new THREE.Vector3(0, 0, 80),
-          new THREE.Vector3(60, 0, 40),
-          new THREE.Vector3(40, 0, 0),
-          new THREE.Vector3(60, 0, -40),
-          new THREE.Vector3(0, 0, -80),
-          new THREE.Vector3(-8, 0, -76),
-          new THREE.Vector3(-7, 0, 0)
+          new THREE.Vector3(-20, 0, 0),
+          new THREE.Vector3(-20, 0, 60),
+          new THREE.Vector3(60, 0, 60),
+          new THREE.Vector3(60, 0, 20),
+          new THREE.Vector3(20, 0, 20),
+          new THREE.Vector3(20, 0, -20),
+          new THREE.Vector3(60, 0, -20),
+          new THREE.Vector3(60, 0, -60),
+          new THREE.Vector3(-20, 0, -60),
+          new THREE.Vector3(-20, 0, 0)
         ]);
 
         this.trackGroup = new THREE.Group();
