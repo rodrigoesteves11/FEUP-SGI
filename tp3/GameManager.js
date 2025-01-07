@@ -7,6 +7,9 @@ import MyModelLoader from './MyModelLoader.js';
 import MyBalloon  from './MyBalloon.js';
 import ThirdPersonBalloonCamera from './ThirdPersonBalloonCamera.js';
 import FirstPersonBalloonCamera from './FirstPersonBalloonCamera.js'; 
+import { MyObstacles } from './MyObstacles.js'; // Import MyObstacles class
+import { MyPowerups } from './MyPowerups.js';
+
 
 class GameManager {
   /**
@@ -37,9 +40,31 @@ class GameManager {
       laps: 0,
     }
 
-    // Inicializa o menu inicial
+    // Inicializa a track
     this.track = new MyTrack(this.app.scene);
 
+    // Inicializa os obstaculos
+    this.obstacleCoordinates = [
+      { x: 5, y: 1, z: 40 },
+      { x: 20, y: 10, z: 70 },
+      { x: 70, y: 5, z: 60 },
+      { x: 50, y: 2, z: 25 },
+      { x: 80, y: 10, z: -25 },
+      { x: 20, y: 8, z: -60 },
+
+    ];
+    this.obstacles = new MyObstacles(this.obstacleCoordinates,this.app.scene);  
+
+    // Inicializa os powerups
+    this.powerupsCoordinates = [
+      { x: -5, y: 1, z: 60 },
+      { x: 85, y: 10, z: 30 },
+      { x: 40, y: 2, z: -10 },
+      { x: 60, y: 8, z: -70 },
+      { x: 0, y: 10, z: -10 },
+
+    ];
+    this.powerups = new MyPowerups(this.powerupsCoordinates,this.app.scene);  
   }
 
   /**
@@ -49,6 +74,12 @@ class GameManager {
     await this.modelLoader.loadModels();
     this.initialMenu.init();
     this.track.init();
+
+    // Initialize MyObstacles
+    this.obstacles.generateObstacles(); // Call obstacle generation
+
+    // Initialize MyPowerups
+    this.powerups.generatePowerups(); // Call powerups generation
   }
 
   /**

@@ -188,16 +188,7 @@
         "filepath": "scenes/demo/textures/solar_panel.png"
       },
       "dome_tex": {
-        "filepath": "scenes/demo/textures/mipmapObservatory/glass1024.jpg",
-        "isVideo": false,
-        "mipmap0": "scenes/demo/textures/mipmapObservatory/glass1024.jpg",
-        "mipmap1": "scenes/demo/textures/mipmapObservatory/glass512.jpg",
-        "mipmap2": "scenes/demo/textures/mipmapObservatory/glass256.jpg",
-        "mipmap3": "scenes/demo/textures/mipmapObservatory/glass128.jpg",
-        "mipmap4": "scenes/demo/textures/mipmapObservatory/glass64.jpg",
-        "mipmap5": "scenes/demo/textures/mipmapObservatory/glass32.jpg",
-        "mipmap6": "scenes/demo/textures/mipmapObservatory/glass16.jpg",
-        "mipmap7": "scenes/demo/textures/mipmapObservatory/glass8.jpg"
+        "filepath": "scenes/demo/textures/red.png"
       },
       "dome_normalTex": {
         "filepath": "scenes/demo/textures/mipmapObservatory/glass_bump_map.jpg",
@@ -208,7 +199,7 @@
         "isVideo": false
       },
       "video_bandeira": {
-        "filepath": "scenes/demo/textures/video/portugal_flag.mp4",
+        "filepath": "scenes/demo/textures/video/finish_flag.mp4",
         "isVideo": true
       },
       "billboard_tex": {
@@ -288,8 +279,8 @@
       "domematerial": {
         "color": {
           "r": 1,
-          "g": 1,
-          "b": 1
+          "g": 0,
+          "b": 0
         },
         "specular": {
           "r": 1,
@@ -297,18 +288,18 @@
           "b": 1
         },
         "emissive": {
-          "r": 0,
+          "r": 0.5,
           "g": 0,
           "b": 0
         },
-        "shininess": 50,
+        "shininess": 80,
         "transparent": false,
         "opacity": 1,
         "textureref": "dome_tex",
         "bumpref": "dome_normalTex",
         "bumpscale": 0.005,
-        "texlength_s": 3,
-        "texlength_t": 3,
+        "texlength_s": 1,
+        "texlength_t": 1,
         "twosided": true
       },
       "doormaterial": {
@@ -587,7 +578,7 @@
           {
             "type": "translate",
             "amount": {
-              "x": 13,
+              "x": -47,
               "y": 0,
               "z": 0
             }
