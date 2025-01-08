@@ -12,7 +12,7 @@ class MyGuiInterface {
     constructor(app) {
         this.app = app;
         this.app.gui = this; 
-        this.datgui = new GUI();
+        //this.datgui = new GUI();
         this.contents = null;
     }
 

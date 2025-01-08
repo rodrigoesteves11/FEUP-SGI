@@ -42,10 +42,6 @@ class MyApp {
     document.body.appendChild(this.stats.dom);
 
     this.miniMap = document.getElementById('mini_map');
-    this.miniMapRenderer = new THREE.WebGLRenderer({ antialias: true });
-    this.miniMapRenderer.setSize(this.miniMap.offsetWidth, this.miniMap.offsetHeight);
-    this.miniMapRenderer.setSize(this.miniMap.offsetWidth, this.miniMap.offsetHeight);
-    this.miniMap.appendChild(this.miniMapRenderer.domElement);
 
     this.initCameras();
     this.setActiveCamera('Menu');
@@ -61,8 +57,8 @@ class MyApp {
     document.getElementById("canvas").appendChild(this.renderer.domElement);
 
     // Inicializa OrbitControls para a câmera ativa
-    this.controls = new OrbitControls(this.activeCamera, this.renderer.domElement);
-    this.controls.enableZoom = true;
+    //this.controls = new OrbitControls(this.activeCamera, this.renderer.domElement);
+    //this.controls.enableZoom = true;
 
     window.addEventListener('resize', this.onResize.bind(this), false);
 
@@ -70,26 +66,62 @@ class MyApp {
  
   }
 
+  initMiniMap() {
+    this.miniMap = document.createElement('div');
+    this.miniMap.id = 'mini_map';
+    this.miniMap.style.position = 'absolute';
+    this.miniMap.style.right = '2rem';
+    this.miniMap.style.bottom = '2rem';
+    this.miniMap.style.width = '300px';
+    this.miniMap.style.height = '300px';
+    this.miniMap.style.boxShadow = '1px 1px 5px 3px rgba(0, 0, 0, 0.3)';
+    this.miniMap.style.zIndex = '100';
+  
+    // Adiciona a div ao body
+    document.body.appendChild(this.miniMap);
+  
+    this.renderMiniMap = true;
+  
+    // Inicializa o renderer do minimapa
+    this.miniMapRenderer = new THREE.WebGLRenderer({ antialias: true });
+    this.miniMapRenderer.setSize(this.miniMap.offsetWidth, this.miniMap.offsetHeight);
+    this.miniMap.appendChild(this.miniMapRenderer.domElement);
+  
+    // Configura a câmera do minimapa
+    const miniMapWidth = this.miniMap.offsetWidth / 2.5;
+    const miniMapHeight = this.miniMap.offsetHeight / 2.5;
+  
+    const miniMapCamera = new THREE.OrthographicCamera(
+      -miniMapWidth,
+      miniMapWidth,
+      miniMapHeight,
+      -miniMapHeight,
+      0.1,
+      100
+    );
+  
+    miniMapCamera.position.set(0, 50, 0);
+    miniMapCamera.lookAt(0, 0, 0);
+  
+    this.cameras['Minimap'] = miniMapCamera;
+  
+  }
+  
+  
+  
+
   /**
    * inicializa todas as câmeras
    */
   initCameras() {
     const aspect = window.innerWidth / window.innerHeight;
 
-    const perspective1 = new THREE.PerspectiveCamera(69, aspect, 0.1, 1000);
+    const perspective1 = new THREE.PerspectiveCamera(70, aspect, 0.1, 1000);
     perspective1.position.set(-73, 5, 0); 
     this.cameras['Menu'] = perspective1;
+    perspective1.lookAt(0, 0, 0);
 
-    const miniMapCamera = new THREE.PerspectiveCamera(
-      90,
-      this.miniMap.offsetWidth / this.miniMap.offsetHeight,
-      0.1,
-      100
-    );
     
-    miniMapCamera.position.set(0, 99, 0);
-    miniMapCamera.lookAt(0, 0, 0);
-    this.cameras['Minimap'] = miniMapCamera;
   }
 
   /**
@@ -191,7 +223,7 @@ class MyApp {
     this.renderer.render(this.scene, this.activeCamera);
   
     // Render the minimap scene with the minimap camera
-    if (this.miniMapRenderer && this.cameras['Minimap']) {
+    if (this.renderMiniMap) {
       this.miniMapRenderer.render(this.scene, this.cameras['Minimap']);
     }
   

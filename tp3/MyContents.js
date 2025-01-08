@@ -21,7 +21,7 @@ class MyContents {
     init() {
         if (this.axis === null) {
             this.axis = new MyAxis(this);
-            this.app.scene.add(this.axis);
+            //this.app.scene.add(this.axis);
         }
     }
 
@@ -43,7 +43,8 @@ class MyContents {
             this.objectCreator = new ObjectCreator(this.app, graphLoader, materialsLoader);
             this.objectCreator.createObjects();          
             this.createGuiInterface();
-            console.info("Scene successfully built.");          
+            console.info("Scene successfully built.");   
+                   
 
         } else {
             console.error("Estrutura inválida ou dados ausentes no arquivo carregado.");
@@ -161,7 +162,7 @@ class MyContents {
         let gui = new MyGuiInterface(this.app);
         gui.setContents(this);
         this.app.setGui(gui);
-        gui.init();
+        //gui.init();
     }
 
     updatePolygonWireframe(wireframe) {

@@ -35,8 +35,9 @@ class MyInitialMenu {
 
   createMenuItems() {
     const textItems = [
-      { text: 'START GAME', color: 0xffffff, hoverColor: 0xebc88f, size: 1, position: new THREE.Vector3(0, 4, 0) },
-      { text: 'SELECT NAME', color: 0xffffff, hoverColor: 0xebc88f, size: 1, position: new THREE.Vector3(0, 2, 0) }
+      { text: 'START GAME', color: 0xffffff, hoverColor: 0xebc88f, size: 1, position: new THREE.Vector3(0, 6, 0) },
+      { text: 'SELECT NAME', color: 0xffffff, hoverColor: 0xebc88f, size: 1, position: new THREE.Vector3(0, 4, 0) },
+      { text: 'STARTING POS', color: 0xffffff, hoverColor: 0xebc88f, size: 1, position: new THREE.Vector3(0, 2, 0) }
     ];
   
     textItems.forEach(itemData => {
@@ -74,31 +75,6 @@ class MyInitialMenu {
     this.menuItems.push(this.botSelector);
     this.menuGroup.add(this.playerSelector);
     this.menuGroup.add(this.botSelector);
-    
-    // // Adiciona os seletores de modelo
-    // const playerSelector = new ModelSelectorItem('PLAYER', font, {
-    //   position: new THREE.Vector3(-3, -1, -0.5),
-    //   modelUrls: [
-    //     'models/pink.glb',
-    //     'models/blue.glb',
-    //   ],
-    //   onModelSelected: (modelUrl) => {
-    //     this.onModelSelectedCallback('PLAYER', modelUrl);
-    //   }
-    // });
-
-    // const botSelector = new ModelSelectorItem('BOT', font, {
-    //   position: new THREE.Vector3(3, -1, -0.5),
-      
-    //   onModelSelected: (modelUrl) => {
-    //     this.onModelSelectedCallback('BOT', modelUrl);
-    //   }
-    // });
-
-    // this.menuItems.push(playerSelector);
-    // this.menuItems.push(botSelector);
-    // this.menuGroup.add(playerSelector.getObject());
-    // this.menuGroup.add(botSelector.getObject());
 
     this.menuGroup.position.set(-56.2, 3, 0);
     this.menuGroup.rotation.y = -Math.PI / 2;
@@ -139,6 +115,9 @@ class MyInitialMenu {
         }
         if(['START GAME'].includes(targetObject.userData.menuId)){
           this.onMenuItemSelected('START GAME');
+        }
+        if(['STARTING POS'].includes(targetObject.userData.menuId)){
+          this.onMenuItemSelected('STARTING POS');
         }
       }
     }
@@ -208,11 +187,6 @@ class MyInitialMenu {
     return object;
   }
 
-
-  /**
-   * Atualiza qualquer lógica específica do menu (opcional).
-   * @param {Number} deltaTime 
-   */
   update(deltaTime) {
     // Atualizações específicas do menu, se necessário
   }

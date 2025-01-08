@@ -11,7 +11,7 @@
         "r": 1,
         "g": 1,
         "b": 1,
-        "intensity": 0
+        "intensity": 0.5
       },
       "fog": {
         "color": {
@@ -24,9 +24,9 @@
       },
       "skybox": {
         "size": {
-          "x": 200,
-          "y": 200,
-          "z": 200
+          "x": 250,
+          "y": 250,
+          "z": 250
         },
         "center": {
           "x": 0,
@@ -179,10 +179,10 @@
     },
     "textures": {
       "floortexture": {
-        "filepath": "scenes/demo/textures/mars_ground.png"
+        "filepath": "scenes/demo/textures/grass.jpg"
       },
       "wallstexture": {
-        "filepath": "scenes/demo/textures/walls.png"
+        "filepath": ""
       },
       "solarpanel_tex": {
         "filepath": "scenes/demo/textures/solar_panel.png"
@@ -233,9 +233,9 @@
       },
       "floormaterial": {
         "color": {
-          "r": 0.92,
-          "g": 0.92,
-          "b": 0.92
+          "r": 0.5,
+          "g": 1,
+          "b": 0.5
         },
         "specular": {
           "r": 1,
@@ -249,8 +249,11 @@
           "b": 0
         },
         "doubleSided": true,
+        "textureref": "floortexture",
         "transparent": false,
-        "opacity": 1
+        "opacity": 1,
+        "texlength_s": 5,
+        "texlength_t": 5
       },
       "wallsmaterial": {
         "color": {
@@ -379,25 +382,25 @@
       "rootid": "scene",
       "scene": {
         "type": "node",
-        "castshadow": true,
+        "castshadows": true,
         "receiveshadow": true,
         "children": {
           "directionallight1": {
             "type": "directionallight",
-            "enabled": false,
+            "enabled": true,
             "color": {
               "r": 1,
               "g": 1,
               "b": 1,
               "a": 1
             },
-            "intensity": 0,
+            "intensity": 1,
             "castshadow": true,
-            "shadowleft": -100,
-            "shadowright": 100,
-            "shadowtop": 100,
-            "shadowbottom": -100,
-            "shadowfar": 100.0,
+            "shadowleft": -250,
+            "shadowright": 250,
+            "shadowtop": 250,
+            "shadowbottom": -250,
+            "shadowfar": 1000.0,
             "shadowmapsize": 2048,
             "position": {
               "x": 300,
@@ -436,19 +439,19 @@
           "rectanglePrim": {
             "type": "rectangle",
             "xy1": {
-              "x": -100,
-              "y": -100
+              "x": -125,
+              "y": -125
             },
             "xy2": {
-              "x": 100,
-              "y": 100
+              "x": 125,
+              "y": 125
             }
           }
         }
       },
       "billboards": {
         "type": "node",
-        "castshadow": true,
+        "castshadows": true,
         "receiveshadows": true,
         "transforms": [
           {
@@ -477,6 +480,7 @@
       },
       "billboard1": {
         "type": "node",
+        "castshadows": true,
         "receiveshadows": true,
         "transforms": [
           {
@@ -494,6 +498,7 @@
       },
       "billboard2": {
         "type": "node",
+        "castshadows": true,
         "receiveshadows": true,
         "transforms": [
           {
@@ -519,6 +524,7 @@
       },
       "billboard3": {
         "type": "node",
+        "castshadows": true,
         "receiveshadows": true,
         "transforms": [
           {
@@ -544,6 +550,7 @@
       },
       "billboard": {
         "type": "node",
+        "castshadows": true,
         "receiveshadows": true,
         "transforms": [
           {
@@ -573,6 +580,7 @@
       },
       "finish": {
         "type": "node",
+        "castshadows": true,
         "receiveshadows": true,
         "transforms": [
           {
@@ -590,7 +598,8 @@
       },
       "support1": {
         "type": "node",
-        "castshadow": true,
+        "castshadows": true,
+        "receiveshadows": true,
         "materialref": {
           "materialId": "wallsmaterial"
         },
@@ -618,7 +627,8 @@
       },
       "support2": {
         "type": "node",
-        "castshadow": true,
+        "receiveshadows": true,
+        "castshadows": true,
         "materialref": {
           "materialId": "wallsmaterial"
         },

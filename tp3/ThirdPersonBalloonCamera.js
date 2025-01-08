@@ -7,8 +7,8 @@ class ThirdPersonBalloonCamera {
         this.camera = params.camera;
         this.target = params.target;
 
-        this.idealOffset = params.offset || new THREE.Vector3(0, 10, -10);
-        this.idealLookAt = params.lookAtOffset || new THREE.Vector3(0, 3, 10);
+        this.idealOffset = params.offset || new THREE.Vector3(0, 10, -12);
+        this.idealLookAt = params.lookAtOffset || new THREE.Vector3(0, 4, 10);
 
         this.currentPosition = new THREE.Vector3();
         this.currentLookAt = new THREE.Vector3();

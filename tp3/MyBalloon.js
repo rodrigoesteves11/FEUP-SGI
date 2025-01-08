@@ -2,14 +2,15 @@
 import * as THREE from 'three';
 
 class MyBalloon {
-  constructor(scene, modelLoader, modelUrl) {
+  constructor(scene, modelLoader, modelUrl, position) {
     this.scene = scene;
     this.modelLoader = modelLoader;
     this.modelUrl = modelUrl;
+    this.position = position;
 
     this.mesh = null;
 
-    this.layerBases = [1.7, 4.7, 7.7, 10.7, 13.7];
+    this.layerBases = [0.11, 3.11, 6.11, 9.11, 12.11];
     this.targetLayer = 0;    
 
 
@@ -17,7 +18,7 @@ class MyBalloon {
     this.verticalTimer = 0;
     this.transitionDuration = 0.3; 
 
-    this.windSpeed = 5;
+    this.windSpeed = 10;
 
     this.windDirections = [
       new THREE.Vector3(0, 0, 0),
@@ -34,13 +35,14 @@ class MyBalloon {
     this.initKeyboard();
 
     this.loadModel();
+    this.setInitialPosition(this.position);
   }
 
   loadModel() {
     this.mesh = this.modelLoader.getModel(this.modelUrl, 7);
 
 
-    this.mesh.position.set(0, this.layerBases[0], 0);
+    //this.mesh.position.set(0, this.layerBases[0], 0);
 
     this.mesh.traverse((obj) => {
       if (obj.isMesh) {
@@ -51,7 +53,19 @@ class MyBalloon {
 
     this.scene.add(this.mesh);
 
+    this.boundingBox = new THREE.Box3().setFromObject(this.mesh);
+
+    // this.boundingBoxHelper = new THREE.Box3Helper(this.boundingBox, 0xffff00);
+    // this.scene.add(this.boundingBoxHelper);
+
     this.targetQuaternion.copy(this.mesh.quaternion);
+  }
+
+  setInitialPosition(position, layerIndex = 0) {
+    if (this.mesh) {
+      this.mesh.position.set(position, this.layerBases[layerIndex], 0);
+      this.targetLayer = layerIndex;
+    }
   }
 
   initKeyboard() {
@@ -114,6 +128,15 @@ class MyBalloon {
         this.movingVertically = false;
       }
     }
+    
+    this.boundingBox.setFromObject(this.mesh);
+    const center = this.boundingBox.getCenter(new THREE.Vector3());
+    const size = this.boundingBox.getSize(new THREE.Vector3());
+    const reductionFactor = 0.8;
+    size.multiplyScalar(reductionFactor);
+    this.boundingBox.setFromCenterAndSize(center, size);
+    
+    //this.boundingBoxHelper.update();
 
     const windDir = this.windDirections[this.targetLayer].clone();
     windDir.multiplyScalar(this.windSpeed);
@@ -147,20 +170,10 @@ class MyBalloon {
   }
 
   dispose() {
-    removeKeyboard();
+    this.removeKeyboard();
 
     if (this.mesh) {
       this.scene.remove(this.mesh);
-      this.mesh.traverse((child) => {
-        if (child.geometry) child.geometry.dispose();
-        if (child.material) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach(material => material.dispose());
-          } else {
-            child.material.dispose();
-          }
-        }
-      });
       this.mesh = null;
     }
 
