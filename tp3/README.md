@@ -62,7 +62,7 @@ This project is a 3D game developed using the THREE.JS library. The game feature
 ## Issues / Problems
 
 - **Unimplemented Features**:  
-  - The **Leaderboard** feature is not yet implemented.
+  - The **Leaderboard** and the **Shaders** feature is not yet implemented.
 - **Bugs**:  
   - Occasionally, the verification system may fail to detect whether the balloon is inside the track.
 - **Performance Issues**:  
