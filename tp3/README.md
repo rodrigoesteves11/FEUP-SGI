@@ -37,6 +37,15 @@ This project is a 3D game developed using the THREE.JS library. The game feature
 
 ---
 
+## Key Binds
+
+- **Arrow Up / W** : Increase the balloon's height, changing its direction
+- **Arrow Down / S** : Decrease the balloon's height, changing its direction
+- **V** : Switch the camera between First Person and Third Person view
+- **Esc** : Exit the game
+
+---
+
 ## Screenshots
 
 ![Screenshot 1](./screenshots/1.png)  
