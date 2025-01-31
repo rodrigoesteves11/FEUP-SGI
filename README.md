@@ -13,8 +13,8 @@
 | TP   | Title                                      | Grade   | 
 |------|--------------------------------------------|---------|
 | [TP1](#tp1---threejs-basics---the-simpsonss-living-room) | ThreeJS Basics - The Simpsons's Living Room | 18.9/20   |
-| [TP2](#tp2---scene-graph---base-on-mars)         | Scene Graph - Base on Mars                | 18/20   |
-| [TP3](#tp3---development-of-a-game---hot-air-balloon-race) | Hot Air Balloon Race                      | Pending |
+| [TP2](#tp2---scene-graph---base-on-mars)         | Scene Graph - Base on Mars                | 18.0/20   |
+| [TP3](#tp3---development-of-a-game---hot-air-balloon-race) | Hot Air Balloon Race                      | 15.4/20 |
 
 ----
 
